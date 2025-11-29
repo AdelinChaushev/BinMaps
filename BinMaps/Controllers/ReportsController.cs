@@ -2,10 +2,14 @@
 using BinMaps.Core.Contracts;
 using BinMaps.Common.ReportCreateViewModel;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BinMaps.Controllers
 {
-    public class ReportsController : Controller
+    [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("api/reports")]
+    public class ReportsController : ControllerBase
     {
         private readonly IReportService _reportService;
 
@@ -14,32 +18,24 @@ namespace BinMaps.Controllers
             _reportService = reportService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            var types = await _reportService.GetAllReportTypesAsync();
-            ViewBag.ReportTypes = types;
-            return View();
-        }
+      
 
-        [HttpPost]
-        public async Task<IActionResult> Create(ReportCreateViewModel model)
+        [HttpPost("createReport")]
+        public async Task<IActionResult> Create([FromBody]ReportCreateViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
 
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             await _reportService.CreateReportAsync(userId, model);
 
-            return RedirectToAction("Index");
+            return Ok(new { userId, model });
         }
 
-        [HttpGet]
+        [HttpGet("reports")]
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             var reports = await _reportService.GetReportsByUserAsync(userId);
-            return View(reports);
+            return Ok(reports);
         }
     }
 }

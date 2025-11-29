@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BinMaps.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class TrashContainerController : ControllerBase
     { 
        private readonly  ITrashContainerServices _trashContainerServices;
