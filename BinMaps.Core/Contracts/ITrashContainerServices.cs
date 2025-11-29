@@ -10,7 +10,7 @@ namespace BinMaps.Core.Contracts
     public interface ITrashContainerServices
     {
         public IEnumerable<TrashContainerOutputViewModel> GetAll();
-        public Task AddTrashToTheTrashContainer(Dictionary<int,int> containers );
+        public Task AddTrashToTheTrashContainer(IEnumerable<TrashContainerInputViewModel> containers );
 
         public Task RemoveTrashToTheTrashContainer(int[] containers);
     }

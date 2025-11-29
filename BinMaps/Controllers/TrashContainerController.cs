@@ -1,4 +1,5 @@
-﻿using BinMaps.Core.Contracts;
+﻿using BinMaps.Common.TrashContainerViewModel;
+using BinMaps.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinMaps.Controllers
@@ -12,13 +13,19 @@ namespace BinMaps.Controllers
         {
             _trashContainerServices = trashContainerServices;
         }
-        [HttpGet("api/trashcontainers")]
+        [HttpGet("api/trashContainers")]
         public IActionResult GetAll() 
         => Ok(_trashContainerServices.GetAll());
-        public async Task<IActionResult> AddTrashToTheTrashContainer(Dictionary<int,int> containers)
+        [HttpPost("api/AddTrash")]
+        public async Task<IActionResult> AddTrashToTheTrashContainer([FromBody]IEnumerable<TrashContainerInputViewModel> containers)
         {
             await _trashContainerServices.AddTrashToTheTrashContainer(containers);
             return Ok();
+        }
+        [HttpPost("api/DisposeOfTrash")]
+        public async Task DisposeOfTrash(int[] containerIds)
+        {
+            return await _trashContainerServices.RemoveTrashToTheTrashContainer(containerIds);
         }
 
     }

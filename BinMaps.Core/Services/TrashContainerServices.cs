@@ -21,19 +21,23 @@ namespace BinMaps.Core.Services
             this.repository = repository;
             this.areaRepository = areaRepository;
         }
-        public async Task AddTrashToTheTrashContainer()
+
+
+        public async Task AddTrashToTheTrashContainer(IEnumerable<TrashContainerInputViewModel> containers)
         {
-            Random random = new Random();
-            foreach (var bin in  repository.GetAllAttached())
+            foreach (var container in containers)
             {
+                var bin = await repository.GetByIdAsync(container.Id);
                 if (!bin.IsFilled)
                 {
-                    bin.FillPercentage = bin.FillPercentage + random.Next(10, 81);
+                    bin.FillPercentage = (decimal)container.Percentage;
                     if (bin.FillPercentage >= 100)
                     {
                         bin.FillPercentage = 100;
                         bin.IsFilled = true;
                     }
+                    bin.Temperature = container.Temperature;
+                    bin.BatteryPercentage = container.BatteryPercentage;
                     Area area = bin.Area;
                     area.LitersFilled += (bin.Capacity * (double)(bin.FillPercentage / 100));
                     if (area.LitersFilled >= area.Truck.Capacity)
@@ -43,33 +47,6 @@ namespace BinMaps.Core.Services
                     await repository.UpdateAsync(bin);
                     await areaRepository.UpdateAsync(area);
                 }
-                
-            }
-        }
-
-        public async Task AddTrashToTheTrashContainer(Dictionary<int, int> containers)
-        {
-            foreach (var (container,value) in containers)
-            {
-                var bin = await repository.GetByIdAsync(container);
-                if (!bin.IsFilled)
-                {
-                    bin.FillPercentage = bin.FillPercentage + containers[container];
-                    if (bin.FillPercentage >= 100)
-                    {
-                        bin.FillPercentage = 100;
-                        bin.IsFilled = true;
-                    }
-                    Area area = bin.Area;
-                    area.LitersFilled += (bin.Capacity * (double)(bin.FillPercentage / 100));
-                    if (area.LitersFilled >= area.Truck.Capacity)
-                    {
-                        area.IsFull = true;
-                    }
-                    await repository.UpdateAsync(bin);
-                    await areaRepository.UpdateAsync(area);
-                }
-
             }
         }
 
