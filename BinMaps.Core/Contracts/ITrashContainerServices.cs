@@ -12,6 +12,6 @@ namespace BinMaps.Core.Contracts
         public IEnumerable<TrashContainerOutputViewModel> GetAll();
         public Task AddTrashToTheTrashContainer(IEnumerable<TrashContainerInputViewModel> containers );
 
-        public Task RemoveTrashToTheTrashContainer(int[] containers);
+        public Task RemoveTrashFromTheTrashContainer(int[] containers);
     }
 }
