@@ -1,77 +1,119 @@
-using BinMaps.Core.Contracts;
-using BinMaps.Core.Services;
-using BinMaps.Data;
-using BinMaps.Data.Entities;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using BinMaps.Data;
+using BinMaps.Core.Contracts;
+using BinMaps.Core.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto;
+});
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<BinMapsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<BinMapsDbContext>();
+var auth = builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+});
+var key = Encoding.ASCII.GetBytes(builder.Configuration["JWT:Secret"]);
+auth
+    .AddCookie(c =>
+    {
+        c.Cookie.Name = "token";
+    })
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.RequireHttpsMetadata = false;
 
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidAudience = builder.Configuration["JWT:ValidAudience"],
+            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["token"];
+                return Task.CompletedTask;
+            }
+        };
+
+
+
+    });
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<BinMapsDbContext>();
+
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowAll", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<ITrashContainerServices, TrashContainerServices>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IAreaAdminService, AdminService>();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-
-    if (!roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
-        roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
-
-    string adminEmail = "admin@binmaps.com";
-    string adminPassword = "Admin123!";
-    var adminUser = userManager.FindByEmailAsync(adminEmail).GetAwaiter().GetResult();
-
-    if (adminUser == null)
-    {
-        adminUser = new IdentityUser
-        {
-            UserName = adminEmail,
-            Email = adminEmail,
-            EmailConfirmed = true
-        };
-        var result = userManager.CreateAsync(adminUser, adminPassword).GetAwaiter().GetResult();
-        if (result.Succeeded)
-            userManager.AddToRoleAsync(adminUser, "Admin").GetAwaiter().GetResult();
-    }
-}
-
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-    app.UseDeveloperExceptionPage();
-else
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BinMaps API V1");
-});
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthentication();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
