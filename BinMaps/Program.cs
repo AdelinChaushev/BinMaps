@@ -1,6 +1,8 @@
 using BinMaps.Data;
+using BinMaps.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<BinMapsDbContext>();
+builder.Services.AddSingleton<IRepository<ThrashContainer, int>, Repository<ThrashContainer, int>>();
+builder.Services.AddSingleton<IRepository<Area, int>, Repository<Area, int>>();
+builder.Services.AddSingleton<IRepository<Truck, int>, Repository<Truck, int>>();
+
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

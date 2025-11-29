@@ -19,7 +19,8 @@ namespace BinMaps.Data.Entities
 		public int Id { get; set; }
 		[Required]
 		public double LitersFilled { get; set; }
-		public IEnumerable<ThrashContainer> Bins { get; set; }
+        public bool IsFull { get; set; }
+        public IEnumerable<ThrashContainer> Bins { get; set; }
 		[InverseProperty("Area")]
 		public Truck Truck { get; set; }
 	}
