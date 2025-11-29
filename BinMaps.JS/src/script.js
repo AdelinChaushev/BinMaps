@@ -34,29 +34,24 @@ const API_BASE_URL = 'https://localhost:7230';
 // TODO: Replace with API endpoint to validate existing session/token
 async function checkAuth() {
     try {
-        // API ENDPOINT: GET /api/auth/verify
-        // The cookie with JWT token is automatically sent by the browser
         const response = await fetch(`${API_BASE_URL}/api/Auth/verify`, {
             method: 'GET',
-            credentials: 'include' // This tells the browser to include cookies
+            credentials: 'include'
         });
 
         if (response.ok) {
-            // User is authenticated, get user data
             const userData = await response.json();
-
-            // userData will look like:
-            // {
-            //   id: "123",
-            //   name: "John Doe",
-            //   email: "john@example.com",
-            //   role: "user"
-            // }
+            
+            // Handle role as array - take the first role or default to 'user'
+            if (Array.isArray(userData.role)) {
+                userData.role = userData.role.length > 0 ? userData.role[0].toLowerCase() : 'user';
+            } else {
+                userData.role = (userData.role || 'user').toLowerCase();
+            }
 
             currentUser = userData;
             showDashboard(currentUser.role);
         } else {
-            // No valid session, show home page
             showHomePage();
         }
     } catch (error) {
@@ -95,12 +90,12 @@ if (loginForm) {
         const password = document.getElementById('loginPassword').value;
 
         try {
-            // API ENDPOINT: POST /login
             const response = await fetch(`${API_BASE_URL}/api/Auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include', // IMPORTANT: Include credentials to receive cookies
                 body: JSON.stringify({
                     email: email,
                     password: password
@@ -112,24 +107,10 @@ if (loginForm) {
                 throw new Error(errorData || 'Login failed');
             }
 
-            const token = await response.text();
-
-            // API ENDPOINT NEEDED: GET /api/user/profile or similar
-            // Fetch user profile data to get name and role
-            // For now, you'll need to decode the JWT or make another API call
-            // Example:
-            // const userResponse = await fetch('/api/user/profile', {
-            //     method: 'GET',
-            //     credentials: 'include' // Send cookie
-            // });
-
-            // if (userResponse.ok) {
-            //     const userData = await userResponse.json();
-            //     currentUser = userData; // Should contain: { name, email, role }
-
-            //     showNotification(`Welcome back, ${currentUser.name}!`, 'success');
-            //     showDashboard(currentUser.role);
-            // }
+            // If backend sets the cookie, verify the session immediately
+            await checkAuth();
+            
+            showNotification('Login successful!', 'success');
 
         } catch (error) {
             console.error('Login error:', error);
@@ -169,25 +150,23 @@ if (registerForm) {
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('registerConfirmPassword').value;
 
-        // Validate passwords match
         if (password !== confirmPassword) {
             showNotification('Passwords do not match!', 'warning');
             return;
         }
 
-        // Validate password length
         if (password.length < 6) {
             showNotification('Password must be at least 6 characters!', 'warning');
             return;
         }
 
         try {
-            // API ENDPOINT: POST /register
             const response = await fetch(`${API_BASE_URL}/api/Auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include', // IMPORTANT: Include credentials
                 body: JSON.stringify({
                     username: username,
                     email: email,
@@ -197,20 +176,18 @@ if (registerForm) {
             });
 
             if (!response.ok) {
-                const errorData = await response.text(); // Read once
-                console.log(errorData); // Log the actual text, not the function
+                const errorData = await response.text();
                 throw new Error(errorData || 'Registration failed');
             }
 
-            const token = await response.text(); // Read once for success case
-            console.log('Registration successful, token received');
+            showNotification('Account created successfully! Logging you in...', 'success');
 
-            showNotification('Account created successfully! Please sign in.', 'success');
-
-            // Clear form and switch to login
+            // Clear form and immediately check auth (which will show the dashboard)
             registerForm.reset();
             document.getElementById('registerScreen').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('active');
+            
+            // Verify session and show dashboard
+            await checkAuth();
 
         } catch (error) {
             console.error('Registration error:', error);
@@ -299,9 +276,8 @@ const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async function () {
         try {
-            // API ENDPOINT NEEDED: POST /api/auth/logout
-            // This should invalidate the JWT token on the server side
-            await fetch('/api/auth/logout', {
+            // API ENDPOINT: POST /api/auth/logout
+            await fetch(`${API_BASE_URL}/api/Auth/logout`, {
                 method: 'POST',
                 credentials: 'include'
             });
