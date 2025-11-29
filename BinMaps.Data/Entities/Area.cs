@@ -13,14 +13,14 @@ namespace BinMaps.Data.Entities
 	{
 		public Area()
 		{
-			Bins = new HashSet<ThrashContainer>();
+			Bins = new HashSet<TrashContainer>();
 		}
 		[Key]
 		public int Id { get; set; }
 		[Required]
 		public double LitersFilled { get; set; }
         public bool IsFull { get; set; }
-        public IEnumerable<ThrashContainer> Bins { get; set; }
+        public IEnumerable<TrashContainer> Bins { get; set; }
 		[InverseProperty("Area")]
 		public Truck Truck { get; set; }
 	}

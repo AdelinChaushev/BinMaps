@@ -12,11 +12,11 @@ namespace BinMaps.Core.Services
 {
     public class TrashContainerServices : ITrashContainerServices
     {
-        private IRepository<ThrashContainer,int> repository;
+        private IRepository<TrashContainer,int> repository;
 
         private IRepository<Area, int> areaRepository;
 
-        public TrashContainerServices(IRepository<ThrashContainer, int> repository, IRepository<Area, int> areaRepository)
+        public TrashContainerServices(IRepository<TrashContainer, int> repository, IRepository<Area, int> areaRepository)
         {
             this.repository = repository;
             this.areaRepository = areaRepository;

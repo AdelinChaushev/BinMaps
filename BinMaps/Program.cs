@@ -1,12 +1,14 @@
 
+using BinMaps.Core.Contracts;
+using BinMaps.Core.Services;
+using BinMaps.Data;
+using BinMaps.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using BinMaps.Data;
-using BinMaps.Core.Contracts;
-using BinMaps.Core.Services;
+using System.Text.Json;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -119,4 +121,33 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BinMapsDbContext>();
+    await context.Database.MigrateAsync(); // Applies migrations + HasData
+
+    if (!context.TrashContainers.Any())
+    {
+        var jsonPath = "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\Backup\\BinMaps\\BinMaps.Data\\Seed\\SeedBins.json";
+        if (File.Exists(jsonPath))
+        {
+            var json = await File.ReadAllTextAsync(jsonPath);
+            var bins = JsonSerializer.Deserialize<TrashContainer[]>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (bins != null && bins.Length > 0)
+            {
+                // Ensure IDs are set if using identity keys
+                foreach (var bin in bins)
+                {
+					bin.Id = 0; // Let the database assign the ID
+					context.TrashContainers.Add(bin);
+                }
+                await context.SaveChangesAsync();
+            }
+        }
+    }
+}
 app.Run();
