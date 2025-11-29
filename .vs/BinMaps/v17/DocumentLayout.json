@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\controllers\\trashcontainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\trashcontainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\contracts\\itrashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\contracts\\itrashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontaineroutputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,11 +98,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AreaReadyViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
@@ -115,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "TrashContainerGetAllViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
@@ -258,13 +262,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "TrashContainerController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\TrashContainerController.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs",
               "RelativeToolTip": "BinMaps\\Controllers\\TrashContainerController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBsAAABMAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAwBwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T03:19:58.555Z",
               "EditorCaption": ""
@@ -349,7 +353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Services\\TrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Services\\TrashContainerServices.cs",
@@ -362,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ITrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
