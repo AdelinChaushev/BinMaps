@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BinMaps.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14e71b4f0ffdd22158a1fc91da6082c064fa8b90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dabad2a604a842175fcebbcec9cc1248dc795a7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("BinMaps.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BinMaps.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

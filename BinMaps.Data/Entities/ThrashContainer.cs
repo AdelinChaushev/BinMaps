@@ -23,7 +23,12 @@ namespace BinMaps.Data.Entities
 		public double LocationX { get; set; }
 		[Required]
 		public double LocationY { get; set; }
-		[ForeignKey(nameof(Area))]
+
+		[Required]
+		public double Temperature { get; set; }
+		[Required]
+		public double BatteryPercentage { get; set; }
+        [ForeignKey(nameof(Area))]
 		public int AreaId { get; set; }
 		public Area Area { get; set; }
 	}

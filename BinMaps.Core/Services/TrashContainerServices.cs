@@ -47,6 +47,32 @@ namespace BinMaps.Core.Services
             }
         }
 
+        public async Task AddTrashToTheTrashContainer(Dictionary<int, int> containers)
+        {
+            foreach (var (container,value) in containers)
+            {
+                var bin = await repository.GetByIdAsync(container);
+                if (!bin.IsFilled)
+                {
+                    bin.FillPercentage = bin.FillPercentage + containers[container];
+                    if (bin.FillPercentage >= 100)
+                    {
+                        bin.FillPercentage = 100;
+                        bin.IsFilled = true;
+                    }
+                    Area area = bin.Area;
+                    area.LitersFilled += (bin.Capacity * (double)(bin.FillPercentage / 100));
+                    if (area.LitersFilled >= area.Truck.Capacity)
+                    {
+                        area.IsFull = true;
+                    }
+                    await repository.UpdateAsync(bin);
+                    await areaRepository.UpdateAsync(area);
+                }
+
+            }
+        }
+
         public IEnumerable<TrashContainerOutputViewModel> GetAll()
         {
           var  arr  =   repository.GetAllAttached().Select(x => new TrashContainerOutputViewModel()
@@ -59,6 +85,11 @@ namespace BinMaps.Core.Services
           }); 
           return  arr;
 
+        }
+
+        public Task RemoveTrashToTheTrashContainer(int[] containers)
+        {
+            throw new NotImplementedException();
         }
     }
 }
