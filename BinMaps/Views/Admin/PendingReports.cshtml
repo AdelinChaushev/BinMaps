@@ -1,36 +1,377 @@
-﻿@model IEnumerable<BinMaps.Data.Entities.Report>
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<h2>Очакващи одобрение отчети</h2>
+<div id="adminDashboard" class="dashboard-container">
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">Admin Control Center</div>
+            <h1 class="hero-title">System Overview<br>& Management</h1>
+            <p class="hero-description">Complete visibility and control over the entire waste management system</p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Потребител</th>
-            <th>Container</th>
-            <th>Тип</th>
-            <th>Описание</th>
-            <th>Дата</th>
-            <th>Действие</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var report in Model)
-        {
-            <tr>
-                <td>@report.Id</td>
-                <td>@report.IdentityUser?.UserName</td>
-                <td>@report.ThrashContainerId</td>
-                <td>@report.ReportType?.Name</td>
-                <td>@report.Description</td>
-                <td>@report.ReportDate.ToString("g")</td>
-                <td>
-                    <form asp-action="ApproveReport" asp-controller="Reports" method="post">
-                        <input type="hidden" name="id" value="@report.Id" />
-                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="adminViewMapBtn">
+                    <span>Live System Map</span>
+                </button>
+                <button class="btn btn-secondary" id="adminViewReportsBtn">
+                    <span>Manage Reports</span>
+                </button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-content">
+                        <div class="stat-number" id="heroTotalBins">60</div>
+                        <div class="stat-label">Smart Bins</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-content">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Cost Savings</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-content">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">Less CO₂</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-content">
+                        <div class="stat-number live-update" id="heroLiveUpdate">Live</div>
+                        <div class="stat-label">Updates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Live Dashboard</span>
+                <h2>Real-Time City Overview</h2>
+                <p>Monitor all containers with IoT sensors and get AI-powered insights instantly</p>
+            </div>
+
+            <div class="quick-stats">
+                <div class="quick-stat-card green">
+                    <div class="quick-stat-info">
+                        <div class="quick-stat-number" id="adminEmptyBins">35</div>
+                        <div class="quick-stat-label">Empty/Normal</div>
+                        <div class="quick-stat-percent">0-50% Full</div>
+                    </div>
+                </div>
+                <div class="quick-stat-card yellow">
+                    <div class="quick-stat-info">
+                        <div class="quick-stat-number" id="adminWarningBins">18</div>
+                        <div class="quick-stat-label">Warning</div>
+                        <div class="quick-stat-percent">50-80% Full</div>
+                    </div>
+                </div>
+                <div class="quick-stat-card red">
+                    <div class="quick-stat-info">
+                        <div class="quick-stat-number" id="adminCriticalBins">7</div>
+                        <div class="quick-stat-label">Critical</div>
+                        <div class="quick-stat-percent">80-100% Full</div>
+                    </div>
+                </div>
+                <div class="quick-stat-card blue">
+                    <div class="quick-stat-info">
+                        <div class="quick-stat-number" id="avgTemp">24°C</div>
+                        <div class="quick-stat-label">Avg Temperature</div>
+                        <div class="quick-stat-percent">Sensor Data</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alerts-section">
+                <h3>AI Insights & Alerts</h3>
+                <div class="alerts-container" id="adminAlertsContainer">
+                    <div class="alert-card info">
+                        <div class="alert-content">
+                            <strong>Route Optimization</strong>
+                            <p>Route B can save 18 minutes compared to current route</p>
+                        </div>
+                        <span class="alert-time">Just now</span>
+                    </div>
+                    <div class="alert-card warning">
+                        <div class="alert-content">
+                            <strong>Overflow Warning</strong>
+                            <p>Container #12 will reach capacity in approximately 2 hours</p>
+                        </div>
+                        <span class="alert-time">5 min ago</span>
+                    </div>
+                    <div class="alert-card success">
+                        <div class="alert-content">
+                            <strong>Environmental Impact</strong>
+                            <p>This week's optimizations reduced CO₂ emissions by 35%</p>
+                        </div>
+                        <span class="alert-time">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Fill Level Distribution</h3>
+                    <canvas id="adminFillLevelChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Weekly Efficiency</h3>
+                    <canvas id="adminEfficiencyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reports-management">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Reports</span>
+                <h2>User Reports Management</h2>
+                <p>Review and manage citizen-submitted issues</p>
+            </div>
+
+            <div class="reports-filters">
+                <button class="filter-btn active" data-filter="all">All Reports (<span id="allReportsCount">0</span>)</button>
+                <button class="filter-btn" data-filter="pending">Pending (<span id="pendingReportsCount">0</span>)</button>
+                <button class="filter-btn" data-filter="in-progress">In Progress (<span id="progressReportsCount">0</span>)</button>
+                <button class="filter-btn" data-filter="resolved">Resolved (<span id="resolvedReportsCount">0</span>)</button>
+            </div>
+
+            <div class="reports-table" id="adminReportsTable">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="map" class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Live Map</span>
+                <h2>Kazanlak City Overview</h2>
+                <p>Real-time monitoring of all 60 waste containers with sensor data</p>
+            </div>
+
+            <div class="map-filters">
+                <button class="map-filter-btn active" data-filter="all">
+                    <span>All (60)</span>
+                </button>
+                <button class="map-filter-btn green" data-filter="empty">
+                    <span>Empty (<span id="filterEmpty">35</span>)</span>
+                </button>
+                <button class="map-filter-btn yellow" data-filter="warning">
+                    <span>Warning (<span id="filterWarning">18</span>)</span>
+                </button>
+                <button class="map-filter-btn red" data-filter="critical">
+                    <span>Critical (<span id="filterCritical">7</span>)</span>
+                </button>
+            </div>
+
+            <div class="map-wrapper">
+                <div id="adminMap"></div>
+                <div class="map-legend">
+                    <h4>Status Legend</h4>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-dot green"></span>
+                            <span>0-50% (Empty)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot yellow"></span>
+                            <span>50-80% (Warning)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot red"></span>
+                            <span>80-100% (Critical)</span>
+                        </div>
+                    </div>
+                    <div class="legend-divider"></div>
+                    <h4>Temperature</h4>
+                    <div class="legend-temp">Normal: 15-30°C</div>
+                </div>
+            </div>
+
+            <div class="routes-section">
+                <h3>Optimized Collection Routes</h3>
+                <div class="routes-grid">
+                    <div class="route-card">
+                        <div class="route-header">
+                            <span class="route-badge">Route A</span>
+                            <span class="route-status active">Active Now</span>
+                        </div>
+                        <div class="route-stats">
+                            <div class="route-stat">
+                                <span class="route-label">Bins:</span>
+                                <span class="route-value">20</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Distance:</span>
+                                <span class="route-value">8.4 km</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Time:</span>
+                                <span class="route-value">35 min</span>
+                            </div>
+                            <div class="route-stat savings">
+                                <span class="route-label">Savings:</span>
+                                <span class="route-value">-22% fuel</span>
+                            </div>
+                        </div>
+                        <button class="route-view-btn">View on Map</button>
+                    </div>
+                    <div class="route-card">
+                        <div class="route-header">
+                            <span class="route-badge">Route B</span>
+                            <span class="route-status">Planned</span>
+                        </div>
+                        <div class="route-stats">
+                            <div class="route-stat">
+                                <span class="route-label">Bins:</span>
+                                <span class="route-value">18</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Distance:</span>
+                                <span class="route-value">7.2 km</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Time:</span>
+                                <span class="route-value">28 min</span>
+                            </div>
+                            <div class="route-stat savings">
+                                <span class="route-label">Savings:</span>
+                                <span class="route-value">-18% fuel</span>
+                            </div>
+                        </div>
+                        <button class="route-view-btn">View on Map</button>
+                    </div>
+                    <div class="route-card">
+                        <div class="route-header">
+                            <span class="route-badge">Route C</span>
+                            <span class="route-status">Planned</span>
+                        </div>
+                        <div class="route-stats">
+                            <div class="route-stat">
+                                <span class="route-label">Bins:</span>
+                                <span class="route-value">22</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Distance:</span>
+                                <span class="route-value">9.8 km</span>
+                            </div>
+                            <div class="route-stat">
+                                <span class="route-label">Time:</span>
+                                <span class="route-value">38 min</span>
+                            </div>
+                            <div class="route-stat savings">
+                                <span class="route-label">Savings:</span>
+                                <span class="route-value">-25% fuel</span>
+                            </div>
+                        </div>
+                        <button class="route-view-btn">View on Map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analytics" class="analytics">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Advanced Analytics</span>
+                <h2>Historical Data & Insights</h2>
+                <p>Comprehensive analytics with heatmaps, trends, and performance metrics</p>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="analytics-card full-width">
+                    <div class="analytics-header">
+                        <h3>Container Fill History (30 Days)</h3>
+                        <div class="time-selector">
+                            <button class="time-btn active">7D</button>
+                            <button class="time-btn">30D</button>
+                            <button class="time-btn">90D</button>
+                        </div>
+                    </div>
+                    <canvas id="historyChart"></canvas>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Zone Activity Heatmap</h3>
+                    <div id="heatmapContainer"></div>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Route Efficiency Metrics</h3>
+                    <div class="efficiency-metrics">
+                        <div class="metric-item">
+                            <div class="metric-label">Average Collection Time</div>
+                            <div class="metric-value">35 min</div>
+                            <div class="metric-change positive">↓ 18% vs last month</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">Fuel Consumption</div>
+                            <div class="metric-value">165 L/week</div>
+                            <div class="metric-change positive">↓ 22% vs last month</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">Bins per Route</div>
+                            <div class="metric-value">20 avg</div>
+                            <div class="metric-change positive">↑ 12% efficiency</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">Empty Collections</div>
+                            <div class="metric-value">8%</div>
+                            <div class="metric-change positive">↓ 65% vs traditional</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>Temperature Monitoring</h3>
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="impact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our Impact</span>
+                <h2>Making a Real Difference</h2>
+                <p>Measurable results for cities and the environment</p>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">€80K</div>
+                    <div class="impact-label">Average Annual Savings</div>
+                    <div class="impact-description">Per city with 500+ containers</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">60%</div>
+                    <div class="impact-label">CO₂ Reduction</div>
+                    <div class="impact-description">Through optimized routing</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">50%</div>
+                    <div class="impact-label">Fewer Truck Miles</div>
+                    <div class="impact-description">Smart collection scheduling</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">24/7</div>
+                    <div class="impact-label">Real-Time Monitoring</div>
+                    <div class="impact-description">Never miss an overflow</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin-dashboard.js" asp-append-version="true"></script>
+}

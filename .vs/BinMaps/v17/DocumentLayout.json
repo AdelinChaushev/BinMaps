@@ -3,24 +3,73 @@
   "WorkspaceRootPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110837_aas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BinMaps.Data\\Migrations\\20251129110837_aas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\areas\\identity\\pages\\account\\logout.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\areas\\identity\\pages\\account\\logout.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\binmapsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\binmapsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\binmapsdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\binmapsdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\admin\\pendingreports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\admin\\pendingreports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\20251129110043_aa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\20251129110043_aa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\Downloads\\files\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BinMaps.Data\\Migrations\\20251129110043_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Local\\Temp\\11b09e5a-51fd-48b6-bd67-255ca31c3a67_files.zip.a67\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\2147_titan_folio\\BinMaps-style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.core\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\entities\\reporttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,6 +78,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\binmapsdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\binmapsdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\20251129110043_aa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\20251129110043_aa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110033_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,10 +100,6 @@
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -59,18 +112,6 @@
       "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\admin\\pendingreports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\admin\\pendingreports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\views\\reports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\reports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -79,24 +120,12 @@
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\views\\reports\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.core\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\trashcontainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -119,10 +148,6 @@
       "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\trashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -133,6 +158,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\20251129110837_aas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\20251129110837_aas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-thg5qcc\\desktop\\binmaps\\binmaps.data\\migrations\\20251129110043_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\migrations\\20251129110043_aa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -142,15 +175,188 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "BinMaps\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "BinMaps\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T14:22:58.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Logout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T14:16:46.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Logout.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
+              "RelativeDocumentMoniker": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
+              "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T14:16:46.865Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "BinMaps\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "BinMaps\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T06:29:06.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\Program.cs",
+              "RelativeDocumentMoniker": "BinMaps.Common\\Program.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\Program.cs",
+              "RelativeToolTip": "BinMaps.Common\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T03:28:53.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "BinMaps\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T10:26:34.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "BinMaps\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T11:41:05.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Program.cs",
+              "RelativeDocumentMoniker": "BinMaps\\Program.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Program.cs",
+              "RelativeToolTip": "BinMaps\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T02:38:03.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Program.cs",
+              "RelativeDocumentMoniker": "BinMaps.Core\\Program.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Program.cs",
+              "RelativeToolTip": "BinMaps.Core\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T02:34:12.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "BinMaps\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAQwCIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T10:26:01.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T13:41:49.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "BinMaps\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T11:40:52.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PendingReports.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\PendingReports.cshtml",
+              "RelativeDocumentMoniker": "BinMaps\\Views\\Admin\\PendingReports.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\PendingReports.cshtml",
+              "RelativeToolTip": "BinMaps\\Views\\Admin\\PendingReports.cshtml",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAQwHkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T10:25:34.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BinMapsDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMapsDbContext.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\BinMapsDbContext.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMapsDbContext.cs",
+              "RelativeToolTip": "BinMaps.Data\\BinMapsDbContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAIAxwCgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T10:34:28.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
               "Title": "20251129110837_aas.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110837_aas.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110837_aas.cs",
@@ -158,103 +364,11 @@
               "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110837_aas.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T11:08:37.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T11:08:37.202Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BinMapsDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T11:08:21.982Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20251129110043_aa.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T11:08:21.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20251129110043_aa.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110043_aa.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110043_aa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T11:00:43.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20251129110033_aa.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110033_aa.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110033_aa.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110033_aa.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110033_aa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T11:00:33.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "20251129105954_ssff.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:59:54.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BinMapsDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMapsDbContext.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\BinMapsDbContext.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMapsDbContext.cs",
-              "RelativeToolTip": "BinMaps.Data\\BinMapsDbContext.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAIAzwCIAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:34:28.974Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "20251129102902_ss.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129102902_ss.cs",
-              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129102902_ss.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129102902_ss.cs",
-              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129102902_ss.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:29:02.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 19,
               "Title": "Report.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Report.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Report.cs",
@@ -262,12 +376,36 @@
               "RelativeToolTip": "BinMaps.Data\\Entities\\Report.cs",
               "ViewState": "AgIAABAAAAAAAAAAAADwvyEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T07:38:08.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T07:38:08.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 15,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Local\\Temp\\11b09e5a-51fd-48b6-bd67-255ca31c3a67_files.zip.a67\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\Temp\\11b09e5a-51fd-48b6-bd67-255ca31c3a67_files.zip.a67\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Local\\Temp\\11b09e5a-51fd-48b6-bd67-255ca31c3a67_files.zip.a67\\_Layout.cshtml [Read Only]",
+              "RelativeToolTip": "..\\..\\AppData\\Local\\Temp\\11b09e5a-51fd-48b6-bd67-255ca31c3a67_files.zip.a67\\_Layout.cshtml [Read Only]",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T13:38:04.739Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Downloads\\files\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\Downloads\\files\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Downloads\\files\\_Layout.cshtml",
+              "RelativeToolTip": "..\\..\\Downloads\\files\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T13:38:28.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "ReportType.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\ReportType.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\ReportType.cs",
@@ -275,50 +413,107 @@
               "RelativeToolTip": "BinMaps.Data\\Entities\\ReportType.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAmwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T07:39:47.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T07:39:47.429Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "BinMaps\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "BinMaps\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:26:34.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "DocumentIndex": 17,
+              "Title": "ReportService.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\ReportService.cs",
+              "RelativeDocumentMoniker": "BinMaps.Core\\Services\\ReportService.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\ReportService.cs",
+              "RelativeToolTip": "BinMaps.Core\\Services\\ReportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T10:15:48.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\Index.cshtml",
-              "RelativeDocumentMoniker": "BinMaps\\Views\\Admin\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\Index.cshtml",
-              "RelativeToolTip": "BinMaps\\Views\\Admin\\Index.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:26:01.596Z",
-              "EditorCaption": ""
+              "DocumentIndex": 16,
+              "Title": "BinMaps-style.css",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\2147_titan_folio\\BinMaps-style.css",
+              "RelativeDocumentMoniker": "..\\2147_titan_folio\\BinMaps-style.css",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\2147_titan_folio\\BinMaps-style.css",
+              "RelativeToolTip": "..\\2147_titan_folio\\BinMaps-style.css",
+              "ViewState": "AgIAAJEGAAAAAAAAAAAAAKwGAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-29T11:48:43.731Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 20,
+              "Title": "BinMapsDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\BinMapsDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:08:21.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "20251129110043_aa.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110043_aa.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:08:21.918Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "20251129110043_aa.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110043_aa.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110043_aa.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110043_aa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:00:43.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "20251129110033_aa.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110033_aa.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129110033_aa.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129110033_aa.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129110033_aa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:00:33.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20251129105954_ssff.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129105954_ssff.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T10:59:54.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "20251129102902_ss.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129102902_ss.cs",
+              "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129102902_ss.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129102902_ss.cs",
+              "RelativeToolTip": "BinMaps.Data\\Migrations\\20251129102902_ss.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T10:29:02.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
               "Title": "AdminService.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Services\\AdminService.cs",
@@ -326,12 +521,11 @@
               "RelativeToolTip": "BinMaps.Core\\Services\\AdminService.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAC4AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:17:14.044Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:17:14.044Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 24,
               "Title": "Area.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Area.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Area.cs",
@@ -339,12 +533,11 @@
               "RelativeToolTip": "BinMaps.Data\\Entities\\Area.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAcwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T03:04:51.307Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T03:04:51.307Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 25,
               "Title": "ReportsController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\ReportsController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\ReportsController.cs",
@@ -352,38 +545,11 @@
               "RelativeToolTip": "BinMaps\\Controllers\\ReportsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:11:48.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:11:48.151Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Program.cs",
-              "RelativeDocumentMoniker": "BinMaps\\Program.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Program.cs",
-              "RelativeToolTip": "BinMaps\\Program.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAACMAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:38:03.035Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PendingReports.cshtml",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\PendingReports.cshtml",
-              "RelativeDocumentMoniker": "BinMaps\\Views\\Admin\\PendingReports.cshtml",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Admin\\PendingReports.cshtml",
-              "RelativeToolTip": "BinMaps\\Views\\Admin\\PendingReports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:25:34.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Reports\\Index.cshtml",
               "RelativeDocumentMoniker": "BinMaps\\Views\\Reports\\Index.cshtml",
@@ -391,12 +557,11 @@
               "RelativeToolTip": "BinMaps\\Views\\Reports\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:24:59.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:24:59.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Views\\Reports\\Create.cshtml",
               "RelativeDocumentMoniker": "BinMaps\\Views\\Reports\\Create.cshtml",
@@ -404,25 +569,11 @@
               "RelativeToolTip": "BinMaps\\Views\\Reports\\Create.cshtml",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAABYAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:22:57.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:22:57.455Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ReportService.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\ReportService.cs",
-              "RelativeDocumentMoniker": "BinMaps.Core\\Services\\ReportService.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\ReportService.cs",
-              "RelativeToolTip": "BinMaps.Core\\Services\\ReportService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAABsAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:15:48.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 30,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\AdminController.cs",
@@ -430,12 +581,11 @@
               "RelativeToolTip": "BinMaps\\Controllers\\AdminController.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAuwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:11:11.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:11:11.662Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 33,
               "Title": "TrashContainerOutputViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
@@ -447,7 +597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 32,
               "Title": "TrashContainerController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\TrashContainerController.cs",
@@ -455,50 +605,11 @@
               "RelativeToolTip": "BinMaps\\Controllers\\TrashContainerController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAQwBsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T03:19:58.555Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T03:19:58.555Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\Program.cs",
-              "RelativeDocumentMoniker": "BinMaps.Common\\Program.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\Program.cs",
-              "RelativeToolTip": "BinMaps.Common\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T03:28:53.953Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "BinMaps\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "BinMaps\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T06:29:06.185Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Program.cs",
-              "RelativeDocumentMoniker": "BinMaps.Core\\Program.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Program.cs",
-              "RelativeToolTip": "BinMaps.Core\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:34:12.966Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "Repository.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Repository.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Repository.cs",
@@ -506,12 +617,11 @@
               "RelativeToolTip": "BinMaps.Data\\Repository.cs",
               "ViewState": "AgIAAI0AAAAAAAAAAAAAwKQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:42:17.221Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T02:42:17.221Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 34,
               "Title": "TrashContainerInputViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerInputViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerInputViewModel.cs",
@@ -523,7 +633,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 38,
               "Title": "Truck.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Truck.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Truck.cs",
@@ -535,7 +645,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 37,
               "Title": "ThrashContainer.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\ThrashContainer.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\ThrashContainer.cs",
@@ -547,7 +657,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 39,
               "Title": "IRepository.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\IRepository.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\IRepository.cs",
@@ -559,7 +669,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 36,
               "Title": "TrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Services\\TrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Services\\TrashContainerServices.cs",
@@ -571,7 +681,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 35,
               "Title": "ITrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Contracts\\ITrashContainerServices.cs",

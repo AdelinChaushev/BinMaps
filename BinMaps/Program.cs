@@ -2,19 +2,24 @@ using BinMaps.Core.Contracts;
 using BinMaps.Core.Services;
 using BinMaps.Data;
 using BinMaps.Data.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// DB Context
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<BinMapsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+// Identity
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+    options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BinMapsDbContext>();
 
+// Custom services
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<ITrashContainerServices, TrashContainerServices>();
 builder.Services.AddScoped<IReportService, ReportService>();
@@ -22,8 +27,16 @@ builder.Services.AddScoped<IAreaAdminService, AdminService>();
 
 builder.Services.AddControllersWithViews();
 
+// Authentication
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login"; // ? points to your custom controller
+    options.AccessDeniedPath = "/Account/Login"; // optional: redirect if access denied
+});
+
 var app = builder.Build();
 
+// Seed admin role & user
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -50,6 +63,7 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+// Middleware
 if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 else
@@ -64,9 +78,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Routes
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.MapRazorPages(); // for Identity pages
 
 app.Run();

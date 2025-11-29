@@ -1,49 +1,136 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - BinMaps</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BinMaps.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BinMaps</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a asp-controller="Home" asp-action="Index" class="logo">
+                <span class="logo-icon">🗑️</span>
+                <span class="logo-text">BinMaps</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <!-- Dynamic nav links based on role -->
+            </ul>
+            <div class="nav-right">
+                <span class="user-info">
+                    <span class="user-role" id="userRole"></span>
+                    <span class="user-name" id="userName"></span>
+                </span>
+                <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- Report Modal (Shared across all pages) -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Report an Issue</h2>
+                <button class="modal-close" id="closeReportModal">&times;</button>
+            </div>
+            <form class="report-form" id="reportForm">
+                <div class="form-group">
+                    <label>Issue Type</label>
+                    <select class="form-input" id="reportType" required>
+                        <option value="">Select issue type</option>
+                        <option value="overflow">Container Overflow</option>
+                        <option value="missing">Missing Container</option>
+                        <option value="damaged">Damaged Container</option>
+                        <option value="garbage">Garbage Outside Container</option>
+                        <option value="smell">Bad Smell</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" class="form-input" id="reportLocation" placeholder="Street name or address" required>
+                    <small>Or click on the map to select location</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-textarea" id="reportDescription" rows="4" placeholder="Describe the problem in detail..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Submit Report</span>
+                </button>
+            </form>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <button class="floating-report-btn" id="floatingReportBtn">
+            <span class="report-icon">📢</span>
+            <span class="report-text">Report Issue</span>
+        </button>
+    }
+
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            &copy; 2025 - BinMaps - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗑️</span>
+                        <span class="logo-text">BinMaps</span>
+                    </div>
+                    <p>Making cities cleaner through smart technology</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="how-it-works">How It Works</a>
+                    <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    <a asp-controller="Map" asp-action="Index">Live Map</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a asp-controller="Home" asp-action="About">About Us</a>
+                    <a asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a asp-controller="Home" asp-action="Documentation">Documentation</a>
+                    <a asp-controller="Home" asp-action="Blog">Blog</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BinMaps - Hackathon Project</p>
+                <p>Built with ♻️ for a sustainable future</p>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,6 +1,10 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\js\admin-dashboard.js
+wwwroot\js\auth.js
+wwwroot\js\collector-dashboard.js
 wwwroot\js\site.js
+wwwroot\js\user-dashboard.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css

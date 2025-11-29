@@ -1,15 +1,54 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center mt-5">
-    <h1 class="display-4">Welcome to BinMaps</h1>
-    <p>Create and manage trash reports, view areas, and approve reports as an admin.</p>
+<!-- Home Page -->
+<section id="homePage" class="home-page active">
+    <div class="home-hero">
+        <div class="home-content">
+            <div class="home-logo">
+                <span class="logo-icon">🗑️</span>
+                <span class="logo-text">BinMaps</span>
+            </div>
+            <h1>Smart Waste Management<br>for Modern Cities</h1>
+            <p>AI-powered waste collection optimization that saves costs, reduces emissions, and keeps cities cleaner</p>
 
-    <div class="mt-4">
-        <a asp-controller="Reports" asp-action="Create" class="btn btn-primary btn-lg m-2">Create Report</a>
-        <a asp-controller="Reports" asp-action="Index" class="btn btn-secondary btn-lg m-2">My Reports</a>
-        <a asp-controller="Reports" asp-action="Pending" class="btn btn-success btn-lg m-2">Pending Reports</a>
-        <a asp-controller="Admin" asp-action="Index" class="btn btn-warning btn-lg m-2">Admin Areas</a>
+            <div class="home-buttons">
+                <a asp-controller="Account" asp-action="Login" class="home-btn home-btn-primary">
+                    <span>Sign In</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+            <div class="home-stats">
+                <div class="home-stat-item">
+                    <div class="home-stat-number">40%</div>
+                    <div class="home-stat-label">Cost Savings</div>
+                </div>
+                <div class="home-stat-item">
+                    <div class="home-stat-number">60%</div>
+                    <div class="home-stat-label">Less CO₂</div>
+                </div>
+                <div class="home-stat-item">
+                    <div class="home-stat-number">24/7</div>
+                    <div class="home-stat-label">Monitoring</div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+@section Scripts {
+    <script>
+        // Home page specific initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeLoginBtn = document.getElementById('homeLoginBtn');
+            if (homeLoginBtn) {
+                homeLoginBtn.addEventListener('click', function() {
+                    window.location.href = '@Url.Action("Login", "Account")';
+                });
+            }
+        });
+    </script>
+}
