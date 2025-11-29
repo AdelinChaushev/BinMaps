@@ -78,10 +78,22 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Routes
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages(); // for Identity pages
+app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BinMapsDbContext>();
+    await context.Database.MigrateAsync(); // Applies migrations + HasData
+
+    if (!context.TrashContainers.Any())
+    {
+        var jsonPath = "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\Backup\\BinMaps\\BinMaps.Data\\Seed\\SeedBins.json";
+        if (File.Exists(jsonPath))
+        {
+            var json = await File.ReadAllTextAsync(jsonPath);
+            var bins = JsonSerializer.Deserialize<TrashContainer[]>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
 app.Run();
