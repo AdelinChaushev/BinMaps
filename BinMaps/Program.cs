@@ -19,7 +19,7 @@ builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<ITrashContainerServices, TrashContainerServices>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IAreaAdminService, AdminService>();
-
+builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -57,6 +57,11 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BinMaps API V1");
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -25,7 +25,7 @@ namespace BinMaps.Controllers
         [HttpPost("api/DisposeOfTrash")]
         public async Task DisposeOfTrash(int[] containerIds)
         {
-             await _trashContainerServices.RemoveTrashToTheTrashContainer(containerIds);
+             await _trashContainerServices.RemoveTrashFromTheTrashContainer(containerIds);
         }
 
     }
