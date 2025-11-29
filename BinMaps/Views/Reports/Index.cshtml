@@ -1,0 +1,29 @@
+﻿@model IEnumerable<BinMaps.Data.Entities.Report>
+
+<h2>Моите отчети</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Container</th>
+            <th>Тип</th>
+            <th>Описание</th>
+            <th>Дата</th>
+            <th>Одобрено</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.Id</td>
+                <td>@report.ThrashContainerId</td>
+                <td>@report.ReportType?.Name</td>
+                <td>@report.Description</td>
+                <td>@report.ReportDate.ToString("g")</td>
+                <td>@(report.IsApproved ? "Да" : "Не")</td>
+            </tr>
+        }
+    </tbody>
+</table>

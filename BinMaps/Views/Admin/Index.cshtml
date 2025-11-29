@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BinMaps.Data.Entities.Area>
+
+<h2>Admin - Areas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>LitersFilled</th>
+            <th>IsFull</th>
+            <th>Truck</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var area in Model)
+        {
+            <tr>
+                <td>@area.Id</td>
+                <td>@area.LitersFilled</td>
+                <td>@area.IsFull</td>
+                <td>@area.Truck?.DriverId</td>
+                <td>
+                    <form asp-action="AssignTruck" method="post" class="d-inline">
+                        <input type="hidden" name="areaId" value="@area.Id" />
+                        <input type="text" name="driverId" placeholder="DriverId" class="form-control form-control-sm mb-1" />
+                        <button type="submit" class="btn btn-primary btn-sm">Assign Truck</button>
+                    </form>
+
+                    <form asp-action="MarkAsCleaned" method="post" class="d-inline">
+                        <input type="hidden" name="areaId" value="@area.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">Mark Cleaned</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
