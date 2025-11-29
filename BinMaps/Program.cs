@@ -81,14 +81,18 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 	options.User.RequireUniqueEmail = true;
 }).AddEntityFrameworkStores<BinMapsDbContext>();
 
-builder.Services.AddCors(c =>
+builder.Services.AddCors(options =>
 {
-	c.AddPolicy("AllowAll", builder =>
+	options.AddPolicy("AllowFrontend", policy =>
 	{
-		builder.WithOrigins("http://localhost:3000")
+		policy.WithOrigins(
+				"http://127.0.0.1:5500",
+				"http://localhost:5500"
+			  )
+			  .AllowCredentials()
 			  .AllowAnyHeader()
 			  .AllowAnyMethod()
-			  .AllowCredentials();
+			  .WithExposedHeaders();
 	});
 });
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
@@ -106,9 +110,11 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
+app.UseCors("AllowFrontend");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

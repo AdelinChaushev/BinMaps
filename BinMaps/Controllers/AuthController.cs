@@ -15,7 +15,39 @@ namespace BinMaps.Controllers
         {
             this.userService = userService;
         }
-        [HttpPost("register")]
+		[HttpGet("verify")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+		public async Task<IActionResult> VerifySession()
+		{
+			try
+			{
+				// The JWT token is automatically read from the cookie by ASP.NET Core authentication middleware
+				// If we reach this point, the user is authenticated (middleware validated the token)
+
+				// Get the current user's ID from the claims in the JWT
+				var userId = GetUserId();
+				var token = Request.Cookies["AuthToken"];
+
+				// Fetch user details from database
+				var user = await userService.GetUserById(userId);
+
+				// Return user data (without sensitive info like password)
+				var userData = new
+				{
+					id = user.Id,
+					name = user.UserName,
+					email = user.Email,
+					role = await userService.GetRolesUsers(user.Id) // "user", "collector", or "admin"
+				};
+
+				return Ok(userData);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
+		}
+		[HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -25,21 +57,15 @@ namespace BinMaps.Controllers
             try
             {
                 IdentityUser? user = await userService.CreateUser(model.Username, model.Email, model.Password);
-                if (user == null)
-                {
-                    return BadRequest();
-                }
+               
                 string token = userService.GenerateJSONWebToken(user);
                 AddCookie(token);
                 return Ok(token);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
-
-
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)

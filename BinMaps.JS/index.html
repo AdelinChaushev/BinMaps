@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BinMaps - Smart Waste Management System</title>
-    <link rel="stylesheet" href="BinMaps-style.css">
+    <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <!-- =====================
-     HOME PAGE (NEW)
+     HOME PAGE
      ===================== -->
 <section id="homePage" class="home-page active">
     <div class="home-hero">
@@ -45,6 +45,7 @@
         </div>
     </div>
 </section>
+
     <!-- =====================
          LOGIN SCREEN
          ===================== -->
@@ -82,21 +83,6 @@
                     <span>Sign In</span>
                     <span class="btn-icon">→</span>
                 </button>
-
-                <div class="demo-accounts">
-                    <p>Quick Demo Login:</p>
-                    <div class="demo-buttons">
-                        <button type="button" class="demo-btn" data-role="user">
-                            <span>👤 Citizen (User)</span>
-                        </button>
-                        <button type="button" class="demo-btn" data-role="collector">
-                            <span>🚛 Garbage Collector</span>
-                        </button>
-                        <button type="button" class="demo-btn" data-role="admin">
-                            <span>⚙️ System Admin</span>
-                        </button>
-                    </div>
-                </div>
             </form>
 
             <div class="login-footer">
@@ -104,7 +90,53 @@
             </div>
         </div>
     </section>
+    <!-- =====================
+         REGISTRATION SCREEN
+         ===================== -->
+    <section id="registerScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span class="logo-icon">🗑️</span>
+                    <span class="logo-text">BinMaps</span>
+                </div>
+                <h1>Create Account</h1>
+                <p>Join us to help keep your city clean</p>
+            </div>
 
+            <form class="login-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-input" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password" required>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span>Create Account</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
+            </div>
+        </div>
+    </section>
+    
     <!-- =====================
          NAVIGATION BAR
          ===================== -->
@@ -134,9 +166,8 @@
             </button>
         </div>
     </nav>
-
     <!-- =====================
-         USER DASHBOARD (CITIZEN)
+         USER DASHBOARD (CITIZEN) - CORRECTED
          ===================== -->
     <div id="userDashboard" class="dashboard-container" style="display: none;">
         <section id="home" class="hero">
@@ -156,7 +187,7 @@
                     </button>
                 </div>
 
-                <div class="hero-stats">
+                <div class="hero-stats hero-stats-2x2">
                     <div class="stat-box">
                         <div class="stat-icon">📢</div>
                         <div class="stat-content">
@@ -196,7 +227,7 @@
                     <h2>What would you like to do?</h2>
                 </div>
 
-                <div class="user-grid">
+                <div class="user-grid user-grid-4col">
                     <div class="feature-card">
                         <div class="feature-icon">📢</div>
                         <h3>Report an Issue</h3>
@@ -246,62 +277,10 @@
                     </div>
                 </div>
 
-                <!-- Nearby Bins Map -->
-                <!-- USER HEATMAP (ZONES ONLY) -->
-<div class="map-section" id="nearbyBinsSection" style="display: none;">
-    <h2>🗺️ Priority Zones Heatmap</h2>
-    <p class="section-description">View collection priority zones in your area</p>
-    <div class="map-wrapper">
-        <div id="userMap" style="height: 500px;"></div>
-        <div class="map-legend">
-            <h4>🎨 Zone Priority</h4>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <span class="legend-dot green"></span>
-                    <span>Low Priority</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot yellow"></span>
-                    <span>Medium Priority</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot red"></span>
-                    <span>High Priority</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- USER HEATMAP (ZONES ONLY) -->
-<div class="map-section" id="nearbyBinsSection" style="display: none;">
-    <h2>🗺️ Priority Zones Heatmap</h2>
-    <p class="section-description">View collection priority zones in your area</p>
-    <div class="map-wrapper">
-        <div id="userMap" style="height: 500px;"></div>
-        <div class="map-legend">
-            <h4>🎨 Zone Priority</h4>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <span class="legend-dot green"></span>
-                    <span>Low Priority</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot yellow"></span>
-                    <span>Medium Priority</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot red"></span>
-                    <span>High Priority</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-                <!-- Community Stats -->
-                <div class="community-stats-section" id="communityStatsSection" style="display: none;">
+                <!-- Community Stats - CENTERED -->
+                <div class="community-stats-section community-stats-centered" id="communityStatsSection" style="display: none;">
                     <h2>🌍 Community Impact</h2>
-                    <div class="impact-grid">
+                    <div class="impact-grid impact-grid-centered">
                         <div class="impact-card">
                             <div class="impact-icon">🗑️</div>
                             <div class="impact-number" id="communityTotalReports">0</div>
@@ -324,10 +303,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Nearby Bins Map -->
+                <div class="map-section" id="nearbyBinsSection" style="display: none;">
+                    <h2>🗺️ Priority Zones Heatmap</h2>
+                    <p class="section-description">View collection priority zones in your area</p>
+                    <div class="map-wrapper">
+                        <div id="userMap" style="height: 500px;"></div>
+                        <div class="map-legend">
+                            <h4>🎨 Zone Priority</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-dot green"></span>
+                                    <span>Low Priority</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot yellow"></span>
+                                    <span>Medium Priority</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot red"></span>
+                                    <span>High Priority</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
-
     <!-- =====================
          COLLECTOR DASHBOARD
          ===================== -->
@@ -349,7 +353,7 @@
                     </button>
                 </div>
 
-                <div class="hero-stats">
+                <div class="hero-stats hero-stats-2x2">
                     <div class="stat-box">
                         <div class="stat-icon">🔴</div>
                         <div class="stat-content">
@@ -385,38 +389,37 @@
         <section class="collector-content">
             <div class="container">
                 <!-- Priority Heatmap -->
-                <!-- COLLECTOR BIN MAP -->
-<div class="heatmap-section" id="collectorHeatmapSection">
-    <div class="section-header">
-        <span class="section-badge">🗺️ Bin Locations</span>
-        <h2>Collection Bin Map</h2>
-        <p>View all bins and their current status</p>
-    </div>
-    <div class="map-wrapper">
-        <div id="collectorHeatmap" style="height: 600px;"></div>
-        <div class="map-legend">
-            <h4>🎨 Bin Status</h4>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <span class="legend-dot green"></span>
-                    <span>Available</span>
+                <div class="heatmap-section" id="collectorHeatmapSection">
+                    <div class="section-header">
+                        <span class="section-badge">🗺️ Bin Locations</span>
+                        <h2>Collection Bin Map</h2>
+                        <p>View all bins and their current status</p>
+                    </div>
+                    <div class="map-wrapper">
+                        <div id="collectorHeatmap" style="height: 600px;"></div>
+                        <div class="map-legend">
+                            <h4>🎨 Bin Status</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-dot green"></span>
+                                    <span>Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot yellow"></span>
+                                    <span>Warning</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot red"></span>
+                                    <span>Critical</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot gray"></span>
+                                    <span>Collected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="legend-item">
-                    <span class="legend-dot yellow"></span>
-                    <span>Warning</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot red"></span>
-                    <span>Critical</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-dot gray"></span>
-                    <span>Collected</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
                 <!-- Today's Route -->
                 <div class="routes-section" id="collectorRouteSection">
@@ -474,9 +477,7 @@
             </div>
         </section>
     </div>
-
-    <!-- ADMIN DASHBOARD CONTINUES IN NEXT MESSAGE DUE TO LENGTH... -->
-     <!-- =====================
+    <!-- =====================
          ADMIN DASHBOARD
          ===================== -->
     <div id="adminDashboard" class="dashboard-container" style="display: none;">
@@ -497,7 +498,7 @@
                     </button>
                 </div>
 
-                <div class="hero-stats">
+                <div class="hero-stats hero-stats-2x2">
                     <div class="stat-box">
                         <div class="stat-icon">🗑️</div>
                         <div class="stat-content">
@@ -615,7 +616,6 @@
                 </div>
             </div>
         </section>
-
         <section class="reports-management">
             <div class="container">
                 <div class="section-header">
@@ -685,87 +685,6 @@
                         <div class="legend-divider"></div>
                         <h4>🌡️ Temperature</h4>
                         <div class="legend-temp">Normal: 15-30°C</div>
-                    </div>
-                </div>
-
-                <div class="routes-section">
-                    <h3>🛣️ Optimized Collection Routes</h3>
-                    <div class="routes-grid">
-                        <div class="route-card">
-                            <div class="route-header">
-                                <span class="route-badge">Route A</span>
-                                <span class="route-status active">Active Now</span>
-                            </div>
-                            <div class="route-stats">
-                                <div class="route-stat">
-                                    <span class="route-label">🗑️ Bins:</span>
-                                    <span class="route-value">20</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">📏 Distance:</span>
-                                    <span class="route-value">8.4 km</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">⏱️ Time:</span>
-                                    <span class="route-value">35 min</span>
-                                </div>
-                                <div class="route-stat savings">
-                                    <span class="route-label">💰 Savings:</span>
-                                    <span class="route-value">-22% fuel</span>
-                                </div>
-                            </div>
-                            <button class="route-view-btn">View on Map 🗺️</button>
-                        </div>
-                        <div class="route-card">
-                            <div class="route-header">
-                                <span class="route-badge">Route B</span>
-                                <span class="route-status">Planned</span>
-                            </div>
-                            <div class="route-stats">
-                                <div class="route-stat">
-                                    <span class="route-label">🗑️ Bins:</span>
-                                    <span class="route-value">18</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">📏 Distance:</span>
-                                    <span class="route-value">7.2 km</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">⏱️ Time:</span>
-                                    <span class="route-value">28 min</span>
-                                </div>
-                                <div class="route-stat savings">
-                                    <span class="route-label">💰 Savings:</span>
-                                    <span class="route-value">-18% fuel</span>
-                                </div>
-                            </div>
-                            <button class="route-view-btn">View on Map 🗺️</button>
-                        </div>
-                        <div class="route-card">
-                            <div class="route-header">
-                                <span class="route-badge">Route C</span>
-                                <span class="route-status">Planned</span>
-                            </div>
-                            <div class="route-stats">
-                                <div class="route-stat">
-                                    <span class="route-label">🗑️ Bins:</span>
-                                    <span class="route-value">22</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">📏 Distance:</span>
-                                    <span class="route-value">9.8 km</span>
-                                </div>
-                                <div class="route-stat">
-                                    <span class="route-label">⏱️ Time:</span>
-                                    <span class="route-value">38 min</span>
-                                </div>
-                                <div class="route-stat savings">
-                                    <span class="route-label">💰 Savings:</span>
-                                    <span class="route-value">-25% fuel</span>
-                                </div>
-                            </div>
-                            <button class="route-view-btn">View on Map 🗺️</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -953,6 +872,6 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="BinMaps-script.js"></script>
+    <script src="/src/script.js"></script>
 </body>
 </html>
