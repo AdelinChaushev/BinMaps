@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BinMaps.Data
@@ -16,7 +18,7 @@ namespace BinMaps.Data
 		{
 		}
 		public DbSet<Truck> Trucks { get; set; }
-		public DbSet<ThrashContainer> ThrashContainers { get; set; }
+		public DbSet<TrashContainer> TrashContainers { get; set; }
 		public DbSet<Area> Areas { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<ReportType> ReportTypes { get; set; }
@@ -36,6 +38,26 @@ namespace BinMaps.Data
                 .HasOne(a => a.Truck)
                 .WithOne(t => t.Area)
                 .HasForeignKey<Truck>(t => t.AreaId);
+
+            modelBuilder.Entity<Area>().HasData(new
+            {
+                Id = 1,
+                Name = "South",
+                IsFull = false,
+                LitersFilled = 0.0
+
+            },new
+            {
+                Id = 2,
+                Name = "North",
+                IsFull = false,
+                LitersFilled = 0.0
+            });
+           // Relative to project root
+
+            // Example: Read and seed
+           
+           
         }
 
     }
