@@ -952,6 +952,30 @@
           }
         }
       },
+      "BinMaps.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BinMaps.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BinMaps.Common.dll": {}
+        }
+      },
+      "BinMaps.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BinMaps.Common": "1.0.0",
+          "BinMaps.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BinMaps.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BinMaps.Core.dll": {}
+        }
+      },
       "BinMaps.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2459,6 +2483,16 @@
         "version.txt"
       ]
     },
+    "BinMaps.Common/1.0.0": {
+      "type": "project",
+      "path": "../BinMaps.Common/BinMaps.Common.csproj",
+      "msbuildProject": "../BinMaps.Common/BinMaps.Common.csproj"
+    },
+    "BinMaps.Core/1.0.0": {
+      "type": "project",
+      "path": "../BinMaps.Core/BinMaps.Core.csproj",
+      "msbuildProject": "../BinMaps.Core/BinMaps.Core.csproj"
+    },
     "BinMaps.Data/1.0.0": {
       "type": "project",
       "path": "../BinMaps.Data/BinMaps.Data.csproj",
@@ -2467,6 +2501,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BinMaps.Core >= 1.0.0",
       "BinMaps.Data >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.26",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.26",
@@ -2507,6 +2542,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj": {
+              "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj"
+            },
             "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
               "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
             }

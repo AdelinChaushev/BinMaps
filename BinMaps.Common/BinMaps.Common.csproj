@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BinMaps.Common\BinMaps.Common.csproj" />
-    <ProjectReference Include="..\BinMaps.Data\BinMaps.Data.csproj" />
-  </ItemGroup>
-
 </Project>

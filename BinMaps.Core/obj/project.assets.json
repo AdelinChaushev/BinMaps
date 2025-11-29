@@ -906,6 +906,16 @@
           }
         }
       },
+      "BinMaps.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BinMaps.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BinMaps.Common.dll": {}
+        }
+      },
       "BinMaps.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2357,6 +2367,11 @@
         "version.txt"
       ]
     },
+    "BinMaps.Common/1.0.0": {
+      "type": "project",
+      "path": "../BinMaps.Common/BinMaps.Common.csproj",
+      "msbuildProject": "../BinMaps.Common/BinMaps.Common.csproj"
+    },
     "BinMaps.Data/1.0.0": {
       "type": "project",
       "path": "../BinMaps.Data/BinMaps.Data.csproj",
@@ -2365,6 +2380,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BinMaps.Common >= 1.0.0",
       "BinMaps.Data >= 1.0.0"
     ]
   },
@@ -2400,6 +2416,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj": {
+              "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj"
+            },
             "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
               "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
             }

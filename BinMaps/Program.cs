@@ -1,3 +1,5 @@
+using BinMaps.Core.Contracts;
+using BinMaps.Core.Services;
 using BinMaps.Data;
 using BinMaps.Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddScoped<IRepository<ThrashContainer, int>, Repository<ThrashContainer, int>>();
 builder.Services.AddScoped<IRepository<Area, int>, Repository<Area, int>>();
 builder.Services.AddScoped<IRepository<Truck, int>, Repository<Truck, int>>();
-
+builder.Services.AddScoped<ITrashContainerServices, TrashContainerServices>();
 builder.Services.AddControllersWithViews();
 
 

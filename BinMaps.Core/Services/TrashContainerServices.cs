@@ -1,4 +1,5 @@
-﻿using BinMaps.Core.Contracts;
+﻿using BinMaps.Common.TrashContainerViewModel;
+using BinMaps.Core.Contracts;
 using BinMaps.Data;
 using BinMaps.Data.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BinMaps.Core.Services
 {
-    internal class TrashContainerServices : ITrashContainerServices
+    public class TrashContainerServices : ITrashContainerServices
     {
         private IRepository<ThrashContainer,int> repository;
 
@@ -44,6 +45,20 @@ namespace BinMaps.Core.Services
                 }
                 
             }
+        }
+
+        public IEnumerable<TrashContainerOutputViewModel> GetAll()
+        {
+          var  arr  =   repository.GetAllAttached().Select(x => new TrashContainerOutputViewModel()
+          {
+              Id = x.Id,
+              Capacity = x.Capacity,
+              LocationX = x.LocationX,
+              LocationY = x.LocationY,
+              AreaId = x.AreaId
+          }); 
+          return  arr;
+
         }
     }
 }

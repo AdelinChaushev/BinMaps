@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BinMaps.Core\BinMaps.Core.csproj" />
     <ProjectReference Include="..\BinMaps.Data\BinMaps.Data.csproj" />
   </ItemGroup>
 
