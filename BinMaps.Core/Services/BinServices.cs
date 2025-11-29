@@ -12,9 +12,13 @@ namespace BinMaps.Core.Services
     internal class TrashContainerServices : ITrashContainerServices
     {
         private IRepository<ThrashContainer,int> repository;
-        public TrashContainerServices(IRepository<ThrashContainer, int> repository)
+
+        private IRepository<Area, int> areaRepository;
+
+        public TrashContainerServices(IRepository<ThrashContainer, int> repository, IRepository<Area, int> areaRepository)
         {
             this.repository = repository;
+            this.areaRepository = areaRepository;
         }
         public async Task AddTrashToTheTrashContainer()
         {
@@ -35,6 +39,8 @@ namespace BinMaps.Core.Services
                     {
                         area.IsFull = true;
                     }
+                    await repository.UpdateAsync(bin);
+                    await areaRepository.UpdateAsync(area);
                 }
                 
             }

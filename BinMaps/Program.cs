@@ -14,9 +14,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<BinMapsDbContext>();
-builder.Services.AddSingleton<IRepository<ThrashContainer, int>, Repository<ThrashContainer, int>>();
-builder.Services.AddSingleton<IRepository<Area, int>, Repository<Area, int>>();
-builder.Services.AddSingleton<IRepository<Truck, int>, Repository<Truck, int>>();
+builder.Services.AddScoped<IRepository<ThrashContainer, int>, Repository<ThrashContainer, int>>();
+builder.Services.AddScoped<IRepository<Area, int>, Repository<Area, int>>();
+builder.Services.AddScoped<IRepository<Truck, int>, Repository<Truck, int>>();
 
 builder.Services.AddControllersWithViews();
 
