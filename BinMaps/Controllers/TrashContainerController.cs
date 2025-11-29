@@ -13,9 +13,8 @@ namespace BinMaps.Controllers
         {
             _trashContainerServices = trashContainerServices;
         }
-        [HttpGet("api/trashContainers")]
-        public IActionResult GetAll() 
-        => Ok(_trashContainerServices.GetAll());
+        [HttpGet("api/containers")]
+        public IActionResult GetAll() => Ok(_trashContainerServices.GetAll());
         [HttpPost("api/AddTrash")]
         public async Task<IActionResult> AddTrashToTheTrashContainer([FromBody]IEnumerable<TrashContainerInputViewModel> containers)
         {
