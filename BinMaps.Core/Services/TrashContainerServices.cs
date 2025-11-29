@@ -64,9 +64,30 @@ namespace BinMaps.Core.Services
 
         }
 
-        public Task RemoveTrashToTheTrashContainer(int[] containers)
+        public async Task RemoveTrashFromTheTrashContainer(int[] containers)
         {
-            throw new NotImplementedException();
+            foreach (var containerId in containers)
+            {
+
+                var bin = await repository.GetByIdAsync(containerId);
+                double litersToRemove = bin.Capacity * (double)(bin.FillPercentage / 100);
+                Truck truck = bin.Area.Truck;
+                if (truck.Capacity < litersToRemove)
+                {
+                    bin.FillPercentage = (decimal)((truck.Capacity / bin.Capacity) * 100);
+                    truck.Capacity = 0;
+                    bin.IsFilled = false;
+                    break;
+                }
+                else
+                {
+                    bin.FillPercentage = 0;
+                    bin.IsFilled = false;
+                    truck.Capacity -= litersToRemove;
+                }
+
+            }
+
         }
     }
 }
