@@ -22,6 +22,7 @@
     --border-color: rgba(255, 255, 255, 0.1);
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --modal-bg: rgba(15, 23, 42, 0.98);
 }
 
 body {
@@ -169,11 +170,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Gray color for collected bins */
-.legend-dot.gray {
-    background: #64748b;
-}
-
 /* ===========================
    LOGIN SCREEN
    =========================== */
@@ -303,7 +299,7 @@ body {
 .form-textarea:focus {
     outline: none;
     border-color: var(--primary-green);
-    background: rgba(16, 185, 129, 0.05);
+    background: rgba(9, 28, 112, 0.774);
 }
 
 .form-input::placeholder,
@@ -370,43 +366,6 @@ body {
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
 }
 
-.demo-accounts {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-}
-
-.demo-accounts p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.demo-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.demo-btn {
-    padding: 0.8rem 1.5rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.demo-btn:hover {
-    background: var(--primary-green);
-    border-color: var(--primary-green);
-    transform: translateX(5px);
-}
-
 .login-footer {
     text-align: center;
     margin-top: 2rem;
@@ -424,7 +383,6 @@ body {
 .login-footer a:hover {
     text-decoration: underline;
 }
-
 /* ===========================
    NAVIGATION BAR
    =========================== */
@@ -546,7 +504,6 @@ nav {
     padding-top: 80px;
     min-height: 100vh;
 }
-
 /* ===========================
    HERO SECTIONS
    =========================== */
@@ -636,10 +593,17 @@ nav {
     background: var(--bg-light);
 }
 
+/* UPDATED: 2x2 Grid for Hero Stats */
 .hero-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
+}
+
+.hero-stats-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .stat-box {
@@ -675,7 +639,6 @@ nav {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
 }
-
 /* ===========================
    SECTIONS
    =========================== */
@@ -711,13 +674,21 @@ section {
 }
 
 /* ===========================
-   USER DASHBOARD FEATURES
+   USER DASHBOARD FEATURES (UPDATED)
    =========================== */
 .user-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
+}
+
+.user-grid-4col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 3rem auto;
 }
 
 .feature-card {
@@ -784,6 +755,31 @@ section {
 }
 
 /* ===========================
+   COMMUNITY STATS - CENTERED
+   =========================== */
+.community-stats-centered {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-grid-3col {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .user-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .user-grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================
    QUICK STATS (DASHBOARDS)
    =========================== */
 .quick-stats {
@@ -830,9 +826,81 @@ section {
     font-size: 0.85rem;
     color: var(--text-muted);
 }
+/* ===========================
+   MODAL (UPDATED)
+   =========================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--danger-red);
+}
+
+.report-form {
+    padding: 2rem;
+}
 
 /* ===========================
-   SUBMIT BUTTON
+   SUBMIT BUTTON (UPDATED)
    =========================== */
 .submit-btn {
     display: flex;
@@ -843,12 +911,13 @@ section {
     background: var(--primary-green);
     border: none;
     border-radius: 12px;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     width: 100%;
+    margin-top: 1.5rem;
 }
 
 .submit-btn:hover {
@@ -859,7 +928,6 @@ section {
 .submit-btn:active {
     transform: translateY(0);
 }
-
 /* ===========================
    REPORTS SECTION
    =========================== */
@@ -1094,6 +1162,7 @@ section {
 .legend-dot.green { background: var(--primary-green); }
 .legend-dot.yellow { background: var(--warning-yellow); }
 .legend-dot.red { background: var(--danger-red); }
+.legend-dot.gray { background: #64748b; }
 
 .legend-divider {
     height: 1px;
@@ -1157,7 +1226,6 @@ section {
 .filter-icon {
     font-size: 1.2rem;
 }
-
 /* ===========================
    ROUTES
    =========================== */
@@ -1487,80 +1555,6 @@ canvas {
     border: 1px solid var(--glass-border);
     border-radius: 20px;
 }
-
-/* ===========================
-   MODAL
-   =========================== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    background: var(--bg-medium);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.modal-header h2 {
-    font-size: 1.5rem;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 2rem;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.modal-close:hover {
-    color: var(--danger-red);
-}
-
-.report-form {
-    padding: 2rem;
-}
-
 /* ===========================
    FLOATING REPORT BUTTON
    =========================== */
@@ -1656,7 +1650,9 @@ footer {
     .nav-links { display: none; }
     .mobile-menu-btn { display: flex; }
     .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hero-stats-2x2 { grid-template-columns: 1fr 1fr; }
     .user-grid { grid-template-columns: 1fr; }
+    .user-grid-3col { grid-template-columns: 1fr; }
     .charts-grid { grid-template-columns: 1fr; }
     .analytics-grid { grid-template-columns: 1fr; }
     .map-wrapper { height: 400px; }
@@ -1688,6 +1684,7 @@ footer {
 
 @media (max-width: 480px) {
     .hero-stats { grid-template-columns: 1fr; }
+    .hero-stats-2x2 { grid-template-columns: 1fr; }
     .quick-stats { grid-template-columns: 1fr; }
     .efficiency-metrics { grid-template-columns: 1fr; }
     
@@ -1699,285 +1696,25 @@ footer {
         font-size: 1.8rem;
     }
 
-    .demo-buttons {
-        gap: 0.6rem;
-    }
-
     .login-container {
         padding: 2rem;
     }
 }
-#truckControls,
-#adminTruckControls {
-    margin-top: 2rem;
-    padding: 2rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    text-align: center;
-    animation: slideIn 0.5s ease-out;
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-#truckControls h3,
-#adminTruckControls h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+@keyframes slideOutRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100px); }
 }
 
-#truckControls .feature-btn,
-#adminTruckControls .feature-btn {
-    min-width: 150px;
-    transition: all 0.3s;
-}
-
-#truckControls .feature-btn:hover,
-#adminTruckControls .feature-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-}
-
-#startTrackingBtn,
-#adminStartTrackingBtn {
-    background: #10b981 !important;
-}
-
-#startTrackingBtn:hover,
-#adminStartTrackingBtn:hover {
-    background: #059669 !important;
-}
-
-#stopTrackingBtn,
-#adminStopTrackingBtn {
-    background: #ef4444 !important;
-}
-
-#stopTrackingBtn:hover,
-#adminStopTrackingBtn:hover {
-    background: #dc2626 !important;
-}
-
-#speedUpBtn {
-    background: #3b82f6 !important;
-}
-
-#speedUpBtn:hover {
-    background: #2563eb !important;
-}
-
-/* Truck Marker Animation */
-.truck-marker {
-    animation: truckBounce 2s infinite ease-in-out;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-    transition: all 0.3s ease;
-}
-
-.truck-marker:hover {
-    transform: scale(1.2) !important;
-    filter: drop-shadow(0 6px 12px rgba(16, 185, 129, 0.6));
-}
-
-@keyframes truckBounce {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-3px) rotate(-2deg);
-    }
-    50% {
-        transform: translateY(-5px) rotate(0deg);
-    }
-    75% {
-        transform: translateY(-3px) rotate(2deg);
-    }
-}
-
-/* Route Line Animation */
-@keyframes dashAnimation {
-    to {
-        stroke-dashoffset: -20;
-    }
-}
-
-/* Truck Status Badge */
-.truck-status-badge {
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    z-index: 999;
-    padding: 1rem 1.5rem;
-    background: var(--bg-medium);
-    border: 2px solid var(--primary-green);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    animation: slideInRight 0.5s ease-out;
-}
-
-.truck-status-active {
-    animation: pulse 2s infinite;
-}
-
-.truck-status-badge h4 {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.truck-status-badge .status-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-green);
-}
-
-.truck-status-badge .status-detail {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
-}
-
-/* Collected Bin Animation */
-@keyframes binCollected {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.3);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.bin-collected-marker {
-    animation: binCollected 0.6s ease-out;
-}
-
-/* Progress Trail Effect */
-.truck-trail {
-    stroke: #10b981;
-    stroke-width: 3;
-    stroke-dasharray: 5, 5;
-    animation: trailAnimation 1s linear infinite;
-}
-
-@keyframes trailAnimation {
-    to {
-        stroke-dashoffset: -10;
-    }
-}
-
-/* Speed Indicator */
-#currentSpeed {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background: var(--primary-green);
-    color: white;
-    border-radius: 20px;
-    font-weight: 700;
-    animation: pulse 2s infinite;
-}
-
-/* Control Buttons Wrapper */
-.truck-controls-wrapper {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-/* Truck Icon Glow Effect when Active */
-.truck-marker.active {
-    filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.8)) 
-            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    #truckControls,
-    #adminTruckControls {
-        padding: 1.5rem 1rem;
-    }
-    
-    .truck-controls-wrapper {
-        flex-direction: column;
-    }
-    
-    #truckControls .feature-btn,
-    #adminTruckControls .feature-btn {
-        width: 100%;
-    }
-    
-    .truck-status-badge {
-        top: 70px;
-        right: 10px;
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Leaflet Popup Custom Style for Truck */
-.leaflet-popup-content-wrapper {
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.truck-popup {
-    font-family: system-ui, -apple-system, sans-serif;
-    min-width: 200px;
-}
-
-.truck-popup strong {
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* Route Complete Celebration */
-@keyframes celebrate {
-    0%, 100% {
-        transform: scale(1) rotate(0deg);
-    }
-    25% {
-        transform: scale(1.1) rotate(-5deg);
-    }
-    50% {
-        transform: scale(1.2) rotate(5deg);
-    }
-    75% {
-        transform: scale(1.1) rotate(-5deg);
-    }
-}
-
-.route-complete-animation {
-    animation: celebrate 0.8s ease-out;
-}
-
-/* Loading State for Start Button */
-.tracking-loading {
-    position: relative;
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-.tracking-loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
 }

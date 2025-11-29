@@ -124,6 +124,10 @@ namespace BinMaps.Core.Services
             await userManager.DeleteAsync(user);
         }
     
-        
-    }
+        public async Task<IdentityUser> GetUserById(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            return user;
+		}
+	}
 }
