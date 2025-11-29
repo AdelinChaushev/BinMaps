@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj": {}
+    "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj": {
+    "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj",
+        "projectUniqueName": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj",
         "projectName": "BinMaps.Common",
-        "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj",
-        "packagesPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\obj\\",
+        "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj",
+        "packagesPath": "C:\\Users\\user.DESKTOP-THG5QCC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user.DESKTOP-F7BGVFP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -69,20 +69,20 @@
         }
       }
     },
-    "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj": {
+    "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj",
+        "projectUniqueName": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj",
         "projectName": "BinMaps.Core",
-        "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj",
-        "packagesPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\obj\\",
+        "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj",
+        "packagesPath": "C:\\Users\\user.DESKTOP-THG5QCC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user.DESKTOP-F7BGVFP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -97,11 +97,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj": {
-                "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj"
+              "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj": {
+                "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Common\\BinMaps.Common.csproj"
               },
-              "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
-                "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
+              "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
+                "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
               }
             }
           }
@@ -141,20 +141,20 @@
         }
       }
     },
-    "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
+    "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj",
+        "projectUniqueName": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj",
         "projectName": "BinMaps.Data",
-        "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj",
-        "packagesPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\obj\\",
+        "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj",
+        "packagesPath": "C:\\Users\\user.DESKTOP-THG5QCC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user.DESKTOP-F7BGVFP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -230,20 +230,20 @@
         }
       }
     },
-    "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj": {
+    "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj",
+        "projectUniqueName": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj",
         "projectName": "BinMaps",
-        "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj",
-        "packagesPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\obj\\",
+        "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\BinMaps.csproj",
+        "packagesPath": "C:\\Users\\user.DESKTOP-THG5QCC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user.DESKTOP-F7BGVFP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user.DESKTOP-THG5QCC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -258,11 +258,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj": {
-                "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj"
+              "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj": {
+                "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Core\\BinMaps.Core.csproj"
               },
-              "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
-                "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
+              "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
+                "projectPath": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
               }
             }
           }

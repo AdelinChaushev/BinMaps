@@ -2,7 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to BinMaps</h1>
+    <p>Create and manage trash reports, view areas, and approve reports as an admin.</p>
+
+    <div class="mt-4">
+        <a asp-controller="Reports" asp-action="Create" class="btn btn-primary btn-lg m-2">Create Report</a>
+        <a asp-controller="Reports" asp-action="Index" class="btn btn-secondary btn-lg m-2">My Reports</a>
+        <a asp-controller="Reports" asp-action="Pending" class="btn btn-success btn-lg m-2">Pending Reports</a>
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-warning btn-lg m-2">Admin Areas</a>
+    </div>
 </div>

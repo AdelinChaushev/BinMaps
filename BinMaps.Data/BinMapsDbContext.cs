@@ -18,5 +18,7 @@ namespace BinMaps.Data
 		public DbSet<Truck> Trucks { get; set; }
 		public DbSet<ThrashContainer> ThrashContainers { get; set; }
 		public DbSet<Area> Areas { get; set; }
-	}
+	
+
+    }
 }

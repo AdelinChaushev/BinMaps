@@ -25,6 +25,9 @@ namespace BinMaps.Data.Entities
         [ForeignKey(nameof(IdentityUser))]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        public bool IsApproved { get; set; } = false;
+        public DateTime? ApprovedAt { get; set; }
+        public string Description { get; set; }
 
     }
 }
