@@ -1,4 +1,5 @@
-﻿using BinMaps.Common.TrashContainerViewModel;
+﻿using BinMaps.Common.AreaViewModels;
+using BinMaps.Common.TrashContainerViewModel;
 using BinMaps.Core.Contracts;
 using BinMaps.Data;
 using BinMaps.Data.Entities;
@@ -50,7 +51,7 @@ namespace BinMaps.Core.Services
             }
         }
 
-        public IEnumerable<TrashContainerOutputViewModel> GetAll()
+        public AreaReadyViewModel[] GetAll()
         {
           var  arr  =   repository.GetAllAttached().Select(x => new TrashContainerOutputViewModel()
           {
@@ -59,14 +60,44 @@ namespace BinMaps.Core.Services
               LocationX = x.LocationX,
               LocationY = x.LocationY,
               AreaId = x.AreaId
-          }); 
-          return  arr;
+          });
+
+
+            var AreasForCleaning = areaRepository.GetAll().Where(x => x.IsFull).Select(x => new AreaReadyViewModel()
+            {
+                Id = x.Id,
+                truck = x.Truck,
+                Containers = arr
+            }).ToArray();
+          
+            return AreasForCleaning;
 
         }
 
-        public Task RemoveTrashToTheTrashContainer(int[] containers)
+        public async Task RemoveTrashFromTheTrashContainers(int[] containers)
         {
-            throw new NotImplementedException();
+            foreach(var containerId in containers)
+            {
+                
+                var bin = await repository.GetByIdAsync(containerId);
+                double litersToRemove = bin.Capacity * (double)(bin.FillPercentage / 100);
+                Truck truck =   bin.Area.Truck;
+                if (truck.Capacity < litersToRemove)
+                {
+                    bin.FillPercentage = (decimal)((truck.Capacity / bin.Capacity) * 100);
+                    truck.Capacity = 0;
+                    bin.IsFilled = false;
+                    break;
+                }
+                else
+                {
+                    bin.FillPercentage = 0;
+                    bin.IsFilled = false;
+                    truck.Capacity -= litersToRemove;
+                }
+
+            }
+          
         }
     }
 }

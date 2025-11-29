@@ -21,7 +21,7 @@ builder.Services.AddScoped<IRepository<Area, int>, Repository<Area, int>>();
 builder.Services.AddScoped<IRepository<Truck, int>, Repository<Truck, int>>();
 builder.Services.AddScoped<ITrashContainerServices, TrashContainerServices>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -36,7 +36,11 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

@@ -179,3 +179,7 @@ C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.C
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.dll
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.pdb
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.pdb
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

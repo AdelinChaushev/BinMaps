@@ -1,4 +1,5 @@
-﻿using BinMaps.Common.TrashContainerViewModel;
+﻿using BinMaps.Common.AreaViewModels;
+using BinMaps.Common.TrashContainerViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace BinMaps.Core.Contracts
 {
     public interface ITrashContainerServices
     {
-        public IEnumerable<TrashContainerOutputViewModel> GetAll();
+        public AreaReadyViewModel[] GetAll();
         public Task AddTrashToTheTrashContainer(IEnumerable<TrashContainerInputViewModel> containers );
 
-        public Task RemoveTrashToTheTrashContainer(int[] containers);
+        public Task RemoveTrashFromTheTrashContainers(int[] containers);
     }
 }

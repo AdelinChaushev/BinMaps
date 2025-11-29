@@ -516,6 +516,9 @@
         }
       },
       "BinMaps.Common/1.0.0": {
+        "dependencies": {
+          "BinMaps.Data": "1.0.0"
+        },
         "runtime": {
           "BinMaps.Common.dll": {
             "assemblyVersion": "1.0.0.0",

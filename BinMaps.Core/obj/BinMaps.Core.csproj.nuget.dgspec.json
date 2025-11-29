@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj": {
+                "projectPath": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\BinMaps.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

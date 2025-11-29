@@ -7,56 +7,72 @@
       "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\trashcontainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontaineroutputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontaineroutputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontainerinputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontainerinputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\services\\trashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\trashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\contracts\\itrashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\contracts\\itrashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\services\\trashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\services\\trashcontainerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\areaviewmodels\\areareadyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontainergetallviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontaineroutputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontaineroutputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.common\\trashcontainerviewmodel\\trashcontainerinputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03A3C4FE-05B6-427E-9889-AC11E6F8BA12}|BinMaps.Common\\BinMaps.Common.csproj|solutionrelative:binmaps.common\\trashcontainerviewmodel\\trashcontainerinputviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67ED1CDF-F4F3-4A94-A8A4-D3A654290F35}|BinMaps.Core\\BinMaps.Core.csproj|solutionrelative:binmaps.core\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129075914_Added-report-logic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BinMaps.Data\\Migrations\\20251129075914_Added-report-logic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2EC59655-4B54-4570-8D2D-AA8996B7AFD8}|BinMaps\\BinMaps.csproj|solutionrelative:binmaps\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\thrashcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|solutionrelative:binmaps.data\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4440748F-958C-4DB7-A8C2-2B21C0B2A86C}|BinMaps.Data\\BinMaps.Data.csproj|c:\\users\\user.desktop-f7bgvfp\\desktop\\binmaps\\binmaps.data\\entities\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,11 +98,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "AreaReadyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
+              "RelativeDocumentMoniker": "BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
+              "RelativeToolTip": "BinMaps.Common\\AreaViewModels\\AreaReadyViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:44:46.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TrashContainerGetAllViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
+              "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
+              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
+              "RelativeToolTip": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerGetAllViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T11:34:10.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "BinMaps\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "BinMaps\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-29T11:09:27.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\appsettings.json",
+              "RelativeDocumentMoniker": "BinMaps\\appsettings.json",
+              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\appsettings.json",
+              "RelativeToolTip": "BinMaps\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-29T11:00:46.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TrashContainerInputViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerInputViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerInputViewModel.cs",
@@ -99,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "20251129093341_Added temperature and batery percentage.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129093341_Added temperature and batery percentage.cs",
@@ -112,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "20251129075914_Added-report-logic.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Migrations\\20251129075914_Added-report-logic.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Migrations\\20251129075914_Added-report-logic.cs",
@@ -125,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "ReportType.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\ReportType.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\ReportType.cs",
@@ -138,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Report.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Report.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Report.cs",
@@ -151,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\HomeController.cs",
@@ -164,20 +232,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "TrashContainerOutputViewModel.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
               "RelativeToolTip": "BinMaps.Common\\TrashContainerViewModel\\TrashContainerOutputViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T03:31:04.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Common\\Program.cs",
               "RelativeDocumentMoniker": "BinMaps.Common\\Program.cs",
@@ -194,16 +262,16 @@
               "Title": "TrashContainerController.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs",
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\TrashContainerController.cs",
-              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs*",
-              "RelativeToolTip": "BinMaps\\Controllers\\TrashContainerController.cs*",
-              "ViewState": "AgIAABAAAAAAAAAAAAA1wBsAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Controllers\\TrashContainerController.cs",
+              "RelativeToolTip": "BinMaps\\Controllers\\TrashContainerController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBsAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T03:19:58.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Area.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Area.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Area.cs",
@@ -216,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "Truck.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\Truck.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\Truck.cs",
@@ -229,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "ThrashContainer.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Entities\\ThrashContainer.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Entities\\ThrashContainer.cs",
@@ -242,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Repository.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\Repository.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\Repository.cs",
@@ -255,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "IRepository.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Data\\IRepository.cs",
               "RelativeDocumentMoniker": "BinMaps.Data\\IRepository.cs",
@@ -268,46 +336,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Program.cs",
               "RelativeDocumentMoniker": "BinMaps\\Program.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps\\Program.cs",
               "RelativeToolTip": "BinMaps\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T02:38:03.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "TrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Services\\TrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Services\\TrashContainerServices.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Services\\TrashContainerServices.cs",
               "RelativeToolTip": "BinMaps.Core\\Services\\TrashContainerServices.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBkAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAADwvzcAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T02:37:48.536Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ITrashContainerServices.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
               "RelativeToolTip": "BinMaps.Core\\Contracts\\ITrashContainerServices.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T02:36:11.489Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\BinMaps\\BinMaps.Core\\Program.cs",
               "RelativeDocumentMoniker": "BinMaps.Core\\Program.cs",
