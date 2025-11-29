@@ -1707,3 +1707,277 @@ footer {
         padding: 2rem;
     }
 }
+#truckControls,
+#adminTruckControls {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+#truckControls h3,
+#adminTruckControls h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+#truckControls .feature-btn,
+#adminTruckControls .feature-btn {
+    min-width: 150px;
+    transition: all 0.3s;
+}
+
+#truckControls .feature-btn:hover,
+#adminTruckControls .feature-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+#startTrackingBtn,
+#adminStartTrackingBtn {
+    background: #10b981 !important;
+}
+
+#startTrackingBtn:hover,
+#adminStartTrackingBtn:hover {
+    background: #059669 !important;
+}
+
+#stopTrackingBtn,
+#adminStopTrackingBtn {
+    background: #ef4444 !important;
+}
+
+#stopTrackingBtn:hover,
+#adminStopTrackingBtn:hover {
+    background: #dc2626 !important;
+}
+
+#speedUpBtn {
+    background: #3b82f6 !important;
+}
+
+#speedUpBtn:hover {
+    background: #2563eb !important;
+}
+
+/* Truck Marker Animation */
+.truck-marker {
+    animation: truckBounce 2s infinite ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    transition: all 0.3s ease;
+}
+
+.truck-marker:hover {
+    transform: scale(1.2) !important;
+    filter: drop-shadow(0 6px 12px rgba(16, 185, 129, 0.6));
+}
+
+@keyframes truckBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-3px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-3px) rotate(2deg);
+    }
+}
+
+/* Route Line Animation */
+@keyframes dashAnimation {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+/* Truck Status Badge */
+.truck-status-badge {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 999;
+    padding: 1rem 1.5rem;
+    background: var(--bg-medium);
+    border: 2px solid var(--primary-green);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.5s ease-out;
+}
+
+.truck-status-active {
+    animation: pulse 2s infinite;
+}
+
+.truck-status-badge h4 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.truck-status-badge .status-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.truck-status-badge .status-detail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+/* Collected Bin Animation */
+@keyframes binCollected {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.bin-collected-marker {
+    animation: binCollected 0.6s ease-out;
+}
+
+/* Progress Trail Effect */
+.truck-trail {
+    stroke: #10b981;
+    stroke-width: 3;
+    stroke-dasharray: 5, 5;
+    animation: trailAnimation 1s linear infinite;
+}
+
+@keyframes trailAnimation {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+/* Speed Indicator */
+#currentSpeed {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: var(--primary-green);
+    color: white;
+    border-radius: 20px;
+    font-weight: 700;
+    animation: pulse 2s infinite;
+}
+
+/* Control Buttons Wrapper */
+.truck-controls-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Truck Icon Glow Effect when Active */
+.truck-marker.active {
+    filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.8)) 
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #truckControls,
+    #adminTruckControls {
+        padding: 1.5rem 1rem;
+    }
+    
+    .truck-controls-wrapper {
+        flex-direction: column;
+    }
+    
+    #truckControls .feature-btn,
+    #adminTruckControls .feature-btn {
+        width: 100%;
+    }
+    
+    .truck-status-badge {
+        top: 70px;
+        right: 10px;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Leaflet Popup Custom Style for Truck */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.truck-popup {
+    font-family: system-ui, -apple-system, sans-serif;
+    min-width: 200px;
+}
+
+.truck-popup strong {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Route Complete Celebration */
+@keyframes celebrate {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+}
+
+.route-complete-animation {
+    animation: celebrate 0.8s ease-out;
+}
+
+/* Loading State for Start Button */
+.tracking-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.tracking-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
