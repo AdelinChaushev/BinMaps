@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,9 @@ namespace BinMaps.Data.Entities
 		[ForeignKey(nameof(Area))]
 		public int AreaId { get; set; }
 		public Area Area { get; set; }
-	}
+		[ForeignKey(nameof(IdentityUser))]
+        public string DriverId { get; set; }
+
+        public IdentityUser Driver { get; set; }
+    }
 }

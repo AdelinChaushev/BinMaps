@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BinMaps.Controllers
 {
-    public class TrashContainerController : ControllerBase
+    public class TrashContainerController : Controller
     { 
        private readonly  ITrashContainerServices _trashContainerServices;
 
@@ -11,7 +11,7 @@ namespace BinMaps.Controllers
         {
             _trashContainerServices = trashContainerServices;
         }
-        [HttpGet]
+        [HttpGet("")]
         public IActionResult Index()
         {
             return Ok();

@@ -1,0 +1,15 @@
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\bin\Debug\net6.0\BinMaps.Common.exe
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\bin\Debug\net6.0\BinMaps.Common.deps.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\bin\Debug\net6.0\BinMaps.Common.runtimeconfig.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\bin\Debug\net6.0\BinMaps.Common.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\bin\Debug\net6.0\BinMaps.Common.pdb
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.AssemblyInfoInputs.cache
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.AssemblyInfo.cs
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.csproj.CoreCompileInputs.cache
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.sourcelink.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\refint\BinMaps.Common.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.pdb
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\BinMaps.Common.genruntimeconfig.cache
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps.Common\obj\Debug\net6.0\ref\BinMaps.Common.dll

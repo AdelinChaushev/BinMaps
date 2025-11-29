@@ -30,6 +30,9 @@ namespace BinMaps.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("IsFull")
+                        .HasColumnType("bit");
+
                     b.Property<double>("LitersFilled")
                         .HasColumnType("float");
 
@@ -85,10 +88,16 @@ namespace BinMaps.Data.Migrations
                     b.Property<double>("Capacity")
                         .HasColumnType("float");
 
+                    b.Property<string>("DriverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId")
                         .IsUnique();
+
+                    b.HasIndex("DriverId");
 
                     b.ToTable("Trucks");
                 });
@@ -314,7 +323,15 @@ namespace BinMaps.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Area");
+
+                    b.Navigation("Driver");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

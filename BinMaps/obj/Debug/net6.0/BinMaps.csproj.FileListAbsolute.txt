@@ -169,3 +169,13 @@ C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\obj\Debug\net6.0\staticweb
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\obj\Debug\net6.0\BinMaps.csproj.Up2Date
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\obj\Debug\net6.0\BinMaps.genruntimeconfig.cache
 C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\obj\Debug\net6.0\ref\BinMaps.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.deps.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.runtimeconfig.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.deps.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.runtimeconfig.json
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.exe
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.exe
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.dll
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Core.pdb
+C:\Users\user.DESKTOP-F7BGVFP\Desktop\BinMaps\BinMaps\bin\Debug\net6.0\BinMaps.Common.pdb
