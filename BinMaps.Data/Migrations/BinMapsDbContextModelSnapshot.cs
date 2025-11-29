@@ -41,6 +41,65 @@ namespace BinMaps.Data.Migrations
                     b.ToTable("Areas");
                 });
 
+            modelBuilder.Entity("BinMaps.Data.Entities.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("ApprovedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ReportDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ReportTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ThrashContainerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.HasIndex("ReportTypeId");
+
+                    b.HasIndex("ThrashContainerId");
+
+                    b.ToTable("Reports");
+                });
+
+            modelBuilder.Entity("BinMaps.Data.Entities.ReportType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ReportTypes");
+                });
+
             modelBuilder.Entity("BinMaps.Data.Entities.ThrashContainer", b =>
                 {
                     b.Property<int>("Id")
@@ -310,6 +369,33 @@ namespace BinMaps.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BinMaps.Data.Entities.Report", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BinMaps.Data.Entities.ReportType", "ReportType")
+                        .WithMany("Reports")
+                        .HasForeignKey("ReportTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BinMaps.Data.Entities.ThrashContainer", "ThrashContainer")
+                        .WithMany()
+                        .HasForeignKey("ThrashContainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdentityUser");
+
+                    b.Navigation("ReportType");
+
+                    b.Navigation("ThrashContainer");
+                });
+
             modelBuilder.Entity("BinMaps.Data.Entities.ThrashContainer", b =>
                 {
                     b.HasOne("BinMaps.Data.Entities.Area", "Area")
@@ -397,6 +483,11 @@ namespace BinMaps.Data.Migrations
 
                     b.Navigation("Truck")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BinMaps.Data.Entities.ReportType", b =>
+                {
+                    b.Navigation("Reports");
                 });
 #pragma warning restore 612, 618
         }

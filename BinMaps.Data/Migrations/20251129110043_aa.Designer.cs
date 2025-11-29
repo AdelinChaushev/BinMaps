@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinMaps.Data.Migrations
 {
     [DbContext(typeof(BinMapsDbContext))]
-    [Migration("20251129093341_Added temperature and batery percentage")]
-    partial class Addedtemperatureandbaterypercentage
+    [Migration("20251129110043_aa")]
+    partial class aa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

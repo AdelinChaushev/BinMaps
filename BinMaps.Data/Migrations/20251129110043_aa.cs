@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinMaps.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class aa : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace BinMaps.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LitersFilled = table.Column<double>(type: "float", nullable: false)
+                    LitersFilled = table.Column<double>(type: "float", nullable: false),
+                    IsFull = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,6 +73,8 @@ namespace BinMaps.Data.Migrations
                     IsFilled = table.Column<bool>(type: "bit", nullable: false),
                     LocationX = table.Column<double>(type: "float", nullable: false),
                     LocationY = table.Column<double>(type: "float", nullable: false),
+                    Temperature = table.Column<double>(type: "float", nullable: false),
+                    BatteryPercentage = table.Column<double>(type: "float", nullable: false),
                     AreaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -79,26 +82,6 @@ namespace BinMaps.Data.Migrations
                     table.PrimaryKey("PK_ThrashContainers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ThrashContainers_Areas_AreaId",
-                        column: x => x.AreaId,
-                        principalTable: "Areas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trucks",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Capacity = table.Column<double>(type: "float", nullable: false),
-                    AreaId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trucks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Trucks_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
                         principalColumn: "Id",
@@ -211,6 +194,33 @@ namespace BinMaps.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Trucks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Capacity = table.Column<double>(type: "float", nullable: false),
+                    AreaId = table.Column<int>(type: "int", nullable: false),
+                    DriverId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trucks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trucks_Areas_AreaId",
+                        column: x => x.AreaId,
+                        principalTable: "Areas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trucks_AspNetUsers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -260,6 +270,11 @@ namespace BinMaps.Data.Migrations
                 table: "Trucks",
                 column: "AreaId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trucks_DriverId",
+                table: "Trucks",
+                column: "DriverId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -289,10 +304,10 @@ namespace BinMaps.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Areas");
 
             migrationBuilder.DropTable(
-                name: "Areas");
+                name: "AspNetUsers");
         }
     }
 }

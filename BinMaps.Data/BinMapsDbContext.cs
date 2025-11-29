@@ -18,7 +18,25 @@ namespace BinMaps.Data
 		public DbSet<Truck> Trucks { get; set; }
 		public DbSet<ThrashContainer> ThrashContainers { get; set; }
 		public DbSet<Area> Areas { get; set; }
-	
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ReportType> ReportTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            
+            modelBuilder.Entity<Report>()
+                .HasOne(r => r.ReportType)
+                .WithMany(rt => rt.Reports)
+                .HasForeignKey(r => r.ReportTypeId);
+
+            
+            modelBuilder.Entity<Area>()
+                .HasOne(a => a.Truck)
+                .WithOne(t => t.Area)
+                .HasForeignKey<Truck>(t => t.AreaId);
+        }
 
     }
 }

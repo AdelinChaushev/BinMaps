@@ -11,9 +11,9 @@ namespace BinMaps.Data.Entities
 {
     public class ReportType
     {
-        public ReportType(List<Report> reports)
+        public ReportType()
         {
-            this.reports = reports;
+            Reports = new List<Report>();
         }
 
         [Key]
@@ -21,7 +21,7 @@ namespace BinMaps.Data.Entities
 
         public string Name { get; set; }
 
-    
-        public List<Report> reports { get; set; }
+
+        public ICollection<Report> Reports { get; set; }
     }
 }
