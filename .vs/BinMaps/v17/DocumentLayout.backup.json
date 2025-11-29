@@ -193,7 +193,7 @@
               "RelativeDocumentMoniker": "BinMaps\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\user.DESKTOP-THG5QCC\\Desktop\\BinMaps\\BinMaps\\Controllers\\AccountController.cs",
               "RelativeToolTip": "BinMaps\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-29T14:22:58.849Z",
               "EditorCaption": ""
@@ -208,8 +208,7 @@
               "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T14:16:46.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T14:16:46.928Z"
             },
             {
               "$type": "Document",
@@ -221,8 +220,7 @@
               "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T14:16:46.865Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T14:16:46.865Z"
             },
             {
               "$type": "Document",
@@ -234,8 +232,7 @@
               "RelativeToolTip": "BinMaps\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T06:29:06.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T06:29:06.185Z"
             },
             {
               "$type": "Document",
@@ -247,8 +244,7 @@
               "RelativeToolTip": "BinMaps.Common\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T03:28:53.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T03:28:53.953Z"
             },
             {
               "$type": "Document",
@@ -260,8 +256,7 @@
               "RelativeToolTip": "BinMaps\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:26:34.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:26:34.58Z"
             },
             {
               "$type": "Document",
@@ -273,8 +268,7 @@
               "RelativeToolTip": "BinMaps\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T11:41:05.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T11:41:05.392Z"
             },
             {
               "$type": "Document",
@@ -286,8 +280,7 @@
               "RelativeToolTip": "BinMaps\\Program.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAEwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:38:03.035Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T02:38:03.035Z"
             },
             {
               "$type": "Document",
@@ -299,8 +292,7 @@
               "RelativeToolTip": "BinMaps.Core\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:34:12.966Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T02:34:12.966Z"
             },
             {
               "$type": "Document",
@@ -312,8 +304,7 @@
               "RelativeToolTip": "BinMaps\\Views\\Admin\\Index.cshtml",
               "ViewState": "AgIAAAwAAAAAAAAAAAAQwCIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:26:01.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:26:01.596Z"
             },
             {
               "$type": "Document",
@@ -325,8 +316,7 @@
               "RelativeToolTip": "BinMaps\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T13:41:49.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T13:41:49.01Z"
             },
             {
               "$type": "Document",
@@ -338,8 +328,7 @@
               "RelativeToolTip": "BinMaps\\Views\\Shared\\_LoginPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T11:40:52.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T11:40:52.874Z"
             },
             {
               "$type": "Document",
@@ -351,8 +340,7 @@
               "RelativeToolTip": "BinMaps\\Views\\Admin\\PendingReports.cshtml",
               "ViewState": "AgIAAF8BAAAAAAAAAAAQwHkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-29T10:25:34.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:25:34.527Z"
             },
             {
               "$type": "Document",
@@ -364,8 +352,7 @@
               "RelativeToolTip": "BinMaps.Data\\BinMapsDbContext.cs",
               "ViewState": "AgIAABQAAAAAAAAAAIAxwCgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T10:34:28.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T10:34:28.974Z"
             },
             {
               "$type": "Document",

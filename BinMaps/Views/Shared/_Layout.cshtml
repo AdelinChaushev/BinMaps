@@ -1,7 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,18 +17,19 @@
                 <span class="logo-text">BinMaps</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <!-- Dynamic nav links based on role -->
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a asp-controller="Account" asp-action="Login">Sign In</a></li>
             </ul>
             <div class="nav-right">
                 <span class="user-info">
                     <span class="user-role" id="userRole"></span>
                     <span class="user-name" id="userName"></span>
                 </span>
-                <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="logout-btn">Logout</button>
-                </form>
-
+                <button class="logout-btn" id="logoutBtn">
+                    Logout
+                </button>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
@@ -85,14 +83,11 @@
         </div>
     </div>
 
-    
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <button class="floating-report-btn" id="floatingReportBtn">
-            <span class="report-icon">📢</span>
-            <span class="report-text">Report Issue</span>
-        </button>
-    }
+    <!-- Floating Report Button (Shown for User Role) -->
+    <button class="floating-report-btn" id="floatingReportBtn" style="display: none;">
+        <span class="report-icon">📢</span>
+        <span class="report-text">Report Issue</span>
+    </button>
 
     <!-- Footer -->
     <footer>
