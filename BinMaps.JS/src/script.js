@@ -637,7 +637,7 @@ async function updateSensorsWithBackend() {
                 body: JSON.stringify(containerData.map(c => ({
                     Id: c.id,
                     Capacity: c.capacity / 1000,           // Convert liters to m³
-                    FillPercentage: Math.round(c.fillLevel),
+                    Percentage: Math.round(c.fillLevel),
                     IsFilled: c.fillLevel >= 80,
                     LocationX: c.lat,                      // Send positions (backend needs them)
                     LocationY: c.lon,                      // Use 'lon' field
@@ -2755,7 +2755,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 1. Load initial container data from backend (initializes sensors too)
+     // 1. Load initial container data from backend
     await loadContainersFromBackend();
 
     // 2. Check authentication
@@ -2763,13 +2763,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateLiveStatus();
     startAutoRefresh();
 
-    // 3. Send first sensor update immediately
-    await updateSensorsWithBackend();
+    // 3. ⚠️ WAIT for sensors to update before sending to backend
+    // Give sensors time to generate initial realistic data
+    setTimeout(async () => {
+        await updateSensorsWithBackend();
+    }, 1000);
 
     setInterval(async () => {
         await updateSensorsWithBackend();
         console.log('Updated data sensors')
-    }, 500);
+    }, 20000); // ← Also change from 500ms to 20000ms (20 seconds)
 
     console.log('  ✓ Authentication system active');
     console.log('  ✓ Initial containers loaded from backend');
