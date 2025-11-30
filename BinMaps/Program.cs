@@ -151,7 +151,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 	using var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    if (userManager.Users.Any() == null)
+    if (!userManager.Users.Any())
 	{
 
 
