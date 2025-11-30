@@ -1,4 +1,5 @@
 ﻿using BinMaps.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace BinMaps.Core.Contracts
         Task<IEnumerable<Area>> GetAllAreasAsync();
         Task<bool> AssignTruckAsync(int areaId, string driverId);
         Task<bool> MarkAreaAsCleanedAsync(int areaId);
+        Task<IEnumerable<IdentityUser>> GetAllDriversAsync();
     }
 }
