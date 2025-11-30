@@ -1,4 +1,5 @@
 ﻿using BinMaps.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -56,8 +57,40 @@ namespace BinMaps.Data
            // Relative to project root
 
             // Example: Read and seed
-           
-           
+            modelBuilder.Entity<IdentityRole>().HasData(
+               new IdentityRole()
+               {
+                     Id = "1",
+                     Name = "Admin",
+                     NormalizedName = "ADMIN"
+               },
+                new IdentityRole()
+                {
+                     Id = "2",
+                     Name = "Driver",
+                     NormalizedName = "DRIVER"
+                }
+            );
+          
+            modelBuilder.Entity<ReportType>().HasData(
+                new ReportType()
+                {
+                    Id = 1,
+                    Name = "Damaged Container"
+                },
+                new ReportType()
+                {
+                    Id = 2,
+                    Name = "Overflowing Container"
+                },
+                new ReportType()
+                {
+                    Id = 3,
+                    Name = "Incorrect Location"
+                }
+            );
+
+
         }
 
     }
