@@ -1,10 +1,13 @@
 ﻿using BinMaps.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BinMaps.Data
@@ -16,7 +19,7 @@ namespace BinMaps.Data
 		{
 		}
 		public DbSet<Truck> Trucks { get; set; }
-		public DbSet<ThrashContainer> ThrashContainers { get; set; }
+		public DbSet<TrashContainer> TrashContainers { get; set; }
 		public DbSet<Area> Areas { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<ReportType> ReportTypes { get; set; }

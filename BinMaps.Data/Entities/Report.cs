@@ -19,9 +19,9 @@ namespace BinMaps.Data.Entities
         public int ReportTypeId { get; set; }
         public ReportType ReportType { get; set; }
 
-        [ForeignKey(nameof(ThrashContainer))]
+        [ForeignKey(nameof(TrashContainer))]
         public int ThrashContainerId { get; set; }
-        public ThrashContainer ThrashContainer { get; set; }
+        public TrashContainer TrashContainer { get; set; }
         [ForeignKey(nameof(IdentityUser))]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }

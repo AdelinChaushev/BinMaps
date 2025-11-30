@@ -1,0 +1,592 @@
+[
+  {
+    "id": 1,
+    "lat": 42.610022,
+    "lon": 25.387895,
+    "fillLevel": 89,
+    "zone": "south",
+    "address": "ул. Казанлък 1",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 2,
+    "lat": 42.608861,
+    "lon": 25.404456,
+    "fillLevel": 67,
+    "zone": "south",
+    "address": "ул. Казанлък 2",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 3,
+    "lat": 42.620647,
+    "lon": 25.374762,
+    "fillLevel": 47,
+    "zone": "north",
+    "address": "ул. Казанлък 3",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 4,
+    "lat": 42.616255,
+    "lon": 25.412078,
+    "fillLevel": 67,
+    "zone": "south",
+    "address": "ул. Казанлък 4",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 5,
+    "lat": 42.611209,
+    "lon": 25.388608,
+    "fillLevel": 52,
+    "zone": "south",
+    "address": "ул. Казанлък 5",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 6,
+    "lat": 42.632985,
+    "lon": 25.389131,
+    "fillLevel": 93,
+    "zone": "north",
+    "address": "ул. Казанлък 6",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 7,
+    "lat": 42.62399,
+    "lon": 25.385375,
+    "fillLevel": 38,
+    "zone": "north",
+    "address": "ул. Казанлък 7",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 8,
+    "lat": 42.62584,
+    "lon": 25.387545,
+    "fillLevel": 13,
+    "zone": "north",
+    "address": "ул. Казанлък 8",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 10,
+    "lat": 42.622163,
+    "lon": 25.390393,
+    "fillLevel": 15,
+    "zone": "north",
+    "address": "ул. Казанлък 10",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 11,
+    "lat": 42.624997,
+    "lon": 25.408898,
+    "fillLevel": 70,
+    "zone": "north",
+    "address": "ул. Казанлък 11",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 12,
+    "lat": 42.622324,
+    "lon": 25.390451,
+    "fillLevel": 25,
+    "zone": "north",
+    "address": "ул. Казанлък 12",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 13,
+    "lat": 42.624831,
+    "lon": 25.381493,
+    "fillLevel": 67,
+    "zone": "north",
+    "address": "ул. Казанлък 13",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 14,
+    "lat": 42.621158,
+    "lon": 25.397294,
+    "fillLevel": 74,
+    "zone": "north",
+    "address": "ул. Казанлък 14",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 15,
+    "lat": 42.619667,
+    "lon": 25.407768,
+    "fillLevel": 54,
+    "zone": "north",
+    "address": "ул. Казанлък 15",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 16,
+    "lat": 42.621396,
+    "lon": 25.390485,
+    "fillLevel": 49,
+    "zone": "north",
+    "address": "ул. Казанлък 16",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 17,
+    "lat": 42.616874,
+    "lon": 25.368622,
+    "fillLevel": 75,
+    "zone": "south",
+    "address": "ул. Казанлък 17",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 18,
+    "lat": 42.625063,
+    "lon": 25.408537,
+    "fillLevel": 3,
+    "zone": "north",
+    "address": "ул. Казанлък 18",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 19,
+    "lat": 42.621418,
+    "lon": 25.390531,
+    "fillLevel": 1,
+    "zone": "north",
+    "address": "ул. Казанлък 19",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 20,
+    "lat": 42.61264,
+    "lon": 25.39013,
+    "fillLevel": 48,
+    "zone": "south",
+    "address": "ул. Казанлък 20",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 21,
+    "lat": 42.617575,
+    "lon": 25.395344,
+    "fillLevel": 14,
+    "zone": "south",
+    "address": "ул. Казанлък 21",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 22,
+    "lat": 42.624126,
+    "lon": 25.391727,
+    "fillLevel": 90,
+    "zone": "north",
+    "address": "ул. Казанлък 22",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 23,
+    "lat": 42.608676,
+    "lon": 25.411276,
+    "fillLevel": 21,
+    "zone": "south",
+    "address": "ул. Казанлък 23",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 24,
+    "lat": 42.625455,
+    "lon": 25.381608,
+    "fillLevel": 12,
+    "zone": "north",
+    "address": "ул. Казанлък 24",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 25,
+    "lat": 42.621997,
+    "lon": 25.410165,
+    "fillLevel": 28,
+    "zone": "north",
+    "address": "ул. Казанлък 25",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 26,
+    "lat": 42.618602,
+    "lon": 25.412267,
+    "fillLevel": 33,
+    "zone": "south",
+    "address": "ул. Казанлък 26",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 27,
+    "lat": 42.619792,
+    "lon": 25.384661,
+    "fillLevel": 15,
+    "zone": "north",
+    "address": "ул. Казанлък 27",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 28,
+    "lat": 42.616732,
+    "lon": 25.413581,
+    "fillLevel": 73,
+    "zone": "south",
+    "address": "ул. Казанлък 28",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 29,
+    "lat": 42.630506,
+    "lon": 25.391785,
+    "fillLevel": 70,
+    "zone": "north",
+    "address": "ул. Казанлък 29",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 30,
+    "lat": 42.614584,
+    "lon": 25.389902,
+    "fillLevel": 44,
+    "zone": "south",
+    "address": "ул. Казанлък 30",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 31,
+    "lat": 42.615305,
+    "lon": 25.390443,
+    "fillLevel": 23,
+    "zone": "south",
+    "address": "ул. Казанлък 31",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 32,
+    "lat": 42.624204,
+    "lon": 25.39726,
+    "fillLevel": 92,
+    "zone": "north",
+    "address": "ул. Казанлък 32",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 33,
+    "lat": 42.613541,
+    "lon": 25.387372,
+    "fillLevel": 38,
+    "zone": "south",
+    "address": "ул. Казанлък 33",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 34,
+    "lat": 42.618719,
+    "lon": 25.393099,
+    "fillLevel": 94,
+    "zone": "south",
+    "address": "ул. Казанлък 34",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 35,
+    "lat": 42.616536,
+    "lon": 25.396118,
+    "fillLevel": 10,
+    "zone": "south",
+    "address": "ул. Казанлък 35",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 36,
+    "lat": 42.62196,
+    "lon": 25.376866,
+    "fillLevel": 18,
+    "zone": "north",
+    "address": "ул. Казанлък 36",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 37,
+    "lat": 42.615707,
+    "lon": 25.397244,
+    "fillLevel": 3,
+    "zone": "south",
+    "address": "ул. Казанлък 37",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 38,
+    "lat": 42.618678,
+    "lon": 25.402839,
+    "fillLevel": 16,
+    "zone": "south",
+    "address": "ул. Казанлък 38",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 39,
+    "lat": 42.614701,
+    "lon": 25.404198,
+    "fillLevel": 5,
+    "zone": "south",
+    "address": "ул. Казанлък 39",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 40,
+    "lat": 42.614375,
+    "lon": 25.388011,
+    "fillLevel": 10,
+    "zone": "south",
+    "address": "ул. Казанлък 40",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 41,
+    "lat": 42.624204,
+    "lon": 25.39726,
+    "fillLevel": 60,
+    "zone": "north",
+    "address": "ул. Казанлък 41",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 42,
+    "lat": 42.62512,
+    "lon": 25.402308,
+    "fillLevel": 9,
+    "zone": "north",
+    "address": "ул. Казанлък 42",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 43,
+    "lat": 42.615928,
+    "lon": 25.38536,
+    "fillLevel": 65,
+    "zone": "south",
+    "address": "ул. Казанлък 43",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 44,
+    "lat": 42.607219,
+    "lon": 25.384988,
+    "fillLevel": 15,
+    "zone": "south",
+    "address": "ул. Казанлък 44",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 45,
+    "lat": 42.626492,
+    "lon": 25.395817,
+    "fillLevel": 73,
+    "zone": "north",
+    "address": "ул. Казанлък 45",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 46,
+    "lat": 42.62443,
+    "lon": 25.397504,
+    "fillLevel": 33,
+    "zone": "north",
+    "address": "ул. Казанлък 46",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 47,
+    "lat": 42.624697,
+    "lon": 25.403178,
+    "fillLevel": 24,
+    "zone": "north",
+    "address": "ул. Казанлък 47",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 48,
+    "lat": 42.614147,
+    "lon": 25.389436,
+    "fillLevel": 60,
+    "zone": "south",
+    "address": "ул. Казанлък 48",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 49,
+    "lat": 42.614979,
+    "lon": 25.391808,
+    "fillLevel": 50,
+    "zone": "south",
+    "address": "ул. Казанлък 49",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 50,
+    "lat": 42.627057,
+    "lon": 25.388126,
+    "fillLevel": 36,
+    "zone": "north",
+    "address": "ул. Казанлък 50",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 51,
+    "lat": 42.625067,
+    "lon": 25.400432,
+    "fillLevel": 42,
+    "zone": "north",
+    "address": "ул. Казанлък 51",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 52,
+    "lat": 42.614826,
+    "lon": 25.397706,
+    "fillLevel": 9,
+    "zone": "south",
+    "address": "ул. Казанлък 52",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 53,
+    "lat": 42.624111,
+    "lon": 25.397176,
+    "fillLevel": 60,
+    "zone": "north",
+    "address": "ул. Казанлък 53",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 54,
+    "lat": 42.616704,
+    "lon": 25.419461,
+    "fillLevel": 14,
+    "zone": "south",
+    "address": "ул. Казанлък 54",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 55,
+    "lat": 42.628125,
+    "lon": 25.390589,
+    "fillLevel": 52,
+    "zone": "north",
+    "address": "ул. Казанлък 55",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 56,
+    "lat": 42.622814,
+    "lon": 25.383306,
+    "fillLevel": 36,
+    "zone": "north",
+    "address": "ул. Казанлък 56",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 57,
+    "lat": 42.616998,
+    "lon": 25.411728,
+    "fillLevel": 96,
+    "zone": "south",
+    "address": "ул. Казанлък 57",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 58,
+    "lat": 42.615492,
+    "lon": 25.390497,
+    "fillLevel": 40,
+    "zone": "south",
+    "address": "ул. Казанлък 58",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 59,
+    "lat": 42.622354,
+    "lon": 25.390382,
+    "fillLevel": 23,
+    "zone": "north",
+    "address": "ул. Казанлък 59",
+    "type": "generated",
+    "capacity": 1100
+  },
+  {
+    "id": 60,
+    "lat": 42.629492,
+    "lon": 25.388123,
+    "fillLevel": 82,
+    "zone": "north",
+    "address": "ул. Казанлък 60",
+    "type": "generated",
+    "capacity": 1100
+  }
+]

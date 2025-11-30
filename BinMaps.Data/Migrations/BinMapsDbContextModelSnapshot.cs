@@ -17,7 +17,7 @@ namespace BinMaps.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.26")
+                .HasAnnotation("ProductVersion", "6.0.36")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -39,6 +39,20 @@ namespace BinMaps.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Areas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsFull = false,
+                            LitersFilled = 0.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsFull = false,
+                            LitersFilled = 0.0
+                        });
                 });
 
             modelBuilder.Entity("BinMaps.Data.Entities.Report", b =>
@@ -98,9 +112,26 @@ namespace BinMaps.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReportTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Damaged Container"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Overflowing Container"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Incorrect Location"
+                        });
                 });
 
-            modelBuilder.Entity("BinMaps.Data.Entities.ThrashContainer", b =>
+            modelBuilder.Entity("BinMaps.Data.Entities.TrashContainer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +167,7 @@ namespace BinMaps.Data.Migrations
 
                     b.HasIndex("AreaId");
 
-                    b.ToTable("ThrashContainers");
+                    b.ToTable("TrashContainers");
                 });
 
             modelBuilder.Entity("BinMaps.Data.Entities.Truck", b =>
@@ -192,6 +223,22 @@ namespace BinMaps.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "55a4f693-738a-413c-916d-bd825e936df9",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "60b26c5a-0c38-4ad5-aa8e-ad89b358f525",
+                            Name = "Driver",
+                            NormalizedName = "DRIVER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -312,12 +359,10 @@ namespace BinMaps.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -354,12 +399,10 @@ namespace BinMaps.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -383,7 +426,7 @@ namespace BinMaps.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BinMaps.Data.Entities.ThrashContainer", "ThrashContainer")
+                    b.HasOne("BinMaps.Data.Entities.TrashContainer", "TrashContainer")
                         .WithMany()
                         .HasForeignKey("ThrashContainerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -393,10 +436,10 @@ namespace BinMaps.Data.Migrations
 
                     b.Navigation("ReportType");
 
-                    b.Navigation("ThrashContainer");
+                    b.Navigation("TrashContainer");
                 });
 
-            modelBuilder.Entity("BinMaps.Data.Entities.ThrashContainer", b =>
+            modelBuilder.Entity("BinMaps.Data.Entities.TrashContainer", b =>
                 {
                     b.HasOne("BinMaps.Data.Entities.Area", "Area")
                         .WithMany("Bins")

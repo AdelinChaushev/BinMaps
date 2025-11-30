@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BinMaps.Data.Entities
 {
-	public class ThrashContainer
+	public class TrashContainer
 	{
 		[Key]
 		public int Id { get; set; }
