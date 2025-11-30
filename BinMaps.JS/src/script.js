@@ -1292,6 +1292,9 @@ if (reportForm) {
             if (currentUser && currentUser.role === 'admin') {
                 loadAdminReports();
             }
+            if (currentUser && currentUser.role === 'driver') {
+                loadCollectorReports();
+            }
 
         } catch (error) {
             console.error('Error submitting report:', error);
