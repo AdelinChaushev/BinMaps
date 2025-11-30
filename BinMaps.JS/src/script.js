@@ -41,7 +41,7 @@ async function checkAuth() {
 
         if (response.ok) {
             const userData = await response.json();
-            
+            console.log(userData);
             // Handle role as array - take the first role or default to 'user'
             if (Array.isArray(userData.role)) {
                 userData.role = userData.role.length > 0 ? userData.role[0].toLowerCase() : 'user';
@@ -64,10 +64,16 @@ async function checkAuth() {
 function showHomePage() {
     document.getElementById('homePage').classList.add('active');
     document.getElementById('loginScreen').classList.remove('active');
+    document.getElementById('registerScreen').classList.remove('active');
     document.getElementById('navbar').style.display = 'none';
     document.getElementById('userDashboard').style.display = 'none';
     document.getElementById('collectorDashboard').style.display = 'none';
     document.getElementById('adminDashboard').style.display = 'none';
+
+    const homeLoginBtn = document.getElementById('homeLoginBtn');
+    if (homeLoginBtn) {
+        homeLoginBtn.style.display = 'block';
+    }
 }
 
 // Show login screen
@@ -272,6 +278,7 @@ function updateNavLinks(role) {
 }
 
 // Logout handler
+// Logout handler
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async function () {
@@ -285,14 +292,22 @@ if (logoutBtn) {
             currentUser = null;
             collectedBins.clear();
             showNotification('Logged out successfully', 'info');
-            showHomePage();
+            
+            // Reload the page to reset everything to initial state
+            setTimeout(() => {
+                window.location.reload();
+            }, 500); // Small delay to show the notification
 
         } catch (error) {
             console.error('Logout error:', error);
             // Still logout on frontend even if API call fails
             currentUser = null;
             collectedBins.clear();
-            showHomePage();
+            
+            // Reload the page
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
         }
     });
 }

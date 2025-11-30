@@ -13,7 +13,8 @@ namespace BinMaps.Core.Contracts
         string GenerateJSONWebToken(IdentityUser user);
         Task <IdentityUser> GetUserById (string id);
 		Task<IdentityUser> CreateUser(string userName, string email, string password);
-        Task<IEnumerable<string>> GetRolesUsers(string id);
+        //Task<IEnumerable<string>> GetRolesUsers(string id);
+        Task<string> GetUserRole(string id);
         Task RemoveUserFromRole(string userId, string role);
         Task AddUserToRole(string userId, string role);
         Task DeactivateAccount(string userId);

@@ -32,7 +32,7 @@ namespace BinMaps.Controllers
 				var user = await userService.GetUserById(userId);
 
 				// Get user roles - this should return a single role string like "user", "collector", or "admin"
-				var role = await userService.GetRolesUsers(user.Id);
+				var role = await userService.GetUserRole(user.Id);
 
 				// Return user data (without sensitive info like password)
 				var userData = new
@@ -123,8 +123,8 @@ namespace BinMaps.Controllers
 		[HttpGet("getUserRoles")]
 		public async Task<IActionResult> GetUserRoles()
 		{
-			var roles = await userService.GetRolesUsers(GetUserId());
-			return Ok(new { role = roles });
+			var role = await userService.GetUserRole(GetUserId());
+			return Ok(new { role = role });
 		}
 
 		private void AddCookie(string token)

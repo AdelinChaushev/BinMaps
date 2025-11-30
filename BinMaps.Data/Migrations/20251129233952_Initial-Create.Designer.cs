@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinMaps.Data.Migrations
 {
     [DbContext(typeof(BinMapsDbContext))]
-    [Migration("20251129212941_Fixed_Naming_Error")]
-    partial class Fixed_Naming_Error
+    [Migration("20251129233952_Initial-Create")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
