@@ -151,7 +151,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 	using var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    if (userManager.Users.Any() == null)
+    if (!userManager.Users.Any())
 	{
 
 
@@ -192,7 +192,6 @@ using (var scope = app.Services.CreateScope())
                 await userManager.FindByEmailAsync("Driver2@gmail.com"), "Driver");
 
         }
-
     }
 }
 
