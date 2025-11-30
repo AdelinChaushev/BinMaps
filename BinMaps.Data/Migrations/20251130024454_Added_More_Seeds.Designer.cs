@@ -4,6 +4,7 @@ using BinMaps.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinMaps.Data.Migrations
 {
     [DbContext(typeof(BinMapsDbContext))]
-    partial class BinMapsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251130024454_Added_More_Seeds")]
+    partial class Added_More_Seeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

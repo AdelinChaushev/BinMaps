@@ -121,6 +121,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<BinMapsDbContext>();
@@ -193,4 +194,5 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
+
 app.Run();

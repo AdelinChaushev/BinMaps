@@ -1,6 +1,7 @@
 ﻿using BinMaps.Core.Contracts;
 using BinMaps.Data;
 using BinMaps.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BinMaps.Core.Services
@@ -47,5 +48,12 @@ namespace BinMaps.Core.Services
             area.IsFull = false; 
             return await _areaRepo.UpdateAsync(area);
         }
+
+        public Task<IEnumerable<IdentityUser>> GetAllDriversAsync()
+        => _truckRepo.GetAllAttached()
+            .Select(t => t.Driver)
+            .Distinct()
+            .ToArrayAsync()
+            .ContinueWith(t => (IEnumerable<IdentityUser>)t.Result);
     }
 }
