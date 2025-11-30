@@ -227,7 +227,6 @@ if (registerForm) {
 }
 
 function showDashboard(role) {
-    role = 'user';
     console.log(role);
     document.getElementById('homePage').classList.remove('active');
     document.getElementById('loginScreen').classList.remove('active');
@@ -248,7 +247,7 @@ function showDashboard(role) {
         const floatingBtn = document.getElementById('floatingReportBtn');
         if (floatingBtn) floatingBtn.style.display = 'flex';
         setTimeout(() => initUserDashboard(), 300);
-    } else if (role === 'collector') {
+    } else if (role === 'driver') {
         document.getElementById('collectorDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
         if (floatingBtn) floatingBtn.style.display = 'none';
@@ -1805,7 +1804,7 @@ async function markBinComplete() {
     const modalHTML = `
         <div class="modal active" id="markBinModal">
             <div class="modal-content" style="max-width: 800px;">
-                <div class="modal-header">
+                <div class="modal-header" id="place">
                     <h2>✅ Mark Bin as Collected</h2>
                     <button class="modal-close" onclick="closeMarkBinModal()">&times;</button>
                 </div>
@@ -1878,55 +1877,119 @@ async function markBinComplete() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-async function confirmMarkBin(binId) {
-    const bin = containerData.find(b => b.id === binId);
-    if (!bin) return;
+// Array to store selected bin IDs
+let selectedBinIds = [];
 
-    // Close modal
-    closeMarkBinModal();
+function confirmMarkBin(binId) {
+    // Extract the number after the '#' if present
+    const id = binId.toString().replace('#', '');
+    
+    // Toggle selection
+    const index = selectedBinIds.indexOf(id);
+    if (index > -1) {
+        // Remove from selection
+        selectedBinIds.splice(index, 1);
+        console.log('➖ Bin removed from selection:', id);
+    } else {
+        // Add to selection
+        selectedBinIds.push(id);
+        console.log('➕ Bin added to selection:', id);
+    }
+    
+    // Update visual styling
+    const binElement = event.target.closest('.bin-select-item');
+    if (binElement) {
+        binElement.classList.toggle('selected');
+    }
+    
+    // Show/hide the dispose button
+    updateDisposeButton();
+    
+    console.log('📋 Currently selected bins:', selectedBinIds);
+}
 
+function updateDisposeButton() {
+    let btn = document.getElementById('confirmDisposeBtn');
+    const modalHeader = document.getElementById('place');
+    console.log("TESTIN 123");
+    if (selectedBinIds.length > 0) {
+        // Show button if bins are selected
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.id = 'confirmDisposeBtn';
+            btn.innerHTML = `Dispose Selected <span class="badge">${selectedBinIds.length}</span>`;
+            btn.onclick = disposeSelectedBins;
+            modalHeader.appendChild(btn);
+        } else {
+            btn.querySelector('.badge').textContent = selectedBinIds.length;
+        }
+        btn.style.display = 'block';
+    } else {
+        // Hide button if no bins selected
+        if (btn) {
+            btn.style.display = 'none';
+        }
+    }
+}
+
+async function disposeSelectedBins() {
+    if (selectedBinIds.length === 0) {
+        showNotification('No bins selected!', 'warning');
+        return;
+    }
+    
+    // Convert string IDs to integers
+    const containerIds = selectedBinIds.map(id => parseInt(id));
+    
+    console.log('🗑️ Disposing bins:', containerIds);
+    
     try {
-        // Try to call API (will fail if backend not available)
-        const response = await fetch(`${API_BASE_URL}/api/collections/mark-complete`, {
+        const response = await fetch(`${API_BASE_URL}/api/TrashContainer/api/DisposeOfTrash`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify({
-                containerId: binId,
-                collectedAt: new Date().toISOString(),
-                collectorId: currentUser?.id || 'collector-1'
-            })
+            body: JSON.stringify(containerIds)
         });
-
+        
         if (!response.ok) {
-            throw new Error('API call failed');
+            throw new Error(`API error: ${response.status}`);
         }
-
-        console.log('✅ Bin marked as collected via API');
+        
+        showNotification(`✅ Successfully disposed ${selectedBinIds.length} bins!`, 'success');
+        
+        // Mark bins as collected locally
+        selectedBinIds.forEach(id => {
+            collectedBins.add(id);
+            const bin = containerData.find(b => b.id == id);
+            if (bin) {
+                bin.fillLevel = 5 + Math.random() * 10;
+                bin.status = 'empty';
+            }
+        });
+        
+        collectorCompleted += selectedBinIds.length;
+        
+        // Clear selection
+        selectedBinIds = [];
+        updateDisposeButton();
+        
+        // Close modal and refresh
+        closeMarkBinModal();
+        updateCollectorProgress();
+        
+        if (collectorMap) {
+            displayCollectorBins();
+        }
+        
+        // Reload data from backend
+        await loadContainersFromBackend();
+        
     } catch (error) {
-        console.log('ℹ️ API not available, using local state only');
+        console.error('❌ Failed to dispose bins:', error);
+        showNotification('Failed to dispose bins. Please try again.', 'warning');
     }
-
-    // Mark as collected locally
-    collectedBins.add(binId);
-    collectorCompleted++;
-
-    // Reset the bin's fill level (simulate emptying)
-    bin.fillLevel = 5 + Math.random() * 10; // 5-15% after collection
-    bin.status = 'empty';
-
-    // Update progress
-    updateCollectorProgress();
-
-    // Refresh map
-    if (collectorMap) {
-        displayCollectorBins();
-    }
-
-    // Show success notification
-    showNotification(`✅ Container #${binId} marked as collected!\n\nProgress: ${collectorCompleted} bins completed\n\nThe container has been emptied and reset.`, 'success');
 }
 
 function closeMarkBinModal() {
@@ -2703,11 +2766,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 3. Send first sensor update immediately
     await updateSensorsWithBackend();
 
-    //4. Continue sending every 20 seconds
     setInterval(async () => {
         await updateSensorsWithBackend();
         console.log('Updated data sensors')
-    }, 5000);
+    }, 500);
 
     console.log('  ✓ Authentication system active');
     console.log('  ✓ Initial containers loaded from backend');

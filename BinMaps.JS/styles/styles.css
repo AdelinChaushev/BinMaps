@@ -1961,6 +1961,51 @@ footer {
 #navbar{
     z-index: 1000 !important;
 }
+.bin-select-item.selected {
+    border-color: var(--primary-green) !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    transform: translateX(5px);
+}
+
+.bin-select-item.selected::after {
+    content: '✅';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+}
+
+#confirmDisposeBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+    z-index: 9999;
+    display: none;
+    transition: all 0.3s;
+}
+
+#confirmDisposeBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6);
+}
+
+#confirmDisposeBtn .badge {
+    background: white;
+    color: #10b981;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
 
 @keyframes spin {
     to { transform: rotate(360deg); }
