@@ -38,30 +38,28 @@ namespace BinMaps.Core.Services
                     }
                     bin.Temperature = container.Temperature;
                     bin.BatteryPercentage = container.BatteryPercentage;
-                    Area area = bin.Area;
-                    area.LitersFilled += (bin.Capacity * (double)(bin.FillPercentage / 100));
-                    if (area.LitersFilled >= area.Truck.Capacity)
-                    {
-                        area.IsFull = true;
-                    }
+                    
                     await repository.UpdateAsync(bin);
-                    await areaRepository.UpdateAsync(area);
+                    
                 }
             }
         }
 
         public IEnumerable<TrashContainerOutputViewModel> GetAll()
         {
-          var  arr  =   repository.GetAllAttached().Select(x => new TrashContainerOutputViewModel()
-          {
-              Id = x.Id,
-              Capacity = x.Capacity,
-              LocationX = x.LocationX,
-              LocationY = x.LocationY,
-              AreaId = x.AreaId
-          }); 
-          return  arr;
+            var arr = repository.GetAllAttached().Select(x => new TrashContainerOutputViewModel()
+            {
+                Id = x.Id,
+                Capacity = x.Capacity,
+                FillPercentage = (double)x.FillPercentage,        // ← ADD                    // ← ADD
+                LocationX = x.LocationX,
+                LocationY = x.LocationY,
+                Temperature = x.Temperature,
+                BatteryPercentage = x.BatteryPercentage,  // ← ADD
+                AreaId = x.AreaId
+            }).ToArray();
 
+            return arr;
         }
 
         public async Task RemoveTrashFromTheTrashContainer(int[] containers)

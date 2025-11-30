@@ -5,6 +5,17 @@
 // Current user state
 let currentUser = null;
 
+const KAZANLAK_BOUNDS = {
+    center: [42.6191, 25.3978],
+    southWest: [42.55, 25.30],
+    northEast: [42.69, 25.50]
+};
+
+const kazanlakLatLngBounds = L.latLngBounds(
+    KAZANLAK_BOUNDS.southWest,
+    KAZANLAK_BOUNDS.northEast
+);
+
 // Global data storage
 let containerData = [];
 let userReports = [];
@@ -25,7 +36,7 @@ let adminMap = null;
 let adminMarkers = [];
 let heatmapMap = null;
 let adminCharts = {};
-const API_BASE_URL = 'https://localhost:7230'; 
+const API_BASE_URL = 'https://localhost:7230';
 
 // Route optimization variables (from second script)
 let routeControls = { north: null, south: null };
@@ -133,7 +144,7 @@ if (loginForm) {
             }
 
             await checkAuth();
-            
+
             showNotification('Login successful!', 'success');
 
         } catch (error) {
@@ -205,7 +216,7 @@ if (registerForm) {
 
             registerForm.reset();
             document.getElementById('registerScreen').classList.remove('active');
-            
+
             await checkAuth();
 
         } catch (error) {
@@ -216,7 +227,7 @@ if (registerForm) {
 }
 
 function showDashboard(role) {
-    role = 'admin';
+    role = 'user';
     console.log(role);
     document.getElementById('homePage').classList.remove('active');
     document.getElementById('loginScreen').classList.remove('active');
@@ -231,7 +242,7 @@ function showDashboard(role) {
     document.getElementById('userDashboard').style.display = 'none';
     document.getElementById('collectorDashboard').style.display = 'none';
     document.getElementById('adminDashboard').style.display = 'none';
-    
+
     if (role === 'user') {
         document.getElementById('userDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
@@ -295,7 +306,7 @@ if (logoutBtn) {
             currentUser = null;
             collectedBins.clear();
             showNotification('Logged out successfully', 'info');
-            
+
             setTimeout(() => {
                 window.location.reload();
             }, 500);
@@ -304,7 +315,7 @@ if (logoutBtn) {
             console.error('Logout error:', error);
             currentUser = null;
             collectedBins.clear();
-            
+
             setTimeout(() => {
                 window.location.reload();
             }, 500);
@@ -383,19 +394,14 @@ class UltrasonicSensor {
         return Math.max(0, Math.min(100, fillPercentage));
     }
 
-    simulateTrashAccumulation(timeElapsed = 1) {
-        const fillRate = Math.random() * 1.5 + 0.5;
-        const increase = (fillRate / 60) * timeElapsed;
+    simulateTrashAccumulation(increment = 5) {
+        // realistic increase per cycle: 0.1 to 1.5%
+        const increase = 0.1 + Math.random() * 1.4;
 
-        if (Math.random() < 0.001) {
-            this.currentFillLevel = Math.random() * 20;
-            console.log(`🚛 Container ${this.containerId} emptied!`);
-        } else {
-            this.currentFillLevel = Math.min(100, this.currentFillLevel + increase);
-        }
-
-        return this.calculateFillLevel();
+        this.currentFillLevel = Math.min(100, this.currentFillLevel + increase);
+        return this.currentFillLevel;
     }
+
 
     getSensorData() {
         const fillLevel = this.calculateFillLevel();
@@ -490,58 +496,205 @@ class SmartBinSensor {
     }
 }
 
+async function loadContainersFromBackend() {
+    try {
+        // 1. Load container POSITIONS from local JSON
+        console.log('📂 Loading container positions from containers.json...');
+        const jsonResponse = await fetch('containers.json');
+        if (!jsonResponse.ok) throw new Error('containers.json not found');
+        
+        const localContainers = await jsonResponse.json();
+        console.log(`✅ Loaded ${localContainers.length} container positions from local JSON`);
+        
+        // 2. Try to get SENSOR DATA from backend
+        try {
+            const backendResponse = await fetch(`${API_BASE_URL}/api/TrashContainer/api/containers`, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (backendResponse.ok) {
+                const backendData = await backendResponse.json();
+                console.log(`📡 Received sensor data for ${backendData.length} containers from backend`);
+                
+                // 3. MERGE: Local positions + Backend sensor data
+                containerData = localContainers.map(local => {
+                    const backend = backendData.find(b => b.Id === local.id);
+                    
+                    return {
+                        // FROM LOCAL JSON (positions - these NEVER change)
+                        id: local.id,
+                        containerId: `BIN-${String(local.id).padStart(3, '0')}`,
+                        lat: local.lat,
+                        lng: local.lon,  // JSON uses 'lon', frontend uses 'lng'
+                        lon: local.lon,
+                        zone: local.zone,
+                        capacity: local.capacity,
+                        address: local.address,
+                        
+                        // FROM BACKEND (sensor data - changes every 20s)
+                        fillLevel: backend ? backend.FillPercentage : local.fillLevel,
+                        temperature: backend ? backend.Temperature : 20 + Math.random() * 5,
+                        batteryLevel: backend ? backend.BatteryPercentage : 85 + Math.random() * 15,
+                        
+                        // CALCULATED
+                        status: backend 
+                            ? (backend.FillPercentage < 50 ? 'empty' : backend.FillPercentage < 80 ? 'warning' : 'critical')
+                            : (local.fillLevel < 50 ? 'empty' : local.fillLevel < 80 ? 'warning' : 'critical'),
+                        fireRisk: backend ? backend.Temperature > 45 : false,
+                        distanceFromSensor: 0,
+                        signalStrength: -50 - Math.random() * 40,
+                        sensorHealth: 'operational',
+                        timestamp: new Date().toISOString()
+                    };
+                });
+                
+                console.log(`✅ HYBRID MODE: ${containerData.length} containers (positions: local, sensors: backend)`);
+            } else {
+                throw new Error('Backend unavailable');
+            }
+            
+        } catch (backendError) {
+            console.warn('⚠️ Backend unavailable, using local data only:', backendError.message);
+            
+            // Use local JSON data as-is (add missing fields)
+            containerData = localContainers.map(local => ({
+                id: local.id,
+                containerId: `BIN-${String(local.id).padStart(3, '0')}`,
+                lat: local.lat,
+                lng: local.lon,
+                lon: local.lon,
+                zone: local.zone,
+                capacity: local.capacity,
+                address: local.address,
+                fillLevel: local.fillLevel,
+                temperature: 20 + Math.random() * 5,
+                batteryLevel: 85 + Math.random() * 15,
+                status: local.fillLevel < 50 ? 'empty' : local.fillLevel < 80 ? 'warning' : 'critical',
+                fireRisk: false,
+                distanceFromSensor: 0,
+                signalStrength: -50 - Math.random() * 40,
+                sensorHealth: 'operational',
+                timestamp: new Date().toISOString()
+            }));
+            
+            console.log(`✅ LOCAL MODE: ${containerData.length} containers (all data from JSON)`);
+        }
+        
+        // 4. Initialize sensors from merged data
+        sensors = containerData.map(c => 
+            new SmartBinSensor(c.containerId, c.lat, c.lng, c.zone)
+        );
+
+        updateDashboardStats();
+        if (adminMap) displayAdminBins('all');
+        if (collectorMap) displayCollectorBins();
+
+    } catch (error) {
+        console.error('❌ Failed to load containers.json:', error);
+        console.log('⚠️ Falling back to random sensor generation...');
+        initializeSensorsAsFallback();
+    }
+}
+/**
+ * Mark bins as collected
+ */
+async function disposeContainers(containerIds) {
+    try {
+        await fetch(`${API_BASE_URL}/api/TrashContainer/api/DisposeOfTrash`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify(containerIds)
+        });
+
+        console.log(`✅ Marked ${containerIds.length} bins as collected`);
+
+        // Reload data from backend
+        await loadContainersFromBackend();
+
+        return true;
+
+    } catch (error) {
+        console.error('❌ Failed:', error.message);
+        return false;
+    }
+}
 // ===========================
 // LOAD CONTAINERS FROM JSON
 // ===========================
 
-async function loadContainersFromJson() {
+async function updateSensorsWithBackend() {
     try {
-        const response = await fetch('containers.json');
-        if (!response.ok) throw new Error('Could not load containers.json');
+        // 1. Update sensor simulation locally
+        containerData = sensors.map(sensor => sensor.update());
 
-        const data = await response.json();
+        // 2. Try to send to backend
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/TrashContainer/api/AddTrash`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(containerData.map(c => ({
+                    Id: c.id,
+                    Capacity: c.capacity / 1000,           // Convert liters to m³
+                    FillPercentage: Math.round(c.fillLevel),
+                    IsFilled: c.fillLevel >= 80,
+                    LocationX: c.lat,                      // Send positions (backend needs them)
+                    LocationY: c.lon,                      // Use 'lon' field
+                    Temperature: Math.round(c.temperature),
+                    BatteryPercentage: Math.round(c.batteryLevel),
+                    AreaId: c.zone === 'north' ? 1 : 2
+                })))
+            });
 
-        // Transform JSON data to containerData format with sensor simulation
-        containerData = data.map(item => {
-            // Create sensor wrapper for this container
-            const sensor = new SmartBinSensor(
-                `BIN-${String(item.id).padStart(3, '0')}`,
-                item.lat,
-                item.lon,
-                item.zone
-            );
-            
-            // Override initial fill level with JSON data
-            sensor.ultrasonicSensor.currentFillLevel = item.fillLevel;
-            
-            // Store sensor for updates
-            sensors.push(sensor);
-            
-            // Get complete reading with JSON data
-            const reading = sensor.getCompleteReading();
-            reading.fillLevel = item.fillLevel; // Ensure fillLevel matches JSON
-            reading.address = item.address || `Container #${item.id}`;
-            reading.type = item.type || "generated";
-            
-            return reading;
-        });
+            if (!response.ok) {
+                throw new Error(`Backend error: ${response.status}`);
+            }
 
-        console.log(`✅ Loaded ${containerData.length} containers from containers.json`);
-        
-        // Log zone distribution
-        const northCount = containerData.filter(c => c.zone === 'north').length;
-        const southCount = containerData.filter(c => c.zone === 'south').length;
-        console.log(`   📍 North zone: ${northCount} containers`);
-        console.log(`   📍 South zone: ${southCount} containers`);
-        
+            // 3. Get updated sensor data from backend
+            const getResponse = await fetch(`${API_BASE_URL}/api/TrashContainer/api/containers`, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (getResponse.ok) {
+                const backendData = await getResponse.json();
+
+                // 4. UPDATE ONLY sensor values, KEEP positions from containerData
+                containerData = containerData.map(local => {
+                    const backend = backendData.find(b => b.Id === local.id);
+                    
+                    if (backend) {
+                        return {
+                            ...local,  // Keep ALL local data (positions, address, etc)
+                            // Update ONLY sensor values
+                            fillLevel: backend.FillPercentage,
+                            temperature: backend.Temperature,
+                            batteryLevel: backend.BatteryPercentage,
+                            status: backend.FillPercentage < 50 ? 'empty' : backend.FillPercentage < 80 ? 'warning' : 'critical',
+                            fireRisk: backend.Temperature > 45,
+                            timestamp: new Date().toISOString()
+                        };
+                    }
+                    return local;  // No backend data, keep local
+                });
+
+                console.log('✅ Backend sync successful (sensor data updated, positions unchanged)');
+            }
+
+        } catch (backendError) {
+            console.warn('⚠️ Backend unavailable, using local sensor simulation:', backendError.message);
+            // containerData already updated from local sensors above
+        }
+
+        // 5. Update UI
         updateDashboardStats();
+        if (adminMap) displayAdminBins('all');
+        if (collectorMap) displayCollectorBins();
 
-    } catch (err) {
-        console.error('Error loading containers:', err);
-        showNotification('Could not load containers.json! Using fallback sensor generation.', 'warning');
-        
-        // Fallback to sensor generation if JSON fails
-        initializeSensorsAsFallback();
+    } catch (error) {
+        console.error('❌ Error in sensor update:', error);
     }
 }
 
@@ -549,7 +702,7 @@ async function loadContainersFromJson() {
 function initializeSensorsAsFallback() {
     sensors = [];
     containerData = [];
-    
+
     const centerLat = kazanlakBounds.centerLat;
     const centerLng = kazanlakBounds.centerLon;
     const dividingLine = kazanlakBounds.dividingLine;
@@ -557,23 +710,23 @@ function initializeSensorsAsFallback() {
     for (let i = 0; i < 60; i++) {
         const lat = centerLat + (Math.random() - 0.5) * 0.05;
         const lng = centerLng + (Math.random() - 0.5) * 0.05;
-        
+
         const zone = lat >= dividingLine ? 'north' : 'south';
-        
+
         const sensor = new SmartBinSensor(`BIN-${String(i + 1).padStart(3, '0')}`, lat, lng, zone);
         sensors.push(sensor);
-        
+
         const reading = sensor.getCompleteReading();
         containerData.push(reading);
     }
-    
+
     console.log('✅ Fallback sensors initialized:', containerData.length);
-    
+
     const northCount = containerData.filter(c => c.zone === 'north').length;
     const southCount = containerData.filter(c => c.zone === 'south').length;
     console.log(`   📍 North zone: ${northCount} containers`);
     console.log(`   📍 South zone: ${southCount} containers`);
-    
+
     updateDashboardStats();
 }
 
@@ -844,7 +997,7 @@ async function generateOptimizedRoute(zone) {
 
     // Determine which map to use
     const targetMap = collectorMap || adminMap;
-    
+
     if (!targetMap) {
         showNotification('Map not initialized', 'warning');
         return;
@@ -948,7 +1101,7 @@ async function generateOptimizedRoute(zone) {
 
         const oldInfo = document.getElementById('routeInfo' + zone);
         if (oldInfo) oldInfo.remove();
-        
+
         // Insert after the map wrapper
         const mapWrapper = targetMap.getContainer().closest('.map-wrapper');
         if (mapWrapper && mapWrapper.parentNode) {
@@ -1370,11 +1523,11 @@ function initUserMap() {
             userMap = L.map('userMap', {
                 minZoom: 12,
                 maxZoom: 18,
-                zoomControl: true
-            }).setView([42.6191, 25.3978], 13);
+                zoomControl: true,
+            }).setView(KAZANLAK_BOUNDS.center, 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
+                attribution: '© OpenStreetMap contributors',          // ← ADD THIS
             }).addTo(userMap);
 
             displayUserZones();
@@ -1471,21 +1624,34 @@ function initCollectorHeatmap() {
         return;
     }
 
+    // ✅ IMPROVED CLEANUP
     if (collectorMap) {
-        collectorMap.remove();
+        try {
+            collectorMap.off();
+            collectorMap.remove();
+        } catch (e) {
+            console.warn('Error removing old map:', e);
+        }
         collectorMap = null;
     }
+
+    // ✅ CLEAR CONTAINER
+    mapElement.innerHTML = '';
+    mapElement._leaflet_id = null;
 
     setTimeout(() => {
         try {
             collectorMap = L.map('collectorHeatmap', {
                 minZoom: 12,
                 maxZoom: 18,
-                zoomControl: true
+                zoomControl: true,
+                maxBounds: kazanlakLatLngBounds,
+                maxBoundsViscosity: 1.0
             }).setView([42.6191, 25.3978], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
+                attribution: '© OpenStreetMap contributors',
+                bounds: kazanlakLatLngBounds
             }).addTo(collectorMap);
 
             displayCollectorBins();
@@ -1629,7 +1795,7 @@ function displayCollectorRoute() {
 async function markBinComplete() {
     // Get uncollected bins
     const uncollectedBins = containerData.filter(b => !collectedBins.has(b.id));
-    
+
     if (uncollectedBins.length === 0) {
         showNotification('All bins have been collected!', 'info');
         return;
@@ -1649,11 +1815,11 @@ async function markBinComplete() {
                     </p>
                     <div style="max-height: 400px; overflow-y: auto;">
                         ${uncollectedBins.map(bin => {
-                            const statusColor = bin.status === 'critical' ? '#ef4444' :
-                                               bin.status === 'warning' ? '#f59e0b' : '#10b981';
-                            const zoneColor = bin.zone === 'north' ? '#dc3545' : '#28a745';
-                            
-                            return `
+        const statusColor = bin.status === 'critical' ? '#ef4444' :
+            bin.status === 'warning' ? '#f59e0b' : '#10b981';
+        const zoneColor = bin.zone === 'north' ? '#dc3545' : '#28a745';
+
+        return `
                                 <div class="bin-select-item" onclick="confirmMarkBin('${bin.id}')" style="
                                     padding: 1rem;
                                     background: var(--glass-bg);
@@ -1686,7 +1852,7 @@ async function markBinComplete() {
                                     </div>
                                 </div>
                             `;
-                        }).join('')}
+    }).join('')}
                     </div>
                     <button onclick="closeMarkBinModal()" style="
                         width: 100%;
@@ -1746,11 +1912,11 @@ async function confirmMarkBin(binId) {
     // Mark as collected locally
     collectedBins.add(binId);
     collectorCompleted++;
-    
+
     // Reset the bin's fill level (simulate emptying)
     bin.fillLevel = 5 + Math.random() * 10; // 5-15% after collection
     bin.status = 'empty';
-    
+
     // Update progress
     updateCollectorProgress();
 
@@ -1863,11 +2029,14 @@ function initAdminMap() {
             adminMap = L.map('adminMap', {
                 minZoom: 12,
                 maxZoom: 18,
-                zoomControl: true
+                zoomControl: true,
+                maxBounds: kazanlakLatLngBounds,
+                maxBoundsViscosity: 1.0
             }).setView([42.6191, 25.3978], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
+                attribution: '© OpenStreetMap contributors',
+                bounds: kazanlakLatLngBounds
             }).addTo(adminMap);
 
             displayAdminBins('all');
@@ -1996,7 +2165,7 @@ function initHeatmap() {
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors',
-                maxZoom: 19
+                bounds: kazanlakLatLngBounds
             }).addTo(heatmapMap);
 
             const zones = [
@@ -2523,24 +2692,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Load containers from JSON file (with sensor simulation wrapper)
-    await loadContainersFromJson();
-    
-    // Check authentication
-    await checkAuth();
+    // 1. Load initial container data from backend (initializes sensors too)
+    await loadContainersFromBackend();
 
+    // 2. Check authentication
+    await checkAuth();
     updateLiveStatus();
     startAutoRefresh();
 
-    // Update sensors every 5 seconds (simulates real sensor updates)
-    setInterval(updateAllSensors, 5000);
+    // 3. Send first sensor update immediately
+    await updateSensorsWithBackend();
+
+    //4. Continue sending every 20 seconds
+    setInterval(async () => {
+        await updateSensorsWithBackend();
+        console.log('Updated data sensors')
+    }, 5000);
 
     console.log('  ✓ Authentication system active');
-    console.log('  ✓ Containers loaded from JSON with sensor simulation');
-    console.log('  ✓ Real-time monitoring enabled');
+    console.log('  ✓ Initial containers loaded from backend');
+    console.log('  ✓ First sensor data sent to backend');
+    console.log('  ✓ Backend sync every 20s (frontend → backend → frontend)');
     console.log('  ✓ Role-based dashboards loaded');
-    console.log('  ✓ Advanced route optimization ready');
-    console.log('%c🚀 BinMaps fully initialized and ready!', 'font-size: 14px; font-weight: bold; color: #10b981');
+    console.log('%c🚀 BinMaps fully initialized!', 'font-size: 14px; font-weight: bold; color: #10b981');
 });
 
 window.addEventListener('load', () => {
