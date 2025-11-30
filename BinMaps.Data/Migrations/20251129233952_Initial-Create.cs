@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinMaps.Data.Migrations
 {
-    public partial class aa : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,7 +63,20 @@ namespace BinMaps.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ThrashContainers",
+                name: "ReportTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReportTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrashContainers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -79,9 +92,9 @@ namespace BinMaps.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ThrashContainers", x => x.Id);
+                    table.PrimaryKey("PK_TrashContainers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ThrashContainers_Areas_AreaId",
+                        name: "FK_TrashContainers_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
                         principalColumn: "Id",
@@ -134,8 +147,8 @@ namespace BinMaps.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -179,8 +192,8 @@ namespace BinMaps.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -220,6 +233,53 @@ namespace BinMaps.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Reports",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReportDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReportTypeId = table.Column<int>(type: "int", nullable: false),
+                    ThrashContainerId = table.Column<int>(type: "int", nullable: false),
+                    IdentityUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    ApprovedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reports_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reports_ReportTypes_ReportTypeId",
+                        column: x => x.ReportTypeId,
+                        principalTable: "ReportTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reports_TrashContainers_ThrashContainerId",
+                        column: x => x.ThrashContainerId,
+                        principalTable: "TrashContainers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Areas",
+                columns: new[] { "Id", "IsFull", "LitersFilled" },
+                values: new object[] { 1, false, 0.0 });
+
+            migrationBuilder.InsertData(
+                table: "Areas",
+                columns: new[] { "Id", "IsFull", "LitersFilled" },
+                values: new object[] { 2, false, 0.0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -261,8 +321,23 @@ namespace BinMaps.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThrashContainers_AreaId",
-                table: "ThrashContainers",
+                name: "IX_Reports_IdentityUserId",
+                table: "Reports",
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reports_ReportTypeId",
+                table: "Reports",
+                column: "ReportTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reports_ThrashContainerId",
+                table: "Reports",
+                column: "ThrashContainerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrashContainers_AreaId",
+                table: "TrashContainers",
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
@@ -295,7 +370,7 @@ namespace BinMaps.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ThrashContainers");
+                name: "Reports");
 
             migrationBuilder.DropTable(
                 name: "Trucks");
@@ -304,10 +379,16 @@ namespace BinMaps.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Areas");
+                name: "ReportTypes");
+
+            migrationBuilder.DropTable(
+                name: "TrashContainers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Areas");
         }
     }
 }
