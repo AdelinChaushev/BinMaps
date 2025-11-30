@@ -1,910 +1,871 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BinMaps - Smart Waste Management System</title>
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Leaflet Routing Machine CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BinMaps - Smart Waste Management System</title>
+        <link rel="stylesheet" href="./styles/styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <!-- Leaflet Routing Machine CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
 
-</head>
+    </head>
 
-<body>
-    <!-- =====================
-     HOME PAGE (NEW)
-     ===================== -->
-    <section id="homePage" class="home-page active">
-        <div class="home-hero">
-            <div class="home-content">
-                <div class="home-logo">
-                    <span class="logo-icon">🗑️</span>
-                    <span class="logo-text">BinMaps</span>
-                </div>
-                <h1>Smart Waste Management<br>for Modern Cities</h1>
-                <p>AI-powered waste collection optimization that saves costs, reduces emissions, and keeps cities
-                    cleaner</p>
-
-                <div class="home-buttons">
-                    <button class="home-btn home-btn-primary" id="homeLoginBtn">
-                        <span>Sign In</span>
-                        <span>→</span>
-                    </button>
-                </div>
-
-                <div class="home-stats">
-                    <div class="home-stat-item">
-                        <div class="home-stat-number">40%</div>
-                        <div class="home-stat-label">Cost Savings</div>
-                    </div>
-                    <div class="home-stat-item">
-                        <div class="home-stat-number">60%</div>
-                        <div class="home-stat-label">Less CO₂</div>
-                    </div>
-                    <div class="home-stat-item">
-                        <div class="home-stat-number">24/7</div>
-                        <div class="home-stat-label">Monitoring</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- =====================
-         LOGIN SCREEN
-         ===================== -->
-    <section id="loginScreen" class="login-screen active">
-        <div class="login-container">
-            <div class="login-header">
-                <div class="login-logo">
-                    <span class="logo-icon">🗑️</span>
-                    <span class="logo-text">BinMaps</span>
-                </div>
-                <h1>Welcome Back</h1>
-                <p>Sign in to access your dashboard</p>
-            </div>
-
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password"
-                        required>
-                </div>
-
-                <div class="form-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-
-                <button type="submit" class="login-btn">
-                    <span>Sign In</span>
-                    <span class="btn-icon">→</span>
-                </button>
-            </form>
-
-            <div class="login-footer">
-                <p>Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
-            </div>
-        </div>
-    </section>
-    <!-- =====================
-         REGISTRATION SCREEN
-         ===================== -->
-    <section id="registerScreen" class="login-screen">
-        <div class="login-container">
-            <div class="login-header">
-                <div class="login-logo">
-                    <span class="logo-icon">🗑️</span>
-                    <span class="logo-text">BinMaps</span>
-                </div>
-                <h1>Create Account</h1>
-                <p>Join us to help keep your city clean</p>
-            </div>
-
-            <form class="login-form" id="registerForm">
-                <div class="form-group">
-                    <label for="registerName">Full Name</label>
-                    <input type="text" id="registerName" class="form-input" placeholder="John Doe" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="registerEmail">Email Address</label>
-                    <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" class="form-input" placeholder="Create a password"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="registerConfirmPassword">Confirm Password</label>
-                    <input type="password" id="registerConfirmPassword" class="form-input"
-                        placeholder="Confirm your password" required>
-                </div>
-
-                <button type="submit" class="login-btn">
-                    <span>Create Account</span>
-                    <span class="btn-icon">→</span>
-                </button>
-            </form>
-
-            <div class="login-footer">
-                <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
-            </div>
-        </div>
-    </section>
-    <!-- =====================
-         NAVIGATION BAR
-         ===================== -->
-    <nav id="navbar" style="display: none;">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <span class="logo-icon">🗑️</span>
-                <span class="logo-text">BinMaps</span>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <!-- Dynamic nav links based on role -->
-            </ul>
-            <div class="nav-right">
-                <span class="user-info">
-                    <span class="user-role" id="userRole"></span>
-                    <span class="user-name" id="userName"></span>
-                </span>
-                <button class="logout-btn" id="logoutBtn">
-                    <span>Logout</span>
-                    <span>🚪</span>
-                </button>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- =====================
-         USER DASHBOARD (CITIZEN)
-         ===================== -->
-    <div id="userDashboard" class="dashboard-container" style="display: none;">
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-badge">🌍 Citizen Portal</div>
-                <h1 class="hero-title">Help Keep<br>Kazanlak Clean</h1>
-                <p class="hero-description">Report waste issues and track your community impact in real-time</p>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" id="userQuickReport">
-                        <span>Report Issue</span>
-                        <span class="btn-icon">📢</span>
-                    </button>
-                    <button class="btn btn-secondary" id="userViewMap">
-                        <span>View Nearby Bins</span>
-                        <span class="btn-icon">🗺️</span>
-                    </button>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat-box">
-                        <div class="stat-icon">📢</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="userTotalReports">0</div>
-                            <div class="stat-label">Your Reports</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">✅</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="userResolvedReports">0</div>
-                            <div class="stat-label">Resolved</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">⏱️</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="userPendingReports">0</div>
-                            <div class="stat-label">Pending</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">🌱</div>
-                        <div class="stat-content">
-                            <div class="stat-number">+12%</div>
-                            <div class="stat-label">Impact Score</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="user-features">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">💡 Quick Actions</span>
-                    <h2>What would you like to do?</h2>
-                </div>
-
-                <div class="user-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📢</div>
-                        <h3>Report an Issue</h3>
-                        <p>Found overflow, missing bins, or garbage problems? Let us know!</p>
-                        <button class="feature-btn" id="userReportBtn">
-                            <span>Submit Report</span>
-                            <span>→</span>
-                        </button>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">📋</div>
-                        <h3>My Reports</h3>
-                        <p>Track the status of all your submitted reports</p>
-                        <button class="feature-btn" id="viewMyReportsBtn">
-                            <span>View Reports</span>
-                            <span>→</span>
-                        </button>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🗺️</div>
-                        <h3>Nearby Bins</h3>
-                        <p>Find the nearest waste containers on the map</p>
-                        <button class="feature-btn" id="viewNearbyBinsBtn">
-                            <span>View Map</span>
-                            <span>→</span>
-                        </button>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🌍</div>
-                        <h3>Community Stats</h3>
-                        <p>See how you're contributing to a cleaner city</p>
-                        <button class="feature-btn" id="viewCommunityStatsBtn">
-                            <span>View Stats</span>
-                            <span>→</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- My Reports Section -->
-                <div class="reports-section" id="myReportsSection" style="display: none;">
-                    <h2>📋 My Reports</h2>
-                    <div class="reports-list" id="userReportsList">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-
-                <!-- Nearby Bins Map -->
-                <!-- USER HEATMAP (ZONES ONLY) -->
-                <div class="map-section" id="nearbyBinsSection" style="display: none;">
-                    <h2>🗺️ Priority Zones Heatmap</h2>
-                    <p class="section-description">View collection priority zones in your area</p>
-                    <div class="map-wrapper">
-                        <div id="userMap" style="height: 500px;"></div>
-                        <div class="map-legend">
-                            <h4>🎨 Zone Priority</h4>
-                            <div class="legend-items">
-                                <div class="legend-item">
-                                    <span class="legend-dot green"></span>
-                                    <span>Low Priority</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot yellow"></span>
-                                    <span>Medium Priority</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot red"></span>
-                                    <span>High Priority</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- USER HEATMAP (ZONES ONLY) -->
-                <div class="map-section" id="nearbyBinsSection" style="display: none;">
-                    <h2>🗺️ Priority Zones Heatmap</h2>
-                    <p class="section-description">View collection priority zones in your area</p>
-                    <div class="map-wrapper">
-                        <div id="userMap" style="height: 500px;"></div>
-                        <div class="map-legend">
-                            <h4>🎨 Zone Priority</h4>
-                            <div class="legend-items">
-                                <div class="legend-item">
-                                    <span class="legend-dot green"></span>
-                                    <span>Low Priority</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot yellow"></span>
-                                    <span>Medium Priority</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot red"></span>
-                                    <span>High Priority</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Community Stats -->
-                <div class="community-stats-section" id="communityStatsSection" style="display: none;">
-                    <h2>🌍 Community Impact</h2>
-                    <div class="impact-grid">
-                        <div class="impact-card">
-                            <div class="impact-icon">🗑️</div>
-                            <div class="impact-number" id="communityTotalReports">0</div>
-                            <div class="impact-label">Total Community Reports</div>
-                        </div>
-                        <div class="impact-card">
-                            <div class="impact-icon">✅</div>
-                            <div class="impact-number" id="communityResolvedReports">0</div>
-                            <div class="impact-label">Issues Resolved</div>
-                        </div>
-                        <div class="impact-card">
-                            <div class="impact-icon">⚡</div>
-                            <div class="impact-number">2.5h</div>
-                            <div class="impact-label">Avg Response Time</div>
-                        </div>
-                        <div class="impact-card">
-                            <div class="impact-icon">🌱</div>
-                            <div class="impact-number">92%</div>
-                            <div class="impact-label">Citizen Satisfaction</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- =====================
-         COLLECTOR DASHBOARD
-         ===================== -->
-    <div id="collectorDashboard" class="dashboard-container" style="display: none;">
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-badge">🚛 Collector Portal</div>
-                <h1 class="hero-title">Smart Collection<br>Dashboard</h1>
-                <p class="hero-description">Optimize your routes with AI-powered priority mapping</p>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" id="collectorViewRouteBtn">
-                        <span>View Today's Route</span>
-                        <span class="btn-icon">🗺️</span>
-                    </button>
-                    <button class="btn btn-secondary" id="collectorViewHeatmapBtn">
-                        <span>Priority Heatmap</span>
-                        <span class="btn-icon">🔥</span>
-                    </button>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat-box">
-                        <div class="stat-icon">🔴</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="collectorCriticalBins">7</div>
-                            <div class="stat-label">Critical</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">⚠️</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="collectorWarningBins">18</div>
-                            <div class="stat-label">Warning</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">📍</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="collectorTodayRoute">20</div>
-                            <div class="stat-label">Today's Bins</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">✅</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="collectorCompleted">0</div>
-                            <div class="stat-label">Completed</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="collector-content">
-            <div class="container">
-                <!-- Priority Heatmap -->
-                <!-- COLLECTOR BIN MAP -->
-                <div class="heatmap-section" id="collectorHeatmapSection">
-                    <div class="section-header">
-                        <span class="section-badge">🗺️ Bin Locations</span>
-                        <h2>Collection Bin Map</h2>
-                        <p>View all bins and their current status</p>
-                    </div>
-                    <div class="map-wrapper">
-                        <div id="collectorHeatmap" style="height: 600px;"></div>
-                        <div class="map-legend">
-                            <h4>🎨 Bin Status</h4>
-                            <div class="legend-items">
-                                <div class="legend-item">
-                                    <span class="legend-dot green"></span>
-                                    <span>Available</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot yellow"></span>
-                                    <span>Warning</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot red"></span>
-                                    <span>Critical</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-dot gray"></span>
-                                    <span>Collected</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Today's Route -->
-                <div class="routes-section" id="collectorRouteSection">
-                    <div class="section-header">
-                        <span class="section-badge">🛣️ Today's Route</span>
-                        <h2>Optimized Collection Path</h2>
-                        <p>AI-generated route for maximum efficiency</p>
-                    </div>
-                </div>
-
-                <div class="route-direction-buttons">
-                    <button id="northRouteBtn" class="btn btn-primary route-direction-btn" onclick="generateOptimizedRoute('north')"
-                        aria-label="Generate optimized route for North zone">
-                        <span>North Zone Route</span>
-                    </button>
-                
-                    <button id="southRouteBtn" class="btn btn-primary route-direction-btn" onclick="generateOptimizedRoute('south')"
-                        aria-label="Generate optimized route for South zone">
-                        <span>South Zone Route</span>
-                    </button>
-                </div>
-
-                <!-- Collection Progress -->
-                <div class="progress-section">
-                    <h2>📊 Today's Progress</h2>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="collectorProgressBar" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-text">
-                            <span id="collectorProgressText">0 / 20 bins completed</span>
-                            <span id="collectorProgressPercent">0%</span>
-                        </div>
-                    </div>
-                    <button class="mark-complete-btn" id="markBinCompleteBtn">
-                        <span>Mark Bin as Collected</span>
-                        <span>✅</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ADMIN DASHBOARD CONTINUES IN NEXT MESSAGE DUE TO LENGTH... -->
-    <!-- =====================
-         ADMIN DASHBOARD
-         ===================== -->
-    <div id="adminDashboard" class="dashboard-container" style="display: none;">
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-badge">⚙️ Admin Control Center</div>
-                <h1 class="hero-title">System Overview<br>& Management</h1>
-                <p class="hero-description">Complete visibility and control over the entire waste management system</p>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" id="adminViewMapBtn">
-                        <span>Live System Map</span>
-                        <span class="btn-icon">🗺️</span>
-                    </button>
-                    <button class="btn btn-secondary" id="adminViewReportsBtn">
-                        <span>Manage Reports</span>
-                        <span class="btn-icon">📢</span>
-                    </button>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat-box">
-                        <div class="stat-icon">🗑️</div>
-                        <div class="stat-content">
-                            <div class="stat-number" id="heroTotalBins">60</div>
-                            <div class="stat-label">Smart Bins</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">💰</div>
-                        <div class="stat-content">
-                            <div class="stat-number">40%</div>
-                            <div class="stat-label">Cost Savings</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">🌱</div>
-                        <div class="stat-content">
-                            <div class="stat-number">60%</div>
-                            <div class="stat-label">Less CO₂</div>
-                        </div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-icon">⚡</div>
-                        <div class="stat-content">
-                            <div class="stat-number live-update" id="heroLiveUpdate">Live</div>
-                            <div class="stat-label">Updates</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="dashboard" class="dashboard">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">📊 Live Dashboard</span>
-                    <h2>Real-Time City Overview</h2>
-                    <p>Monitor all containers with IoT sensors and get AI-powered insights instantly</p>
-                </div>
-
-                <div class="quick-stats">
-                    <div class="quick-stat-card green">
-                        <div class="quick-stat-icon">✅</div>
-                        <div class="quick-stat-info">
-                            <div class="quick-stat-number" id="adminEmptyBins">35</div>
-                            <div class="quick-stat-label">Empty/Normal</div>
-                            <div class="quick-stat-percent">0-50% Full</div>
-                        </div>
-                    </div>
-                    <div class="quick-stat-card yellow">
-                        <div class="quick-stat-icon">⚠️</div>
-                        <div class="quick-stat-info">
-                            <div class="quick-stat-number" id="adminWarningBins">18</div>
-                            <div class="quick-stat-label">Warning</div>
-                            <div class="quick-stat-percent">50-80% Full</div>
-                        </div>
-                    </div>
-                    <div class="quick-stat-card red">
-                        <div class="quick-stat-icon">🔴</div>
-                        <div class="quick-stat-info">
-                            <div class="quick-stat-number" id="adminCriticalBins">7</div>
-                            <div class="quick-stat-label">Critical</div>
-                            <div class="quick-stat-percent">80-100% Full</div>
-                        </div>
-                    </div>
-                    <div class="quick-stat-card blue">
-                        <div class="quick-stat-icon">🌡️</div>
-                        <div class="quick-stat-info">
-                            <div class="quick-stat-number" id="avgTemp">24°C</div>
-                            <div class="quick-stat-label">Avg Temperature</div>
-                            <div class="quick-stat-percent">Sensor Data</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alerts-section">
-                    <h3>🤖 AI Insights & Alerts</h3>
-                    <div class="alerts-container" id="adminAlertsContainer">
-                        <div class="alert-card info">
-                            <span class="alert-icon">💡</span>
-                            <div class="alert-content">
-                                <strong>Route Optimization</strong>
-                                <p>Route B can save 18 minutes compared to current route</p>
-                            </div>
-                            <span class="alert-time">Just now</span>
-                        </div>
-                        <div class="alert-card warning">
-                            <span class="alert-icon">⏰</span>
-                            <div class="alert-content">
-                                <strong>Overflow Warning</strong>
-                                <p>Container #12 will reach capacity in approximately 2 hours</p>
-                            </div>
-                            <span class="alert-time">5 min ago</span>
-                        </div>
-                        <div class="alert-card success">
-                            <span class="alert-icon">🎉</span>
-                            <div class="alert-content">
-                                <strong>Environmental Impact</strong>
-                                <p>This week's optimizations reduced CO₂ emissions by 35%</p>
-                            </div>
-                            <span class="alert-time">1 hour ago</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="charts-grid">
-                    <div class="chart-card">
-                        <h3>📈 Fill Level Distribution</h3>
-                        <canvas id="adminFillLevelChart"></canvas>
-                    </div>
-                    <div class="chart-card">
-                        <h3>📉 Weekly Efficiency</h3>
-                        <canvas id="adminEfficiencyChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reports-management">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">📢 Reports</span>
-                    <h2>User Reports Management</h2>
-                    <p>Review and manage citizen-submitted issues</p>
-                </div>
-
-                <div class="reports-filters">
-                    <button class="filter-btn active" data-filter="all">All Reports (<span
-                            id="allReportsCount">0</span>)</button>
-                    <button class="filter-btn" data-filter="pending">Pending (<span
-                            id="pendingReportsCount">0</span>)</button>
-                    <button class="filter-btn" data-filter="in-progress">In Progress (<span
-                            id="progressReportsCount">0</span>)</button>
-                    <button class="filter-btn" data-filter="resolved">Resolved (<span
-                            id="resolvedReportsCount">0</span>)</button>
-                </div>
-
-                <div class="reports-table" id="adminReportsTable">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-        </section>
-
-        <section id="map" class="map-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">🗺️ Live Map</span>
-                    <h2>Kazanlak City Overview</h2>
-                    <p>Real-time monitoring of all 60 waste containers with sensor data</p>
-                </div>
-
-                <div class="map-filters">
-                    <button class="map-filter-btn active" data-filter="all">
-                        <span class="filter-icon">📍</span>
-                        <span>All (60)</span>
-                    </button>
-                    <button class="map-filter-btn green" data-filter="empty">
-                        <span class="filter-icon">✅</span>
-                        <span>Empty (<span id="filterEmpty">35</span>)</span>
-                    </button>
-                    <button class="map-filter-btn yellow" data-filter="warning">
-                        <span class="filter-icon">⚠️</span>
-                        <span>Warning (<span id="filterWarning">18</span>)</span>
-                    </button>
-                    <button class="map-filter-btn red" data-filter="critical">
-                        <span class="filter-icon">🔴</span>
-                        <span>Critical (<span id="filterCritical">7</span>)</span>
-                    </button>
-                </div>
-
-                <div class="map-wrapper">
-                    <div id="adminMap"></div>
-                    <div class="map-legend">
-                        <h4>🎨 Status Legend</h4>
-                        <div class="legend-items">
-                            <div class="legend-item">
-                                <span class="legend-dot green"></span>
-                                <span>0-50% (Empty)</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-dot yellow"></span>
-                                <span>50-80% (Warning)</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-dot red"></span>
-                                <span>80-100% (Critical)</span>
-                            </div>
-                        </div>
-                        <div class="legend-divider"></div>
-                        <h4>🌡️ Temperature</h4>
-                        <div class="legend-temp">Normal: 15-30°C</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="analytics" class="analytics">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">📈 Advanced Analytics</span>
-                    <h2>Historical Data & Insights</h2>
-                    <p>Comprehensive analytics with heatmaps, trends, and performance metrics</p>
-                </div>
-
-                <div class="analytics-grid">
-                    <div class="analytics-card full-width">
-                        <div class="analytics-header">
-                            <h3>📊 Container Fill History (30 Days)</h3>
-                            <div class="time-selector">
-                                <button class="time-btn active">7D</button>
-                                <button class="time-btn">30D</button>
-                                <button class="time-btn">90D</button>
-                            </div>
-                        </div>
-                        <canvas id="historyChart"></canvas>
-                    </div>
-
-                    <div class="analytics-card">
-                        <h3>🗺️ Zone Activity Heatmap</h3>
-                        <div id="heatmapContainer"></div>
-                    </div>
-
-                    <div class="analytics-card">
-                        <h3>🚛 Route Efficiency Metrics</h3>
-                        <div class="efficiency-metrics">
-                            <div class="metric-item">
-                                <div class="metric-label">Average Collection Time</div>
-                                <div class="metric-value">35 min</div>
-                                <div class="metric-change positive">↓ 18% vs last month</div>
-                            </div>
-                            <div class="metric-item">
-                                <div class="metric-label">Fuel Consumption</div>
-                                <div class="metric-value">165 L/week</div>
-                                <div class="metric-change positive">↓ 22% vs last month</div>
-                            </div>
-                            <div class="metric-item">
-                                <div class="metric-label">Bins per Route</div>
-                                <div class="metric-value">20 avg</div>
-                                <div class="metric-change positive">↑ 12% efficiency</div>
-                            </div>
-                            <div class="metric-item">
-                                <div class="metric-label">Empty Collections</div>
-                                <div class="metric-value">8%</div>
-                                <div class="metric-change positive">↓ 65% vs traditional</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="analytics-card">
-                        <h3>🌡️ Temperature Monitoring</h3>
-                        <canvas id="temperatureChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="impact" class="impact">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">🌟 Our Impact</span>
-                    <h2>Making a Real Difference</h2>
-                    <p>Measurable results for cities and the environment</p>
-                </div>
-
-                <div class="impact-grid">
-                    <div class="impact-card">
-                        <div class="impact-icon">💵</div>
-                        <div class="impact-number">€80K</div>
-                        <div class="impact-label">Average Annual Savings</div>
-                        <div class="impact-description">Per city with 500+ containers</div>
-                    </div>
-                    <div class="impact-card">
-                        <div class="impact-icon">🌍</div>
-                        <div class="impact-number">60%</div>
-                        <div class="impact-label">CO₂ Reduction</div>
-                        <div class="impact-description">Through optimized routing</div>
-                    </div>
-                    <div class="impact-card">
-                        <div class="impact-icon">⚡</div>
-                        <div class="impact-number">50%</div>
-                        <div class="impact-label">Fewer Truck Miles</div>
-                        <div class="impact-description">Smart collection scheduling</div>
-                    </div>
-                    <div class="impact-card">
-                        <div class="impact-icon">⏰</div>
-                        <div class="impact-number">24/7</div>
-                        <div class="impact-label">Real-Time Monitoring</div>
-                        <div class="impact-description">Never miss an overflow</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- =====================
-         REPORT MODAL (SHARED BY ALL ROLES)
-         ===================== -->
-    <div class="modal" id="reportModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>📢 Report an Issue</h2>
-                <button class="modal-close" id="closeReportModal">&times;</button>
-            </div>
-            <form class="report-form" id="reportForm">
-                <div class="form-group">
-                    <label>Issue Type</label>
-                    <select class="form-input" id="reportType" required>
-                        <option value="">Select issue type</option>
-                        <option value="overflow">🔴 Container Overflow</option>
-                        <option value="missing">❌ Missing Container</option>
-                        <option value="damaged">⚠️ Damaged Container</option>
-                        <option value="garbage">🗑️ Garbage Outside Container</option>
-                        <option value="smell">💨 Bad Smell</option>
-                        <option value="other">📝 Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Location</label>
-                    <input type="text" class="form-input" id="reportLocation" placeholder="Street name or address"
-                        required>
-                    <small>Or click on the map to select location</small>
-                </div>
-
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-textarea" id="reportDescription" rows="4"
-                        placeholder="Describe the problem in detail..." required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    <span>Submit Report</span>
-                    <span class="btn-icon">📨</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- FLOATING REPORT BUTTON (SHOWN FOR USER ROLE) -->
-    <button class="floating-report-btn" id="floatingReportBtn" style="display: none;">
-        <span class="report-icon">📢</span>
-        <span class="report-text">Report Issue</span>
-    </button>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
+    <body>
+        <!-- =====================
+        HOME PAGE (NEW)
+        ===================== -->
+        <section id="homePage" class="home-page active">
+            <div class="home-hero">
+                <div class="home-content">
+                    <div class="home-logo">
                         <span class="logo-icon">🗑️</span>
                         <span class="logo-text">BinMaps</span>
                     </div>
-                    <p>Making cities cleaner through smart technology</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Product</h4>
-                    <a href="#how-it-works">How It Works</a>
-                    <a href="#dashboard">Dashboard</a>
-                    <a href="#map">Live Map</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <a href="#documentation">Documentation</a>
-                    <a href="#blog">Blog</a>
+                    <h1>Smart Waste Management<br>for Modern Cities</h1>
+                    <p>AI-powered waste collection optimization that saves costs, reduces emissions, and keeps cities
+                        cleaner</p>
+
+                    <div class="home-buttons">
+                        <button class="home-btn home-btn-primary" id="homeLoginBtn">
+                            <span>Sign In</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+
+                    <div class="home-stats">
+                        <div class="home-stat-item">
+                            <div class="home-stat-number">40%</div>
+                            <div class="home-stat-label">Cost Savings</div>
+                        </div>
+                        <div class="home-stat-item">
+                            <div class="home-stat-number">60%</div>
+                            <div class="home-stat-label">Less CO₂</div>
+                        </div>
+                        <div class="home-stat-item">
+                            <div class="home-stat-number">24/7</div>
+                            <div class="home-stat-label">Monitoring</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2025 BinMaps - Hackathon Project</p>
-                <p>Built with ♻️ for a sustainable future</p>
+        </section>
+        <!-- =====================
+            LOGIN SCREEN
+            ===================== -->
+        <section id="loginScreen" class="login-screen active">
+            <div class="login-container">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <span class="logo-icon">🗑️</span>
+                        <span class="logo-text">BinMaps</span>
+                    </div>
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to access your dashboard</p>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password"
+                            required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span>Sign In</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+                </div>
+            </div>
+        </section>
+        <!-- =====================
+            REGISTRATION SCREEN
+            ===================== -->
+        <section id="registerScreen" class="login-screen">
+            <div class="login-container">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <span class="logo-icon">🗑️</span>
+                        <span class="logo-text">BinMaps</span>
+                    </div>
+                    <h1>Create Account</h1>
+                    <p>Join us to help keep your city clean</p>
+                </div>
+
+                <form class="login-form" id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" class="form-input" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Create a password"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-input"
+                            placeholder="Confirm your password" required>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span>Create Account</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
+                </div>
+            </div>
+        </section>
+        <!-- =====================
+            NAVIGATION BAR
+            ===================== -->
+        <nav id="navbar" style="display: none;">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <span class="logo-icon">🗑️</span>
+                    <span class="logo-text">BinMaps</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <!-- Dynamic nav links based on role -->
+                </ul>
+                <div class="nav-right">
+                    <span class="user-info">
+                        <span class="user-role" id="userRole"></span>
+                        <span class="user-name" id="userName"></span>
+                    </span>
+                    <button class="logout-btn" id="logoutBtn">
+                        <span>Logout</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- =====================
+            USER DASHBOARD (CITIZEN)
+            ===================== -->
+        <div id="userDashboard" class="dashboard-container" style="display: none;">
+            <section id="home" class="hero">
+                <div class="hero-container">
+                    <div class="hero-badge">🌍 Citizen Portal</div>
+                    <h1 class="hero-title">Help Keep<br>Kazanlak Clean</h1>
+                    <p class="hero-description">Report waste issues and track your community impact in real-time</p>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="userQuickReport">
+                            <span>Report Issue</span>
+                        </button>
+                        <button class="btn btn-secondary" id="userViewMap">
+                            <span>View Nearby Bins</span>
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <div class="stat-icon">📢</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="userTotalReports">0</div>
+                                <div class="stat-label">Your Reports</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="userResolvedReports">0</div>
+                                <div class="stat-label">Resolved</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="userPendingReports">0</div>
+                                <div class="stat-label">Pending</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">🌱</div>
+                            <div class="stat-content">
+                                <div class="stat-number">+12%</div>
+                                <div class="stat-label">Impact Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="user-features">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">💡 Quick Actions</span>
+                        <h2>What would you like to do?</h2>
+                    </div>
+
+                    <div class="user-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📢</div>
+                            <h3>Report an Issue</h3>
+                            <p>Found overflow, missing bins, or garbage problems? Let us know!</p>
+                            <button class="feature-btn" id="userReportBtn">
+                                <span>Submit Report</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">📋</div>
+                            <h3>My Reports</h3>
+                            <p>Track the status of all your submitted reports</p>
+                            <button class="feature-btn" id="viewMyReportsBtn">
+                                <span>View Reports</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">🗺️</div>
+                            <h3>Nearby Bins</h3>
+                            <p>Find the nearest waste containers on the map</p>
+                            <button class="feature-btn" id="viewNearbyBinsBtn">
+                                <span>View Map</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">🌍</div>
+                            <h3>Community Stats</h3>
+                            <p>See how you're contributing to a cleaner city</p>
+                            <button class="feature-btn" id="viewCommunityStatsBtn">
+                                <span>View Stats</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- My Reports Section -->
+                    <div class="reports-section" id="myReportsSection" style="display: none;">
+                        <h2>📋 My Reports</h2>
+                        <div class="reports-list" id="userReportsList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Nearby Bins Map -->
+                    <!-- USER HEATMAP (ZONES ONLY) -->
+                    <div class="map-section" id="nearbyBinsSection" style="display: none;">
+                        <h2>🗺️ Priority Zones Heatmap</h2>
+                        <p class="section-description">View collection priority zones in your area</p>
+                        <div class="map-wrapper">
+                            <div id="userMap" style="height: 500px;"></div>
+                            <div class="map-legend">
+                                <h4>🎨 Zone Priority</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <span class="legend-dot green"></span>
+                                        <span>Low Priority</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot yellow"></span>
+                                        <span>Medium Priority</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot red"></span>
+                                        <span>High Priority</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- USER HEATMAP (ZONES ONLY) -->
+                    <div class="map-section" id="nearbyBinsSection" style="display: none;">
+                        <h2>🗺️ Priority Zones Heatmap</h2>
+                        <p class="section-description">View collection priority zones in your area</p>
+                        <div class="map-wrapper">
+                            <div id="userMap" style="height: 500px;"></div>
+                            <div class="map-legend">
+                                <h4>🎨 Zone Priority</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <span class="legend-dot green"></span>
+                                        <span>Low Priority</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot yellow"></span>
+                                        <span>Medium Priority</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot red"></span>
+                                        <span>High Priority</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community Stats -->
+                    <div class="community-stats-section" id="communityStatsSection" style="display: none;">
+                        <h2>🌍 Community Impact</h2>
+                        <div class="impact-grid">
+                            <div class="impact-card">
+                                <div class="impact-icon">🗑️</div>
+                                <div class="impact-number" id="communityTotalReports">0</div>
+                                <div class="impact-label">Total Community Reports</div>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">✅</div>
+                                <div class="impact-number" id="communityResolvedReports">0</div>
+                                <div class="impact-label">Issues Resolved</div>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">⚡</div>
+                                <div class="impact-number">2.5h</div>
+                                <div class="impact-label">Avg Response Time</div>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">🌱</div>
+                                <div class="impact-number">92%</div>
+                                <div class="impact-label">Citizen Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =====================
+            COLLECTOR DASHBOARD
+            ===================== -->
+        <div id="collectorDashboard" class="dashboard-container" style="display: none;">
+            <section id="home" class="hero">
+                <div class="hero-container">
+                    <div class="hero-badge">🚛 Collector Portal</div>
+                    <h1 class="hero-title">Smart Collection<br>Dashboard</h1>
+                    <p class="hero-description">Optimize your routes with AI-powered priority mapping</p>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="collectorViewRouteBtn">
+                            <span>View Today's Route</span>
+                        </button>
+                        <button class="btn btn-secondary" id="collectorViewHeatmapBtn">
+                            <span>Priority Heatmap</span>
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <div class="stat-icon">🔴</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="collectorCriticalBins">7</div>
+                                <div class="stat-label">Critical</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">⚠️</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="collectorWarningBins">18</div>
+                                <div class="stat-label">Warning</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">📍</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="collectorTodayRoute">20</div>
+                                <div class="stat-label">Today's Bins</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="collectorCompleted">0</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="collector-content">
+                <div class="container">
+                    <!-- Priority Heatmap -->
+                    <!-- COLLECTOR BIN MAP -->
+                    <div class="heatmap-section" id="collectorHeatmapSection">
+                        <div class="section-header">
+                            <span class="section-badge">🗺️ Bin Locations</span>
+                            <h2>Collection Bin Map</h2>
+                            <p>View all bins and their current status</p>
+                        </div>
+                        <div class="map-wrapper">
+                            <div id="collectorHeatmap" style="height: 600px;"></div>
+                            <div class="map-legend">
+                                <h4>🎨 Bin Status</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <span class="legend-dot green"></span>
+                                        <span>Available</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot yellow"></span>
+                                        <span>Warning</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot red"></span>
+                                        <span>Critical</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot gray"></span>
+                                        <span>Collected</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Route -->
+                    <div class="routes-section" id="collectorRouteSection">
+                        <div class="section-header">
+                            <span class="section-badge">🛣️ Today's Route</span>
+                            <h2>Optimized Collection Path</h2>
+                            <p>AI-generated route for maximum efficiency</p>
+                        </div>
+                    </div>
+
+                    <div class="route-direction-buttons">
+                        <button id="northRouteBtn" class="btn btn-primary route-direction-btn" onclick="generateOptimizedRoute('north')"
+                            aria-label="Generate optimized route for North zone">
+                            <span>North Zone Route</span>
+                        </button>
+                    
+                        <button id="southRouteBtn" class="btn btn-primary route-direction-btn" onclick="generateOptimizedRoute('south')"
+                            aria-label="Generate optimized route for South zone">
+                            <span>South Zone Route</span>
+                        </button>
+                    </div>
+
+                    <!-- Collection Progress -->
+                    <div class="progress-section">
+                        <h2>📊 Today's Progress</h2>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="collectorProgressBar" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="collectorProgressText">0 / 20 bins completed</span>
+                                <span id="collectorProgressPercent">0%</span>
+                            </div>
+                        </div>
+                        <button class="mark-complete-btn" id="markBinCompleteBtn">
+                            <span>Mark Bin as Collected</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ADMIN DASHBOARD CONTINUES IN NEXT MESSAGE DUE TO LENGTH... -->
+        <!-- =====================
+            ADMIN DASHBOARD
+            ===================== -->
+        <div id="adminDashboard" class="dashboard-container" style="display: none;">
+            <section id="home" class="hero">
+                <div class="hero-container">
+                    <div class="hero-badge">⚙️ Admin Control Center</div>
+                    <h1 class="hero-title">System Overview<br>& Management</h1>
+                    <p class="hero-description">Complete visibility and control over the entire waste management system</p>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="adminViewMapBtn">
+                            <span>Live System Map</span>
+                        </button>
+                        <button class="btn btn-secondary" id="adminViewReportsBtn">
+                            <span>Manage Reports</span>
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <div class="stat-icon">🗑️</div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="heroTotalBins">60</div>
+                                <div class="stat-label">Smart Bins</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-content">
+                                <div class="stat-number">40%</div>
+                                <div class="stat-label">Cost Savings</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">🌱</div>
+                            <div class="stat-content">
+                                <div class="stat-number">60%</div>
+                                <div class="stat-label">Less CO₂</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <div class="stat-number live-update" id="heroLiveUpdate">Live</div>
+                                <div class="stat-label">Updates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dashboard" class="dashboard">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">📊 Live Dashboard</span>
+                        <h2>Real-Time City Overview</h2>
+                        <p>Monitor all containers with IoT sensors and get AI-powered insights instantly</p>
+                    </div>
+
+                    <div class="quick-stats">
+                        <div class="quick-stat-card green">
+                            <div class="quick-stat-icon">✅</div>
+                            <div class="quick-stat-info">
+                                <div class="quick-stat-number" id="adminEmptyBins">35</div>
+                                <div class="quick-stat-label">Empty/Normal</div>
+                                <div class="quick-stat-percent">0-50% Full</div>
+                            </div>
+                        </div>
+                        <div class="quick-stat-card yellow">
+                            <div class="quick-stat-icon">⚠️</div>
+                            <div class="quick-stat-info">
+                                <div class="quick-stat-number" id="adminWarningBins">18</div>
+                                <div class="quick-stat-label">Warning</div>
+                                <div class="quick-stat-percent">50-80% Full</div>
+                            </div>
+                        </div>
+                        <div class="quick-stat-card red">
+                            <div class="quick-stat-icon">🔴</div>
+                            <div class="quick-stat-info">
+                                <div class="quick-stat-number" id="adminCriticalBins">7</div>
+                                <div class="quick-stat-label">Critical</div>
+                                <div class="quick-stat-percent">80-100% Full</div>
+                            </div>
+                        </div>
+                        <div class="quick-stat-card blue">
+                            <div class="quick-stat-icon">🌡️</div>
+                            <div class="quick-stat-info">
+                                <div class="quick-stat-number" id="avgTemp">24°C</div>
+                                <div class="quick-stat-label">Avg Temperature</div>
+                                <div class="quick-stat-percent">Sensor Data</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h3>📈 Fill Level Distribution</h3>
+                            <canvas id="adminFillLevelChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>📉 Weekly Efficiency</h3>
+                            <canvas id="adminEfficiencyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reports-management">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">📢 Reports</span>
+                        <h2>User Reports Management</h2>
+                        <p>Review and manage citizen-submitted issues</p>
+                    </div>
+
+                    <div class="reports-filters">
+                        <button class="filter-btn active" data-filter="all">All Reports (<span
+                                id="allReportsCount">0</span>)</button>
+                        <button class="filter-btn" data-filter="pending">Pending (<span
+                                id="pendingReportsCount">0</span>)</button>
+                        <button class="filter-btn" data-filter="in-progress">In Progress (<span
+                                id="progressReportsCount">0</span>)</button>
+                        <button class="filter-btn" data-filter="resolved">Resolved (<span
+                                id="resolvedReportsCount">0</span>)</button>
+                    </div>
+
+                    <div class="reports-table" id="adminReportsTable">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="map" class="map-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">🗺️ Live Map</span>
+                        <h2>Kazanlak City Overview</h2>
+                        <p>Real-time monitoring of all 60 waste containers with sensor data</p>
+                    </div>
+
+                    <div class="map-filters">
+                        <button class="map-filter-btn active" data-filter="all">
+                            <span class="filter-icon">📍</span>
+                            <span>All (60)</span>
+                        </button>
+                        <button class="map-filter-btn green" data-filter="empty">
+                            <span class="filter-icon">✅</span>
+                            <span>Empty (<span id="filterEmpty">35</span>)</span>
+                        </button>
+                        <button class="map-filter-btn yellow" data-filter="warning">
+                            <span class="filter-icon">⚠️</span>
+                            <span>Warning (<span id="filterWarning">18</span>)</span>
+                        </button>
+                        <button class="map-filter-btn red" data-filter="critical">
+                            <span class="filter-icon">🔴</span>
+                            <span>Critical (<span id="filterCritical">7</span>)</span>
+                        </button>
+                    </div>
+
+                    <div class="map-wrapper">
+                        <div id="adminMap"></div>
+                        <div class="map-legend">
+                            <h4>🎨 Status Legend</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-dot green"></span>
+                                    <span>0-50% (Empty)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot yellow"></span>
+                                    <span>50-80% (Warning)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot red"></span>
+                                    <span>80-100% (Critical)</span>
+                                </div>
+                            </div>
+                            <div class="legend-divider"></div>
+                            <h4>🌡️ Temperature</h4>
+                            <div class="legend-temp">Normal: 15-30°C</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analytics" class="analytics">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">📈 Advanced Analytics</span>
+                        <h2>Historical Data & Insights</h2>
+                        <p>Comprehensive analytics with heatmaps, trends, and performance metrics</p>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <div class="analytics-card full-width">
+                            <div class="analytics-header">
+                                <h3>📊 Container Fill History (30 Days)</h3>
+                                <div class="time-selector">
+                                    <button class="time-btn active">7D</button>
+                                    <button class="time-btn">30D</button>
+                                    <button class="time-btn">90D</button>
+                                </div>
+                            </div>
+                            <canvas id="historyChart"></canvas>
+                        </div>
+
+                        <div class="analytics-card">
+                            <h3>🗺️ Zone Activity Heatmap</h3>
+                            <div id="heatmapContainer"></div>
+                        </div>
+
+                        <div class="analytics-card">
+                            <h3>🚛 Route Efficiency Metrics</h3>
+                            <div class="efficiency-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Average Collection Time</div>
+                                    <div class="metric-value">35 min</div>
+                                    <div class="metric-change positive">↓ 18% vs last month</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Fuel Consumption</div>
+                                    <div class="metric-value">165 L/week</div>
+                                    <div class="metric-change positive">↓ 22% vs last month</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Bins per Route</div>
+                                    <div class="metric-value">20 avg</div>
+                                    <div class="metric-change positive">↑ 12% efficiency</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Empty Collections</div>
+                                    <div class="metric-value">8%</div>
+                                    <div class="metric-change positive">↓ 65% vs traditional</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analytics-card">
+                            <h3>🌡️ Temperature Monitoring</h3>
+                            <canvas id="temperatureChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="impact">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">🌟 Our Impact</span>
+                        <h2>Making a Real Difference</h2>
+                        <p>Measurable results for cities and the environment</p>
+                    </div>
+
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <div class="impact-icon">💵</div>
+                            <div class="impact-number">€80K</div>
+                            <div class="impact-label">Average Annual Savings</div>
+                            <div class="impact-description">Per city with 500+ containers</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">🌍</div>
+                            <div class="impact-number">60%</div>
+                            <div class="impact-label">CO₂ Reduction</div>
+                            <div class="impact-description">Through optimized routing</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">⚡</div>
+                            <div class="impact-number">50%</div>
+                            <div class="impact-label">Fewer Truck Miles</div>
+                            <div class="impact-description">Smart collection scheduling</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">⏰</div>
+                            <div class="impact-number">24/7</div>
+                            <div class="impact-label">Real-Time Monitoring</div>
+                            <div class="impact-description">Never miss an overflow</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =====================
+            REPORT MODAL (SHARED BY ALL ROLES)
+            ===================== -->
+        <div class="modal" id="reportModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📢 Report an Issue</h2>
+                    <button class="modal-close" id="closeReportModal">&times;</button>
+                </div>
+                <form class="report-form" id="reportForm">
+                    <div class="form-group">
+                        <label>Issue Type</label>
+                        <select class="form-input" id="reportType" required>
+                            <option value="">Select issue type</option>
+                            <option value="missing">❌ Missing Container</option>
+                            <option value="damaged">⚠️ Damaged Container</option>
+                            <option value="garbage">🗑️ Garbage Outside Container</option>
+                            <option value="other">📝 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="form-input" id="reportLocation" placeholder="Street name or address"
+                            required>
+                        <small>Or click on the map to select location</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-textarea" id="reportDescription" rows="4"
+                            placeholder="Describe the problem in detail..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Submit Report</span>
+                        <span class="btn-icon">📨</span>
+                    </button>
+                </form>
             </div>
         </div>
-    </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/src/script.js"></script>
-</body>
+        <!-- FLOATING REPORT BUTTON (SHOWN FOR USER ROLE) -->
+        <button class="floating-report-btn" id="floatingReportBtn" style="display: none;">
+            <span class="report-icon">📢</span>
+            <span class="report-text">Report Issue</span>
+        </button>
+<script> window.chtlConfig = { chatbotId: "4757926567" } </script>
+<script async data-id="4757926567" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="logo-icon">🗑️</span>
+                            <span class="logo-text">BinMaps</span>
+                        </div>
+                        <p>Making cities cleaner through smart technology</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Product</h4>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#dashboard">Dashboard</a>
+                        <a href="#map">Live Map</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Company</h4>
+                        <a href="#about">About Us</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <a href="#documentation">Documentation</a>
+                        <a href="#blog">Blog</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2025 BinMaps - Hackathon Project</p>
+                    <p>Built with ♻️ for a sustainable future</p>
+                </div>
+            </div>
+        </footer>
 
-</html>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="./src/script.js"></script>
+    </body>
+
+    </html>

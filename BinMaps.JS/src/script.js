@@ -216,7 +216,6 @@ if (registerForm) {
 }
 
 function showDashboard(role) {
-    role = 'admin';
     console.log(role);
     document.getElementById('homePage').classList.remove('active');
     document.getElementById('loginScreen').classList.remove('active');
@@ -237,7 +236,7 @@ function showDashboard(role) {
         const floatingBtn = document.getElementById('floatingReportBtn');
         if (floatingBtn) floatingBtn.style.display = 'flex';
         setTimeout(() => initUserDashboard(), 300);
-    } else if (role === 'collector') {
+    } else if (role === 'driver') {
         document.getElementById('collectorDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
         if (floatingBtn) floatingBtn.style.display = 'none';

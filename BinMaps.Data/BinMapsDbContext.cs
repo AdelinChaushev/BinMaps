@@ -95,14 +95,14 @@ namespace BinMaps.Data
                     Id = 1,
                     Capacity = 15000.0,
                     AreaId = 1,
-                    DriverId = "e02c3145-1063-4de6-9ecb-f4cb0cea7667"
+                    DriverId = "6315b51c-7181-4631-90f1-f41a8ca5ebc1"
                 },
                 new Truck()
                 {
                     Id = 2,
                     Capacity = 15000.0,
                     AreaId = 2,
-                    DriverId = "a8f43cdd-e1c1-4c7c-af01-3a4a8201a95b"
+                    DriverId = "c2c8ec27-4200-4d88-972b-a6bc69fe2320"
                 }
             );
 
