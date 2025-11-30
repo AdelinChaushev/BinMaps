@@ -149,5 +149,48 @@ using (var scope = app.Services.CreateScope())
             }
         }
     }
+	using var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    if (!userManager.Users.Any())
+	{
+
+
+	   var result =  await	userManager.CreateAsync(new IdentityUser()
+		{
+			UserName = "Admin",
+			Email = "Admin@gmail.com",
+		}, "Admin908@");
+
+		if (result.Succeeded) 
+		{ 
+			await userManager.AddToRoleAsync(
+				await userManager.FindByEmailAsync("Admin@gmail.com"),"Admin");
+
+        }
+
+        var resultD1 = await userManager.CreateAsync(new IdentityUser()
+        {
+            UserName = "Driver1",
+            Email = "Driver1@gmail.com",
+        }, "Driver1908@");
+
+        if (resultD1.Succeeded)
+        {
+            await userManager.AddToRoleAsync(
+                await userManager.FindByEmailAsync("Driver1@gmail.com"), "Driver");
+
+        }
+        var resultD2 = await userManager.CreateAsync(new IdentityUser()
+        {
+            UserName = "Driver2",
+            Email = "Driver2@gmail.com",
+        }, "Driver2908@");
+
+        if (resultD2.Succeeded)
+        {
+            await userManager.AddToRoleAsync(
+                await userManager.FindByEmailAsync("Driver2@gmail.com"), "Driver");
+
+        }
+    }
 }
 app.Run();
