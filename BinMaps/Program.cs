@@ -129,7 +129,7 @@ using (var scope = app.Services.CreateScope())
 
     if (!context.TrashContainers.Any())
     {
-        var jsonPath = "C:\\Users\\user.DESKTOP-F7BGVFP\\Desktop\\Backup\\BinMaps\\BinMaps.Data\\Seed\\SeedBins.json";
+        var jsonPath = "C:\\Users\\user.DESKTOP-2J3H0DB\\Desktop\\BinMaps\\BinMaps.Data\\Seed\\SeedBins.json";
         if (File.Exists(jsonPath))
         {
             var json = await File.ReadAllTextAsync(jsonPath);
