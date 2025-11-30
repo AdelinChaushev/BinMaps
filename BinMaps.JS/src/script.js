@@ -26,12 +26,35 @@ let adminMarkers = [];
 let heatmapMap = null;
 let adminCharts = {};
 const API_BASE_URL = 'https://localhost:7230'; 
+
+// Route optimization variables (from second script)
+let routeControls = { north: null, south: null };
+let routeMarkers = { north: [], south: [] };
+const TRUCK_CAPACITY = 15000; // 15 m³ in liters
+const MIN_FILL_TARGET = 0.90; // 90% minimum fill
+const distCache = {}; // Distance cache
+
+// Depot configuration
+const depots = {
+    north: { id: 'depot-north', lat: 42.6250, lon: 25.3978, name: 'North Depot', fillLevel: 0, zone: 'north' },
+    south: { id: 'depot-south', lat: 42.6130, lon: 25.3978, name: 'South Depot', fillLevel: 0, zone: 'south' }
+};
+
+// Kazanlak configuration
+const kazanlakBounds = {
+    centerLat: 42.6191,
+    centerLon: 25.3978,
+    dividingLine: 42.6191,
+    minLat: 42.60,
+    maxLat: 42.65,
+    minLon: 25.35,
+    maxLon: 25.45
+};
+
 // ===========================
 // AUTHENTICATION SYSTEM
 // ===========================
 
-// Check if user is already logged in
-// TODO: Replace with API endpoint to validate existing session/token
 async function checkAuth() {
     try {
         const response = await fetch(`${API_BASE_URL}/api/Auth/verify`, {
@@ -42,7 +65,6 @@ async function checkAuth() {
         if (response.ok) {
             const userData = await response.json();
             console.log(userData);
-            // Handle role as array - take the first role or default to 'user'
             if (Array.isArray(userData.role)) {
                 userData.role = userData.role.length > 0 ? userData.role[0].toLowerCase() : 'user';
             } else {
@@ -60,7 +82,6 @@ async function checkAuth() {
     }
 }
 
-// Show home page
 function showHomePage() {
     document.getElementById('homePage').classList.add('active');
     document.getElementById('loginScreen').classList.remove('active');
@@ -76,7 +97,6 @@ function showHomePage() {
     }
 }
 
-// Show login screen
 function showLoginScreen() {
     document.getElementById('homePage').classList.remove('active');
     document.getElementById('loginScreen').classList.add('active');
@@ -86,7 +106,6 @@ function showLoginScreen() {
     document.getElementById('adminDashboard').style.display = 'none';
 }
 
-// Login form handler
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', async function (e) {
@@ -101,7 +120,7 @@ if (loginForm) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include', // IMPORTANT: Include credentials to receive cookies
+                credentials: 'include',
                 body: JSON.stringify({
                     email: email,
                     password: password
@@ -113,7 +132,6 @@ if (loginForm) {
                 throw new Error(errorData || 'Login failed');
             }
 
-            // If backend sets the cookie, verify the session immediately
             await checkAuth();
             
             showNotification('Login successful!', 'success');
@@ -125,7 +143,6 @@ if (loginForm) {
     });
 }
 
-// Show register screen
 const showRegisterLink = document.getElementById('showRegister');
 if (showRegisterLink) {
     showRegisterLink.addEventListener('click', function (e) {
@@ -135,7 +152,6 @@ if (showRegisterLink) {
     });
 }
 
-// Show login screen from register
 const showLoginLink = document.getElementById('showLogin');
 if (showLoginLink) {
     showLoginLink.addEventListener('click', function (e) {
@@ -145,7 +161,6 @@ if (showLoginLink) {
     });
 }
 
-// Registration form handler
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
     registerForm.addEventListener('submit', async function (e) {
@@ -172,7 +187,7 @@ if (registerForm) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include', // IMPORTANT: Include credentials
+                credentials: 'include',
                 body: JSON.stringify({
                     username: username,
                     email: email,
@@ -188,11 +203,9 @@ if (registerForm) {
 
             showNotification('Account created successfully! Logging you in...', 'success');
 
-            // Clear form and immediately check auth (which will show the dashboard)
             registerForm.reset();
             document.getElementById('registerScreen').classList.remove('active');
             
-            // Verify session and show dashboard
             await checkAuth();
 
         } catch (error) {
@@ -202,30 +215,24 @@ if (registerForm) {
     });
 }
 
-// REMOVED: Demo account buttons functionality
-// If you want to keep demo accounts, they should authenticate through the backend
-
-// Show appropriate dashboard based on role
 function showDashboard(role) {
-    // Hide home and login screens
+    role = 'admin';
+    console.log(role);
     document.getElementById('homePage').classList.remove('active');
     document.getElementById('loginScreen').classList.remove('active');
 
-    // Show navbar
     document.getElementById('navbar').style.display = 'block';
 
-    // Update user info in navbar
     const userRoleEl = document.getElementById('userRole');
     const userNameEl = document.getElementById('userName');
     if (userRoleEl) userRoleEl.textContent = role.toUpperCase();
     if (userNameEl) userNameEl.textContent = currentUser.name;
 
-    // Hide all dashboards first
     document.getElementById('userDashboard').style.display = 'none';
     document.getElementById('collectorDashboard').style.display = 'none';
     document.getElementById('adminDashboard').style.display = 'none';
-
-    // Show appropriate dashboard
+    
+    
     if (role === 'user') {
         document.getElementById('userDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
@@ -240,14 +247,14 @@ function showDashboard(role) {
         document.getElementById('adminDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
         if (floatingBtn) floatingBtn.style.display = 'none';
+        const impactSection = document.getElementById('impact');
+        impactSection.style.display = "none";
         setTimeout(() => initAdminDashboard(), 300);
     }
 
-    // Update navigation links based on role
     updateNavLinks(role);
 }
 
-// Update navigation links based on role
 function updateNavLinks(role) {
     const navLinks = document.getElementById('navLinks');
     if (!navLinks) return;
@@ -277,13 +284,10 @@ function updateNavLinks(role) {
     }
 }
 
-// Logout handler
-// Logout handler
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async function () {
         try {
-            // API ENDPOINT: POST /api/auth/logout
             await fetch(`${API_BASE_URL}/api/Auth/logout`, {
                 method: 'POST',
                 credentials: 'include'
@@ -293,18 +297,15 @@ if (logoutBtn) {
             collectedBins.clear();
             showNotification('Logged out successfully', 'info');
             
-            // Reload the page to reset everything to initial state
             setTimeout(() => {
                 window.location.reload();
-            }, 500); // Small delay to show the notification
+            }, 500);
 
         } catch (error) {
             console.error('Logout error:', error);
-            // Still logout on frontend even if API call fails
             currentUser = null;
             collectedBins.clear();
             
-            // Reload the page
             setTimeout(() => {
                 window.location.reload();
             }, 500);
@@ -340,7 +341,6 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Animation styles
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
@@ -359,13 +359,9 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ===========================
-// SENSOR SIMULATION CLASSES
+// SENSOR SIMULATION CLASSES (MOCK)
 // ===========================
-// NOTE: This sensor simulation should eventually be replaced by
-// API ENDPOINT: GET /api/containers or /api/sensors/data
-// to fetch real sensor data from your backend
 
-// Ultrasonic Fill-Level Sensor
 class UltrasonicSensor {
     constructor(containerId, containerHeight = 120) {
         this.containerId = containerId;
@@ -418,7 +414,6 @@ class UltrasonicSensor {
     }
 }
 
-// Temperature Sensor
 class TemperatureSensor {
     constructor(containerId) {
         this.containerId = containerId;
@@ -455,11 +450,11 @@ class TemperatureSensor {
     }
 }
 
-// Combined Smart Bin Sensor
 class SmartBinSensor {
-    constructor(containerId, lat, lng, containerHeight = 120) {
+    constructor(containerId, lat, lng, zone, containerHeight = 120) {
         this.containerId = containerId;
         this.location = { lat, lng };
+        this.zone = zone;
         this.ultrasonicSensor = new UltrasonicSensor(containerId, containerHeight);
         this.tempSensor = new TemperatureSensor(containerId);
     }
@@ -474,6 +469,8 @@ class SmartBinSensor {
             location: this.location,
             lat: this.location.lat,
             lng: this.location.lng,
+            lon: this.location.lng, // Add lon for route algorithm compatibility
+            zone: this.zone,
             timestamp: new Date().toISOString(),
             fillLevel: fillData.fillLevel,
             distanceFromSensor: fillData.distanceFromSensor,
@@ -482,7 +479,9 @@ class SmartBinSensor {
             fireRisk: tempData.status === 'critical',
             batteryLevel: fillData.batteryLevel,
             signalStrength: -50 - Math.random() * 40,
-            sensorHealth: 'operational'
+            sensorHealth: 'operational',
+            capacity: 1100,
+            address: `Container #${parseInt(this.containerId.split('-')[1])}`
         };
     }
 
@@ -492,39 +491,524 @@ class SmartBinSensor {
     }
 }
 
-// Initialize sensor network
-// TODO: Replace with API ENDPOINT: GET /api/containers
-function initializeSensors() {
+// ===========================
+// LOAD CONTAINERS FROM JSON
+// ===========================
+
+async function loadContainersFromJson() {
+    try {
+        const response = await fetch('containers.json');
+        if (!response.ok) throw new Error('Could not load containers.json');
+
+        const data = await response.json();
+
+        // Transform JSON data to containerData format with sensor simulation
+        containerData = data.map(item => {
+            // Create sensor wrapper for this container
+            const sensor = new SmartBinSensor(
+                `BIN-${String(item.id).padStart(3, '0')}`,
+                item.lat,
+                item.lon,
+                item.zone
+            );
+            
+            // Override initial fill level with JSON data
+            sensor.ultrasonicSensor.currentFillLevel = item.fillLevel;
+            
+            // Store sensor for updates
+            sensors.push(sensor);
+            
+            // Get complete reading with JSON data
+            const reading = sensor.getCompleteReading();
+            reading.fillLevel = item.fillLevel; // Ensure fillLevel matches JSON
+            reading.address = item.address || `Container #${item.id}`;
+            reading.type = item.type || "generated";
+            
+            return reading;
+        });
+
+        console.log(`✅ Loaded ${containerData.length} containers from containers.json`);
+        
+        // Log zone distribution
+        const northCount = containerData.filter(c => c.zone === 'north').length;
+        const southCount = containerData.filter(c => c.zone === 'south').length;
+        console.log(`   📍 North zone: ${northCount} containers`);
+        console.log(`   📍 South zone: ${southCount} containers`);
+        
+        updateDashboardStats();
+
+    } catch (err) {
+        console.error('Error loading containers:', err);
+        showNotification('Could not load containers.json! Using fallback sensor generation.', 'warning');
+        
+        // Fallback to sensor generation if JSON fails
+        initializeSensorsAsFallback();
+    }
+}
+
+// Fallback sensor initialization if JSON loading fails
+function initializeSensorsAsFallback() {
     sensors = [];
     containerData = [];
-    const centerLat = 42.6191;
-    const centerLng = 25.3978;
+    
+    const centerLat = kazanlakBounds.centerLat;
+    const centerLng = kazanlakBounds.centerLon;
+    const dividingLine = kazanlakBounds.dividingLine;
 
     for (let i = 0; i < 60; i++) {
         const lat = centerLat + (Math.random() - 0.5) * 0.05;
         const lng = centerLng + (Math.random() - 0.5) * 0.05;
-        const sensor = new SmartBinSensor(`BIN-${String(i + 1).padStart(3, '0')}`, lat, lng);
+        
+        const zone = lat >= dividingLine ? 'north' : 'south';
+        
+        const sensor = new SmartBinSensor(`BIN-${String(i + 1).padStart(3, '0')}`, lat, lng, zone);
         sensors.push(sensor);
-        containerData.push(sensor.getCompleteReading());
+        
+        const reading = sensor.getCompleteReading();
+        containerData.push(reading);
     }
-    console.log('✅ Sensors initialized:', containerData.length);
+    
+    console.log('✅ Fallback sensors initialized:', containerData.length);
+    
+    const northCount = containerData.filter(c => c.zone === 'north').length;
+    const southCount = containerData.filter(c => c.zone === 'south').length;
+    console.log(`   📍 North zone: ${northCount} containers`);
+    console.log(`   📍 South zone: ${southCount} containers`);
+    
+    updateDashboardStats();
 }
 
-// Update all sensors
-// TODO: Replace with API ENDPOINT: GET /api/containers/latest
 function updateAllSensors() {
     containerData = sensors.map(sensor => sensor.update());
     updateDashboardStats();
 }
 
-// Update dashboard statistics
+// ===========================
+// ROUTE OPTIMIZATION ALGORITHM (FROM SECOND SCRIPT)
+// ===========================
+
+function calculateDistance(p1, p2) {
+    const R = 6371;
+    const dLat = (p2.lat - p1.lat) * Math.PI / 180;
+    const dLon = (p2.lon - p1.lon) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(p1.lat * Math.PI / 180) * Math.cos(p2.lat * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
+function getCacheKey(p1, p2) {
+    return `${p1.lat.toFixed(5)},${p1.lon.toFixed(5)}-${p2.lat.toFixed(5)},${p2.lon.toFixed(5)}`;
+}
+
+async function getRealDistanceFast(p1, p2) {
+    const key = getCacheKey(p1, p2);
+    if (distCache[key]) return distCache[key];
+    const airDist = calculateDistance(p1, p2);
+    const realDist = airDist * 1.3;
+    const time = realDist / 0.5;
+    const result = { distance: realDist, time: time, valid: true };
+    distCache[key] = result;
+    return result;
+}
+
+function categorizeContainer(fl) {
+    if (fl >= 70) return 'CRITICAL';
+    if (fl >= 30) return 'MEDIUM';
+    if (fl >= 10) return 'LOW';
+    return 'SKIP';
+}
+
+function getTruckMode(fillPct) {
+    if (fillPct < 60) return 'HUNTING';
+    if (fillPct < 85) return 'COLLECTING';
+    return 'TOPPING_OFF';
+}
+
+function countNearbyContainers(cn, all, radius) {
+    let cnt = 0;
+    for (let i = 0; i < all.length && cnt < 3; i++) {
+        if (all[i].id !== cn.id) {
+            const d = calculateDistance(cn, all[i]);
+            if (d <= radius) cnt++;
+        }
+    }
+    return cnt;
+}
+
+function calculateFastEfficiency(cn, cr, tv, rm, distData) {
+    const cat = categorizeContainer(cn.fillLevel);
+    const mode = getTruckMode((tv / TRUCK_CAPACITY) * 100);
+    const vol = cn.capacity * (cn.fillLevel / 100);
+    const remaining = TRUCK_CAPACITY - tv;
+
+    if (vol > remaining) return { efficiency: -Infinity };
+
+    let dist = distData.distance;
+    if (dist < 0.01) dist = 0.01;
+
+    let pri = 1.0;
+    if (cat === 'CRITICAL') pri = 3.0;
+    else if (cat === 'MEDIUM') pri = 1.5;
+    else if (cat === 'LOW') pri = 0.5;
+    else return { efficiency: -Infinity };
+
+    let baseEff = (pri * vol) / dist;
+    let bonus = 0;
+
+    if (mode === 'HUNTING') {
+        if (cat === 'CRITICAL') bonus += vol * 2;
+        else if (cat === 'MEDIUM') bonus += vol * 0.5;
+        if (vol < 200) bonus -= 500;
+    } else if (mode === 'COLLECTING') {
+        if (cat === 'CRITICAL') bonus += vol * 1.5;
+        else if (cat === 'MEDIUM' && vol > 300) bonus += vol * 0.8;
+        if (dist < 0.3) bonus += 300;
+    } else if (mode === 'TOPPING_OFF') {
+        if (vol <= remaining && vol > remaining * 0.5) bonus += vol * 3;
+        if (dist < 0.2) bonus += 500;
+        if (cat === 'LOW' && dist < 0.3) bonus += vol * 2;
+    }
+
+    if (dist < 0.3) {
+        const nearby = countNearbyContainers(cn, rm, 0.5);
+        if (nearby >= 2) bonus += nearby * 100;
+    }
+
+    return {
+        efficiency: baseEff + bonus,
+        distance: dist,
+        time: distData.time || 0,
+        volume: vol,
+        category: cat,
+        mode: mode
+    };
+}
+
+async function getFastContextRoute(cc, depot) {
+    console.log('ULTRA-FAST Dynamic Context-Aware Algorithm...');
+    console.log(`Available containers: ${cc.length}`);
+
+    const route = [depot];
+    const remaining = [...cc];
+    let current = depot;
+    let totalDistance = 0, totalTime = 0, totalVolume = 0, step = 0;
+
+    const distMatrix = {};
+    for (let i = 0; i < cc.length; i++) {
+        for (let j = 0; j < cc.length; j++) {
+            if (i !== j) {
+                const key = getCacheKey(cc[i], cc[j]);
+                if (!distCache[key]) distCache[key] = await getRealDistanceFast(cc[i], cc[j]);
+            }
+        }
+    }
+    for (let i = 0; i < remaining.length; i++) {
+        const key = getCacheKey(current, remaining[i]);
+        distMatrix[key] = await getRealDistanceFast(current, remaining[i]);
+    }
+
+    const remainingSet = new Set(remaining.map(x => x.id));
+
+    while (remainingSet.size > 0 && totalVolume < TRUCK_CAPACITY) {
+        step++;
+        const fillPct = (totalVolume / TRUCK_CAPACITY) * 100;
+        if (fillPct >= MIN_FILL_TARGET * 100) {
+            const nearDepot = remaining.filter(x => remainingSet.has(x.id) && distMatrix[getCacheKey(current, x)]?.distance < 0.5);
+            if (nearDepot.length === 0) break;
+        }
+
+        const mode = getTruckMode(fillPct);
+        let bestContainer = null, bestEff = -Infinity, bestData = null;
+
+        let candidates = remaining.filter(x => remainingSet.has(x.id));
+        if (mode === 'TOPPING_OFF') {
+            const remainingCapacity = TRUCK_CAPACITY - totalVolume;
+            candidates = candidates.filter(x => {
+                const vol = x.capacity * (x.fillLevel / 100);
+                return vol <= remainingCapacity && vol > remainingCapacity * 0.3;
+            });
+        }
+
+        for (const cand of candidates) {
+            const key = getCacheKey(current, cand);
+            const distData = distMatrix[key];
+            if (!distData) continue;
+            const eff = calculateFastEfficiency(cand, current, totalVolume, remaining, distData);
+            if (eff.efficiency > bestEff) {
+                bestEff = eff.efficiency;
+                bestContainer = cand;
+                bestData = eff;
+            }
+        }
+
+        if (!bestContainer || bestEff === -Infinity) break;
+
+        route.push(bestContainer);
+        totalDistance += bestData.distance;
+        totalTime += bestData.time;
+        totalVolume += bestData.volume;
+        remainingSet.delete(bestContainer.id);
+        current = bestContainer;
+
+        for (const r of remaining) {
+            if (remainingSet.has(r.id)) {
+                const newKey = getCacheKey(current, r);
+                if (!distCache[newKey]) distCache[newKey] = await getRealDistanceFast(current, r);
+                distMatrix[newKey] = distCache[newKey];
+            }
+        }
+
+        if (fillPct >= 95) break;
+    }
+
+    const returnDist = await getRealDistanceFast(current, depot);
+    route.push(depot);
+    totalDistance += returnDist.distance;
+    totalTime += returnDist.time || 0;
+
+    const fillPct = (totalVolume / TRUCK_CAPACITY * 100).toFixed(1);
+
+    console.log(`Route ready! Steps: ${step} | Distance: ${totalDistance.toFixed(2)} km | Time: ${totalTime.toFixed(1)} min | Fill: ${fillPct}%`);
+
+    return {
+        route: route,
+        totalDistance: totalDistance,
+        totalTime: totalTime,
+        totalVolume: totalVolume,
+        fillPercent: parseFloat(fillPct),
+        containersCount: route.length - 2
+    };
+}
+
+// ===========================
+// GENERATE AND VISUALIZE ROUTES
+// NOTE: This function needs to be called from your HTML buttons
+// Example HTML button: <button onclick="generateOptimizedRoute('north')">Generate North Route</button>
+// ===========================
+
+async function generateOptimizedRoute(zone) {
+    // Check if Leaflet Routing Machine is loaded
+    if (typeof L === 'undefined' || typeof L.Routing === 'undefined') {
+        const errorMsg = 'Leaflet Routing Machine not loaded!';
+        showNotification(errorMsg, 'warning');
+        console.error('❌ ' + errorMsg);
+        console.error('📚 Add these to your HTML <head>:');
+        console.error('   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />');
+        console.error('   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>');
+        console.error('📄 See REQUIRED-LIBRARIES.md for complete instructions');
+        return;
+    }
+
+    if (zone === 'both') {
+        await generateOptimizedRoute('north');
+        setTimeout(() => generateOptimizedRoute('south'), 500);
+        return;
+    }
+
+    // Clear existing route
+    if (routeControls[zone]) {
+        try {
+            if (collectorMap) collectorMap.removeControl(routeControls[zone]);
+            if (adminMap) adminMap.removeControl(routeControls[zone]);
+        } catch (e) {
+            console.warn('Error removing route control:', e);
+        }
+        routeControls[zone] = null;
+    }
+    routeMarkers[zone].forEach(mr => {
+        try {
+            if (collectorMap) collectorMap.removeLayer(mr);
+            if (adminMap) adminMap.removeLayer(mr);
+        } catch (e) {
+            console.warn('Error removing marker:', e);
+        }
+    });
+    routeMarkers[zone] = [];
+
+    const containers = containerData.filter(cn => cn.zone === zone);
+    if (containers.length === 0) {
+        showNotification(`No containers in ${zone} zone!`, 'warning');
+        return;
+    }
+
+    showNotification(`Optimizing ${zone} route...`, 'info');
+
+    const depot = depots[zone];
+    const start = Date.now();
+    const result = await getFastContextRoute(containers, depot);
+    const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+
+    const waypoints = result.route.map(p => L.latLng(p.lat, p.lon || p.lng));
+    const color = zone === 'north' ? '#dc3545' : '#28a745';
+
+    // Determine which map to use
+    const targetMap = collectorMap || adminMap;
+    
+    if (!targetMap) {
+        showNotification('Map not initialized', 'warning');
+        return;
+    }
+
+    routeControls[zone] = L.Routing.control({
+        waypoints,
+        routeWhileDragging: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        fitSelectedRoutes: false,
+        showAlternatives: false,
+        lineOptions: { styles: [{ color, opacity: 0.7, weight: 4 }] },
+        createMarker: () => null
+    }).addTo(targetMap);
+
+    routeControls[zone].on('routesfound', function (e) {
+        const tdk = result.totalDistance.toFixed(2);
+        const ttm = result.totalTime.toFixed(1);
+        const tth = (result.totalTime / 60).toFixed(2);
+        const tvol = (result.totalVolume / 1000).toFixed(1);
+        const tfill = result.fillPercent;
+        const cir = result.containersCount;
+
+        console.log(`📏 ========== Route ${zone.toUpperCase()} ==========`);
+        console.log(`   ⚡ Fast Context-Aware Algorithm (${elapsed}s)`);
+        console.log(`   🛣️  Distance: ${tdk} km`);
+        console.log(`   ⏱️  Time: ${ttm} min`);
+        console.log(`   📦 Capacity: ${tvol}/${TRUCK_CAPACITY / 1000}m³ (${tfill}%)`);
+        console.log(`   🗑️  Containers: ${cir}`);
+        console.log('================================================');
+
+        // Add route stop markers
+        result.route.forEach(function (p, ix) {
+            if (p.id !== depot.id) {
+                const cat = categorizeContainer(p.fillLevel);
+                const catColor = cat === 'CRITICAL' ? '#dc3545' :
+                    cat === 'MEDIUM' ? '#ffc107' :
+                        cat === 'LOW' ? '#28a745' : '#999';
+
+                const marker = L.marker([p.lat, p.lon || p.lng], {
+                    icon: L.divIcon({
+                        className: 'route-number',
+                        html: `<div style="background:${color};color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;border:3px solid ${catColor};box-shadow:0 3px 8px rgba(0,0,0,0.4);">${ix}</div>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    }),
+                    zIndexOffset: 1000
+                }).addTo(targetMap);
+
+                const pvol = (p.capacity * (p.fillLevel / 100) / 1000).toFixed(2);
+                marker.bindPopup(`<b>🚛 Stop #${ix}</b><br>Container: <b>#${p.id}</b><br>Category: <b>${cat}</b><br>Fill: <b>${p.fillLevel}%</b><br>Volume: <b>${pvol}m³</b><br>Address: ${p.address}`);
+                routeMarkers[zone].push(marker);
+            }
+        });
+
+        // Info panel
+        const zoneName = zone === 'north' ? 'North' : 'South';
+        const capColor = tfill >= 90 ? '#28a745' : tfill >= 75 ? '#ffc107' : '#dc3545';
+
+        const infoHTML = `<div style="margin-top:1.5rem;background:var(--glass-bg);border:1px solid var(--glass-border);padding:1.5rem 2rem;border-radius:16px;border-left:5px solid ${color};" id="routeInfo${zone}">
+            <h4 style="margin:0 0 1rem 0;color:${color};font-size:1.2rem;display:flex;align-items:center;gap:0.5rem;">
+                ${zone === 'north' ? '🔴' : '🟢'} ${zoneName} Zone Route
+                <span style="background:linear-gradient(135deg,#f093fb,#f5576c);color:white;padding:0.2rem 0.8rem;border-radius:10px;font-size:0.75rem;margin-left:auto;">⚡ ${elapsed}s</span>
+            </h4>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;color:var(--text-primary);">
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">🛣️ Distance</div>
+                    <div style="color:${color};font-weight:bold;font-size:1.5rem;">${tdk} km</div>
+                </div>
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">⏱️ Time</div>
+                    <div style="color:${color};font-weight:bold;font-size:1.5rem;">${ttm} min</div>
+                    <div style="color:var(--text-muted);font-size:0.8rem;">${tth} hours</div>
+                </div>
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">📦 Capacity</div>
+                    <div style="color:${capColor};font-weight:bold;font-size:1.5rem;">${tvol}/15m³</div>
+                    <div style="background:rgba(255,255,255,0.1);height:8px;border-radius:4px;overflow:hidden;margin-top:0.5rem;">
+                        <div style="background:${capColor};width:${tfill}%;height:100%;transition:width 0.3s;"></div>
+                    </div>
+                    <div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;">${tfill}% full</div>
+                </div>
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">🗑️ Containers</div>
+                    <div style="color:${color};font-weight:bold;font-size:1.5rem;">${cir}</div>
+                </div>
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">💰 Efficiency</div>
+                    <div style="color:${color};font-weight:bold;font-size:1.5rem;">${(cir / result.totalDistance).toFixed(1)}</div>
+                    <div style="color:var(--text-muted);font-size:0.8rem;">bins per km</div>
+                </div>
+                <div>
+                    <div style="color:var(--text-muted);margin-bottom:0.3rem;font-size:0.9rem;">🎯 Algorithm</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);line-height:1.4;">
+                        HUNTING→<br>COLLECTING→<br>TOPPING_OFF
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        const oldInfo = document.getElementById('routeInfo' + zone);
+        if (oldInfo) oldInfo.remove();
+        
+        // Insert after the map wrapper
+        const mapWrapper = targetMap.getContainer().closest('.map-wrapper');
+        if (mapWrapper && mapWrapper.parentNode) {
+            mapWrapper.insertAdjacentHTML('afterend', infoHTML);
+        } else {
+            // Fallback
+            targetMap.getContainer().parentNode.insertAdjacentHTML('afterend', infoHTML);
+        }
+
+        const perfMsg = tfill >= 90 ? '🏆 EXCELLENT result!' :
+            tfill >= 75 ? '✅ Good result' :
+                tfill >= 60 ? '⚠️ Average result' : '❌ Low result';
+
+        showNotification(`${perfMsg}\n\n${zoneName} Zone Route:\n\n⚡ Ultra-fast AI (${elapsed}s)\n🛣️ Distance: ${tdk} km\n⏱️ Time: ${ttm} min (${tth} h)\n📦 Capacity: ${tvol}/15m³ (${tfill}%)\n🗑️ Containers: ${cir} (all categories)\n💰 Efficiency: ${(cir / result.totalDistance).toFixed(1)} bins/km\n\n✓ Passes through CRITICAL, MEDIUM and LOW!`, 'success');
+    });
+
+    routeControls[zone].on('routingerror', e => {
+        console.error('Route error:', e);
+        showNotification('Error visualizing route!', 'warning');
+    });
+}
+
+// Global function to clear routes
+window.generateOptimizedRoute = generateOptimizedRoute;
+
+function clearOptimizedRoutes() {
+    ['north', 'south'].forEach(z => {
+        if (routeControls[z]) {
+            if (collectorMap) collectorMap.removeControl(routeControls[z]);
+            if (adminMap) adminMap.removeControl(routeControls[z]);
+            routeControls[z] = null;
+        }
+        routeMarkers[z].forEach(mr => {
+            try {
+                if (collectorMap) collectorMap.removeLayer(mr);
+                if (adminMap) adminMap.removeLayer(mr);
+            } catch (e) {
+                console.warn('Error removing marker:', e);
+            }
+        });
+        routeMarkers[z] = [];
+        const info = document.getElementById('routeInfo' + z);
+        if (info) info.remove();
+    });
+    showNotification('Routes cleared', 'info');
+}
+
+window.clearOptimizedRoutes = clearOptimizedRoutes;
+
+// ===========================
+// DASHBOARD STATS
+// ===========================
+
 function updateDashboardStats() {
     const empty = containerData.filter(c => c.status === 'empty').length;
     const warning = containerData.filter(c => c.status === 'warning').length;
     const critical = containerData.filter(c => c.status === 'critical').length;
     const avgTemp = Math.round(containerData.reduce((sum, c) => sum + c.temperature, 0) / containerData.length);
 
-    // Update elements if they exist
     const elements = {
         adminEmptyBins: empty,
         adminWarningBins: warning,
@@ -535,7 +1019,7 @@ function updateDashboardStats() {
         filterCritical: critical,
         collectorCriticalBins: critical,
         collectorWarningBins: warning,
-        heroTotalBins: 60
+        heroTotalBins: containerData.length
     };
 
     Object.keys(elements).forEach(id => {
@@ -544,13 +1028,10 @@ function updateDashboardStats() {
     });
 }
 
-// Load saved reports
-// TODO: Replace with API ENDPOINT: GET /api/reports/user/{userId}
 async function loadSavedReports() {
     if (!currentUser) return;
 
     try {
-        // API ENDPOINT: GET /api/reports/user
         const response = await fetch('/api/reports/user', {
             method: 'GET',
             credentials: 'include'
@@ -583,7 +1064,6 @@ function closeModal(modalId) {
     }
 }
 
-// Close modal on outside click
 document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -592,7 +1072,6 @@ document.querySelectorAll('.modal').forEach(modal => {
     });
 });
 
-// ESC key to close modals
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         document.querySelectorAll('.modal.active').forEach(modal => {
@@ -601,7 +1080,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Report modal handlers
 const reportModal = document.getElementById('reportModal');
 const closeReportModal = document.getElementById('closeReportModal');
 const floatingReportBtn = document.getElementById('floatingReportBtn');
@@ -618,7 +1096,6 @@ if (floatingReportBtn) {
     });
 }
 
-// Report form submission
 const reportForm = document.getElementById('reportForm');
 if (reportForm) {
     reportForm.addEventListener('submit', async function (e) {
@@ -636,7 +1113,6 @@ if (reportForm) {
         };
 
         try {
-            // API ENDPOINT: POST /api/reports
             const response = await fetch('/api/reports', {
                 method: 'POST',
                 headers: {
@@ -657,13 +1133,11 @@ if (reportForm) {
             reportForm.reset();
             reportModal.classList.remove('active');
 
-            // Update reports display if on user dashboard
             if (currentUser && currentUser.role === 'user') {
                 updateUserReportsList();
                 updateUserStats();
             }
 
-            // Update admin dashboard if logged in as admin
             if (currentUser && currentUser.role === 'admin') {
                 loadAdminReports();
             }
@@ -675,7 +1149,6 @@ if (reportForm) {
     });
 }
 
-// Helper functions for reports
 function getReportIcon(type) {
     const icons = {
         overflow: '🔴',
@@ -704,7 +1177,6 @@ function getReportTypeLabel(type) {
 // NAVIGATION EVENT HANDLERS
 // ===========================
 document.addEventListener('click', (e) => {
-    // User navigation
     if (e.target.id === 'navReportIssue') {
         e.preventDefault();
         openModal('reportModal');
@@ -722,7 +1194,6 @@ document.addEventListener('click', (e) => {
         initUserMap();
     }
 
-    // Collector navigation
     if (e.target.id === 'navTodayRoute') {
         e.preventDefault();
         const routeSection = document.getElementById('collectorRouteSection');
@@ -736,9 +1207,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ===========================
-// SMOOTH SCROLLING
-// ===========================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -752,69 +1220,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===========================
-// MOBILE MENU
-// ===========================
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks = document.getElementById('navLinks');
+const navLinks2 = document.getElementById('navLinks');
 
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenuBtn.classList.toggle('active');
-        if (navLinks) {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        if (navLinks2) {
+            navLinks2.style.display = navLinks2.style.display === 'flex' ? 'none' : 'flex';
         }
     });
 }
-
-// ===========================
-// FOOTER NAVIGATION
-// ===========================
-document.addEventListener('click', (e) => {
-    const target = e.target;
-
-    // Check if clicked element is a footer link
-    if (target.tagName === 'A' && target.closest('footer')) {
-        const href = target.getAttribute('href');
-
-        // Handle different footer links
-        if (href === '#how-it-works') {
-            e.preventDefault();
-            showNotification('How It Works section - Feature coming soon!', 'info');
-        } else if (href === '#dashboard') {
-            e.preventDefault();
-            const dashboardSection = document.getElementById('dashboard');
-            if (dashboardSection) {
-                dashboardSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                showNotification('Dashboard section not available in this view', 'warning');
-            }
-        } else if (href === '#map') {
-            e.preventDefault();
-            const mapSection = document.getElementById('map');
-            if (mapSection) {
-                mapSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                showNotification('Map section not available in this view', 'warning');
-            }
-        } else if (href === '#about') {
-            e.preventDefault();
-            showNotification('About Us - BinMaps: Smart Waste Management for Modern Cities', 'info');
-        } else if (href === '#contact') {
-            e.preventDefault();
-            showNotification('Contact: info@binmaps.com | +359 123 456 789', 'info');
-        } else if (href === '#documentation') {
-            e.preventDefault();
-            showNotification('Documentation - Feature coming soon!', 'info');
-        } else if (href === '#blog') {
-            e.preventDefault();
-            showNotification('Blog - Feature coming soon!', 'info');
-        } else if (href === '#home') {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-});
 
 // ===========================
 // USER DASHBOARD
@@ -825,7 +1241,6 @@ function initUserDashboard() {
 
     updateUserStats();
 
-    // Button handlers
     const buttons = {
         'userReportBtn': () => openModal('reportModal'),
         'userQuickReport': () => openModal('reportModal'),
@@ -847,14 +1262,11 @@ function initUserDashboard() {
         }
     };
 
-    // Attach event listeners
     Object.keys(buttons).forEach(btnId => {
         const btn = document.getElementById(btnId);
         if (btn) {
-            // Remove old listener by cloning
             const newBtn = btn.cloneNode(true);
             btn.parentNode.replaceChild(newBtn, btn);
-            // Add new listener
             newBtn.addEventListener('click', buttons[btnId]);
         }
     });
@@ -864,11 +1276,9 @@ function toggleUserSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
         const isVisible = section.style.display !== 'none';
-        // Hide all user sections first
         document.querySelectorAll('.reports-section, .map-section, .community-stats-section').forEach(s => {
             s.style.display = 'none';
         });
-        // Toggle current section
         section.style.display = isVisible ? 'none' : 'block';
     }
 }
@@ -919,7 +1329,6 @@ function updateUserReportsList() {
     }).join('');
 }
 
-// TODO: Replace with API ENDPOINT: GET /api/reports/stats/community
 async function updateCommunityStats() {
     try {
         const response = await fetch('/api/reports/stats/community', {
@@ -942,7 +1351,7 @@ async function updateCommunityStats() {
 }
 
 // ===========================
-// USER MAP - ZONE HEATMAP ONLY
+// USER MAP - ZONE HEATMAP
 // ===========================
 
 function initUserMap() {
@@ -952,16 +1361,18 @@ function initUserMap() {
         return;
     }
 
-    // Destroy existing map if present
     if (userMap) {
         userMap.remove();
         userMap = null;
     }
 
-    // Wait for element to be visible
     setTimeout(() => {
         try {
-            userMap = L.map('userMap').setView([42.6191, 25.3978], 13);
+            userMap = L.map('userMap', {
+                minZoom: 12,
+                maxZoom: 18,
+                zoomControl: true
+            }).setView([42.6191, 25.3978], 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
@@ -976,7 +1387,6 @@ function initUserMap() {
     }, 200);
 }
 
-// TODO: Replace with API ENDPOINT: GET /api/zones
 function displayUserZones() {
     if (!userMap) return;
 
@@ -1025,7 +1435,6 @@ function initCollectorDashboard() {
     collectorCompleted = 0;
     updateCollectorProgress();
 
-    // Button handlers
     const buttons = {
         'collectorViewRouteBtn': () => {
             const section = document.getElementById('collectorRouteSection');
@@ -1044,7 +1453,6 @@ function initCollectorDashboard() {
         }
     };
 
-    // Attach event listeners
     Object.keys(buttons).forEach(btnId => {
         const btn = document.getElementById(btnId);
         if (btn) {
@@ -1054,7 +1462,6 @@ function initCollectorDashboard() {
         }
     });
 
-    // Initialize map after a delay
     setTimeout(() => initCollectorHeatmap(), 500);
 }
 
@@ -1065,7 +1472,6 @@ function initCollectorHeatmap() {
         return;
     }
 
-    // Destroy existing map if present
     if (collectorMap) {
         collectorMap.remove();
         collectorMap = null;
@@ -1073,7 +1479,11 @@ function initCollectorHeatmap() {
 
     setTimeout(() => {
         try {
-            collectorMap = L.map('collectorHeatmap').setView([42.6191, 25.3978], 14);
+            collectorMap = L.map('collectorHeatmap', {
+                minZoom: 12,
+                maxZoom: 18,
+                zoomControl: true
+            }).setView([42.6191, 25.3978], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
@@ -1091,7 +1501,6 @@ function initCollectorHeatmap() {
 function displayCollectorBins() {
     if (!collectorMap) return;
 
-    // Clear existing markers
     collectorMarkers.forEach(marker => {
         try {
             collectorMap.removeLayer(marker);
@@ -1101,47 +1510,78 @@ function displayCollectorBins() {
     });
     collectorMarkers = [];
 
-    // Display all bins
     containerData.forEach(bin => {
-        // Check if bin is collected
         const isCollected = collectedBins.has(bin.id);
 
-        // Determine color based on status
-        let color, radius;
+        let fillColor, radius;
         if (isCollected) {
-            color = '#64748b'; // Gray for collected
+            fillColor = '#64748b';
             radius = 8;
         } else {
-            color = bin.status === 'empty' ? '#10b981' :
+            fillColor = bin.status === 'empty' ? '#10b981' :
                 bin.status === 'warning' ? '#f59e0b' : '#ef4444';
             radius = bin.status === 'critical' ? 12 : 8;
         }
 
+        const borderColor = bin.zone === 'north' ? '#dc3545' : '#28a745';
+
         try {
             const marker = L.circleMarker([bin.lat, bin.lng], {
                 radius: radius,
-                fillColor: color,
-                color: '#fff',
-                weight: 2,
+                fillColor: fillColor,
+                color: borderColor,
+                weight: 3,
                 opacity: 1,
                 fillOpacity: isCollected ? 0.5 : 0.9
             }).addTo(collectorMap);
 
+            const zoneLabel = bin.zone === 'north' ? 'North (Red)' : 'South (Green)';
+
             marker.bindPopup(`
-                <div style="color: #1e293b; font-family: system-ui; padding: 0.8rem; min-width: 220px;">
+                <div style="color: #1e293b; font-family: system-ui; padding: 0.8rem; min-width: 250px;">
                     <strong style="font-size: 1.1rem;">Container #${bin.id}</strong>
                     ${isCollected ? '<span style="color: #64748b; font-weight: bold;"> ✅ COLLECTED</span>' :
                     bin.status === 'critical' ? '<span style="color: #ef4444; font-weight: bold;"> ⚠️ URGENT</span>' : ''}
                     <br>
                     <div style="margin-top: 0.5rem;">
-                        <span style="color: ${color}; font-size: 1.5rem;">●</span> 
+                        <span style="color: ${fillColor}; font-size: 1.5rem;">●</span> 
                         <strong style="font-size: 1.3rem;">${bin.fillLevel.toFixed(1)}%</strong> Full
                     </div>
                     <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(100,116,139,0.1); border-radius: 6px;">
-                        Status: <strong style="color: ${color};">${isCollected ? 'COLLECTED' : bin.status.toUpperCase()}</strong><br>
-                        🌡️ Temperature: ${bin.temperature}°C<br>
-                        📍 Container ID: BIN-${String(bin.id).padStart(3, '0')}
+                        Zone: <strong style="color: ${borderColor};">${zoneLabel}</strong><br>
+                        Status: <strong style="color: ${fillColor};">${isCollected ? 'COLLECTED' : bin.status.toUpperCase()}</strong><br>
+                        🌡️ Temperature: ${bin.temperature.toFixed(1)}°C<br>
+                        📍 Container ID: ${bin.containerId}
                     </div>
+                    ${!isCollected ? `
+                        <button onclick="confirmMarkBin('${bin.id}')" style="
+                            width: 100%;
+                            margin-top: 0.8rem;
+                            padding: 0.6rem;
+                            background: #10b981;
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background 0.3s;
+                        " onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
+                            ✅ Mark as Collected
+                        </button>
+                    ` : `
+                        <div style="
+                            width: 100%;
+                            margin-top: 0.8rem;
+                            padding: 0.6rem;
+                            background: rgba(100,116,139,0.2);
+                            color: #64748b;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            text-align: center;
+                        ">
+                            ✅ Already Collected
+                        </div>
+                    `}
                 </div>
             `);
 
@@ -1187,51 +1627,146 @@ function displayCollectorRoute() {
     }
 }
 
-// TODO: Replace with API ENDPOINT: POST /api/collections/mark-complete
 async function markBinComplete() {
-    if (collectorCompleted < 20) {
-        // Get a random uncollected bin
-        const uncollectedBins = containerData.filter(b => !collectedBins.has(b.id));
-
-        if (uncollectedBins.length > 0) {
-            const randomBin = uncollectedBins[Math.floor(Math.random() * uncollectedBins.length)];
-
-            try {
-                // API ENDPOINT: POST /api/collections/mark-complete
-                const response = await fetch('/api/collections/mark-complete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        containerId: randomBin.id
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to mark bin as complete');
-                }
-
-                collectedBins.add(randomBin.id);
-                collectorCompleted++;
-                updateCollectorProgress();
-
-                // Update map to show collected bin
-                if (collectorMap) {
-                    displayCollectorBins();
-                }
-
-                showNotification(`Container #${randomBin.id} marked as collected! (${collectorCompleted}/20)`, 'success');
-
-            } catch (error) {
-                console.error('Error marking bin complete:', error);
-                showNotification('Failed to mark bin as complete. Please try again.', 'warning');
-            }
-        }
-    } else {
-        showNotification('All bins completed for today!', 'info');
+    // Get uncollected bins
+    const uncollectedBins = containerData.filter(b => !collectedBins.has(b.id));
+    
+    if (uncollectedBins.length === 0) {
+        showNotification('All bins have been collected!', 'info');
+        return;
     }
+
+    // Create modal to select bin
+    const modalHTML = `
+        <div class="modal active" id="markBinModal">
+            <div class="modal-content" style="max-width: 800px;">
+                <div class="modal-header">
+                    <h2>✅ Mark Bin as Collected</h2>
+                    <button class="modal-close" onclick="closeMarkBinModal()">&times;</button>
+                </div>
+                <div style="padding: 2rem;">
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Select which container you have collected:
+                    </p>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        ${uncollectedBins.map(bin => {
+                            const statusColor = bin.status === 'critical' ? '#ef4444' :
+                                               bin.status === 'warning' ? '#f59e0b' : '#10b981';
+                            const zoneColor = bin.zone === 'north' ? '#dc3545' : '#28a745';
+                            
+                            return `
+                                <div class="bin-select-item" onclick="confirmMarkBin('${bin.id}')" style="
+                                    padding: 1rem;
+                                    background: var(--glass-bg);
+                                    border: 2px solid var(--glass-border);
+                                    border-radius: 12px;
+                                    margin-bottom: 1rem;
+                                    cursor: pointer;
+                                    transition: all 0.3s;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                " onmouseover="this.style.borderColor='var(--primary-green)'; this.style.transform='translateX(5px)';" 
+                                   onmouseout="this.style.borderColor='var(--glass-border)'; this.style.transform='translateX(0)';">
+                                    <div>
+                                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">
+                                            🗑️ Container #${bin.id}
+                                        </div>
+                                        <div style="display: flex; gap: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                                            <span>📍 ${bin.address || 'Unknown location'}</span>
+                                            <span style="color: ${zoneColor};">● ${bin.zone.toUpperCase()}</span>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 2rem; font-weight: 700; color: ${statusColor};">
+                                            ${bin.fillLevel.toFixed(0)}%
+                                        </div>
+                                        <div style="font-size: 0.85rem; color: ${statusColor};">
+                                            ${bin.status.toUpperCase()}
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    <button onclick="closeMarkBinModal()" style="
+                        width: 100%;
+                        padding: 1rem;
+                        margin-top: 1.5rem;
+                        background: var(--glass-bg);
+                        border: 1px solid var(--glass-border);
+                        border-radius: 12px;
+                        color: var(--text-primary);
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">Cancel</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove old modal if exists
+    const oldModal = document.getElementById('markBinModal');
+    if (oldModal) oldModal.remove();
+
+    // Insert modal
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+async function confirmMarkBin(binId) {
+    const bin = containerData.find(b => b.id === binId);
+    if (!bin) return;
+
+    // Close modal
+    closeMarkBinModal();
+
+    try {
+        // Try to call API (will fail if backend not available)
+        const response = await fetch(`${API_BASE_URL}/api/collections/mark-complete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                containerId: binId,
+                collectedAt: new Date().toISOString(),
+                collectorId: currentUser?.id || 'collector-1'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('API call failed');
+        }
+
+        console.log('✅ Bin marked as collected via API');
+    } catch (error) {
+        console.log('ℹ️ API not available, using local state only');
+    }
+
+    // Mark as collected locally
+    collectedBins.add(binId);
+    collectorCompleted++;
+    
+    // Reset the bin's fill level (simulate emptying)
+    bin.fillLevel = 5 + Math.random() * 10; // 5-15% after collection
+    bin.status = 'empty';
+    
+    // Update progress
+    updateCollectorProgress();
+
+    // Refresh map
+    if (collectorMap) {
+        displayCollectorBins();
+    }
+
+    // Show success notification
+    showNotification(`✅ Container #${binId} marked as collected!\n\nProgress: ${collectorCompleted} bins completed\n\nThe container has been emptied and reset.`, 'success');
+}
+
+function closeMarkBinModal() {
+    const modal = document.getElementById('markBinModal');
+    if (modal) modal.remove();
 }
 
 function updateCollectorProgress() {
@@ -1259,7 +1794,6 @@ function initAdminDashboard() {
     loadAdminReports();
     initAdminAlerts();
 
-    // Button handlers
     const buttons = {
         'adminViewMapBtn': () => {
             const section = document.getElementById('map');
@@ -1280,7 +1814,6 @@ function initAdminDashboard() {
         }
     });
 
-    // Map filter buttons
     document.querySelectorAll('.map-filter-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
@@ -1291,7 +1824,6 @@ function initAdminDashboard() {
         });
     });
 
-    // Report filter buttons
     document.querySelectorAll('.reports-filters .filter-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.reports-filters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1302,14 +1834,12 @@ function initAdminDashboard() {
         });
     });
 
-    // Route view buttons
     document.querySelectorAll('.route-view-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             displayAdminRoute();
         });
     });
 
-    // Initialize maps and charts after delay
     setTimeout(() => {
         initAdminMap();
         initHeatmap();
@@ -1324,7 +1854,6 @@ function initAdminMap() {
         return;
     }
 
-    // Destroy existing map if present
     if (adminMap) {
         adminMap.remove();
         adminMap = null;
@@ -1332,7 +1861,11 @@ function initAdminMap() {
 
     setTimeout(() => {
         try {
-            adminMap = L.map('adminMap').setView([42.6191, 25.3978], 14);
+            adminMap = L.map('adminMap', {
+                minZoom: 12,
+                maxZoom: 18,
+                zoomControl: true
+            }).setView([42.6191, 25.3978], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
@@ -1342,7 +1875,6 @@ function initAdminMap() {
 
             console.log('✅ Admin map initialized');
 
-            // Update map every 5 seconds
             setInterval(() => {
                 if (adminMap) {
                     const activeFilter = document.querySelector('.map-filter-btn.active')?.getAttribute('data-filter') || 'all';
@@ -1358,7 +1890,6 @@ function initAdminMap() {
 function displayAdminBins(filter = 'all') {
     if (!adminMap) return;
 
-    // Clear existing markers
     adminMarkers.forEach(marker => {
         try {
             adminMap.removeLayer(marker);
@@ -1373,17 +1904,20 @@ function displayAdminBins(filter = 'all') {
         : containerData.filter(bin => bin.status === filter);
 
     filteredBins.forEach(bin => {
-        const color = bin.status === 'empty' ? '#10b981' :
+        const fillColor = bin.status === 'empty' ? '#10b981' :
             bin.status === 'warning' ? '#f59e0b' : '#ef4444';
 
+        const borderColor = bin.zone === 'north' ? '#dc3545' : '#28a745';
+
         const tempWarning = bin.temperature > 30 ? ' 🔥' : '';
+        const zoneLabel = bin.zone === 'north' ? 'North (Red)' : 'South (Green)';
 
         try {
             const marker = L.circleMarker([bin.lat, bin.lng], {
                 radius: 8,
-                fillColor: color,
-                color: '#fff',
-                weight: 2,
+                fillColor: fillColor,
+                color: borderColor,
+                weight: 3,
                 opacity: 1,
                 fillOpacity: 0.8
             }).addTo(adminMap);
@@ -1392,14 +1926,17 @@ function displayAdminBins(filter = 'all') {
                 <div style="color: #1e293b; font-family: system-ui; padding: 0.5rem; min-width: 200px;">
                     <strong style="font-size: 1.1rem;">Container #${bin.id}${tempWarning}</strong><br>
                     <div style="margin-top: 0.5rem;">
-                        <span style="color: ${color};">●</span> 
+                        <span style="color: ${fillColor};">●</span> 
                         <strong>${bin.fillLevel.toFixed(1)}%</strong> Full
+                    </div>
+                    <div style="margin-top: 0.3rem; font-size: 0.9rem; color: #64748b;">
+                        Zone: <strong style="color: ${borderColor};">${zoneLabel}</strong>
                     </div>
                     <div style="margin-top: 0.3rem; font-size: 0.9rem; color: #64748b;">
                         Status: ${bin.status.charAt(0).toUpperCase() + bin.status.slice(1)}
                     </div>
                     <div style="margin-top: 0.3rem; font-size: 0.9rem; color: #64748b;">
-                        🌡️ Temperature: ${bin.temperature}°C
+                        🌡️ Temperature: ${bin.temperature.toFixed(1)}°C
                     </div>
                 </div>
             `);
@@ -1449,7 +1986,6 @@ function initHeatmap() {
     const heatmapContainer = document.getElementById('heatmapContainer');
     if (!heatmapContainer) return;
 
-    // Destroy existing map if present
     if (heatmapMap) {
         heatmapMap.remove();
         heatmapMap = null;
@@ -1504,7 +2040,6 @@ function initHeatmap() {
 // ADMIN REPORTS & ALERTS
 // ===========================
 
-// TODO: Replace with API ENDPOINT: GET /api/reports/all (admin only)
 async function loadAdminReports() {
     try {
         const response = await fetch('/api/reports/all', {
@@ -1574,8 +2109,6 @@ function filterAdminReports(filter) {
 }
 
 function initAdminAlerts() {
-    // Initial alerts are already in HTML
-    // Add new alerts periodically
     setInterval(() => {
         if (currentUser && currentUser.role === 'admin') {
             generateRandomAlert();
@@ -1611,15 +2144,11 @@ function addAlert(alertData) {
 
     container.insertAdjacentHTML('afterbegin', alertHTML);
 
-    // Keep only last 5 alerts
     while (container.children.length > 5) {
         container.removeChild(container.lastChild);
     }
 }
 
-// ===========================
-// FIRE RISK DETECTION
-// ===========================
 function checkFireRisk() {
     containerData.forEach(bin => {
         if (bin.temperature > 45) {
@@ -1634,16 +2163,15 @@ function checkFireRisk() {
                     type: 'warning',
                     icon: '🔥',
                     title: 'FIRE RISK DETECTED',
-                    message: `Container #${bin.id} temperature critical: ${bin.temperature}°C! Immediate action required.`
+                    message: `Container #${bin.id} temperature critical: ${bin.temperature.toFixed(1)}°C! Immediate action required.`
                 });
 
-                console.warn(`🔥 FIRE RISK: Container #${bin.id} at ${bin.temperature}°C`);
+                console.warn(`🔥 FIRE RISK: Container #${bin.id} at ${bin.temperature.toFixed(1)}°C`);
             }
         }
     });
 }
 
-// Check fire risk every 10 seconds
 setInterval(() => {
     if (currentUser && currentUser.role === 'admin') {
         checkFireRisk();
@@ -1655,7 +2183,6 @@ setInterval(() => {
 // ===========================
 
 function initAdminCharts() {
-    // Check if Chart.js is loaded
     if (typeof Chart === 'undefined') {
         console.error('Chart.js not loaded');
         return;
@@ -1666,7 +2193,6 @@ function initAdminCharts() {
     initHistoryChart();
     initTemperatureChart();
 
-    // Update charts periodically
     setInterval(() => {
         if (currentUser && currentUser.role === 'admin') {
             updateFillLevelChart();
@@ -1900,7 +2426,6 @@ function initTemperatureChart() {
     }
 }
 
-// Time period buttons
 document.querySelectorAll('.time-btn').forEach(button => {
     button.addEventListener('click', function () {
         document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('active'));
@@ -1986,44 +2511,43 @@ function startAutoRefresh() {
 }
 
 // ===========================
-// HOME PAGE BUTTON HANDLERS
+// INITIALIZATION
 // ===========================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('%c🗑️ BinMaps - Smart Waste Management System', 'font-size: 20px; font-weight: bold; color: #10b981');
     console.log('%c📊 System Status:', 'font-size: 14px; font-weight: bold; color: #3b82f6');
 
-    // Home page button handlers
     const homeLoginBtn = document.getElementById('homeLoginBtn');
-
     if (homeLoginBtn) {
         homeLoginBtn.addEventListener('click', () => {
             showLoginScreen();
         });
     }
 
-    // Initialize core systems
-    initializeSensors();
-    checkAuth().finally(x => console.log(x));
+    // Load containers from JSON file (with sensor simulation wrapper)
+    await loadContainersFromJson();
+    
+    // Check authentication
+    await checkAuth();
 
-    // Start live updates
     updateLiveStatus();
     startAutoRefresh();
 
-    // Update sensors every 5 seconds
+    // Update sensors every 5 seconds (simulates real sensor updates)
     setInterval(updateAllSensors, 5000);
 
     console.log('  ✓ Authentication system active');
-    console.log('  ✓ IoT sensor simulation running');
+    console.log('  ✓ Containers loaded from JSON with sensor simulation');
     console.log('  ✓ Real-time monitoring enabled');
     console.log('  ✓ Role-based dashboards loaded');
+    console.log('  ✓ Advanced route optimization ready');
     console.log('%c🚀 BinMaps fully initialized and ready!', 'font-size: 14px; font-weight: bold; color: #10b981');
 });
 
-// Animate counters on page load
 window.addEventListener('load', () => {
     const heroTotalBins = document.getElementById('heroTotalBins');
     if (heroTotalBins) {
-        animateCounter(heroTotalBins, 60);
+        animateCounter(heroTotalBins, containerData.length);
     }
 });
 
