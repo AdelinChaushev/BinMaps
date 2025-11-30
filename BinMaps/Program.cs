@@ -192,7 +192,6 @@ using (var scope = app.Services.CreateScope())
                 await userManager.FindByEmailAsync("Driver2@gmail.com"), "Driver");
 
         }
-
     }
 }
 
