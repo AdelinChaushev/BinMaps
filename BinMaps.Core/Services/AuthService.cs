@@ -76,7 +76,7 @@ namespace BinMaps.Core.Services
             {
                 UserName = userName,
                 Email = email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
             };
             var userExist = await userManager.FindByEmailAsync(email);
             if (userExist != null)
@@ -128,6 +128,12 @@ namespace BinMaps.Core.Services
         {
             var user = await userManager.FindByIdAsync(id);
             return user;
+		}
+
+		public async Task<string> GetUserRole(string id)
+		{
+			string role = userManager.GetRolesAsync(userManager.FindByIdAsync(id).Result).Result.FirstOrDefault();
+            return role;
 		}
 	}
 }
