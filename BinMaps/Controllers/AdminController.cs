@@ -34,4 +34,11 @@ public class AdminController : ControllerBase
         await _areaAdminService.MarkAreaAsCleanedAsync(areaId);
         return Ok("Marked");
     }
+    [HttpGet("/GetDrivers")]
+
+    public async Task<IActionResult> GetDrivers()
+    {
+        var drivers = await _areaAdminService.GetAllDriversAsync();
+        return Ok(drivers);
+    }
 }
