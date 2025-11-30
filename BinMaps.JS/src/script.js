@@ -232,7 +232,6 @@ function showDashboard(role) {
     document.getElementById('collectorDashboard').style.display = 'none';
     document.getElementById('adminDashboard').style.display = 'none';
     
-    
     if (role === 'user') {
         document.getElementById('userDashboard').style.display = 'block';
         const floatingBtn = document.getElementById('floatingReportBtn');
